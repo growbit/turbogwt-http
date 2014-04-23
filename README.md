@@ -133,10 +133,27 @@ TurboG HTTP checks the type in compile time.
 So if you want to retrieve a collection of T in your response, you can use a ListAsyncCallback<T>
  (or SetAsyncCallback<T>), instead of the AsyncCallback<T>.
 
+```java
+requestor.request(Void.class, Book.class).path("server").segment("books").get(new ListAsyncCallback<Book>() {
+            @Override
+            public void onFailure(Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(List<Book> result) {
+                // w00t! A list of books!
+            }
+        });
+```
+
 Both ListAsyncCallback and SetAsyncCallback inherits from CollectionAsyncCallback, which requires its subclasses to
  inform the collection type they accumulate the result.
 
 When deserializing, the Deserializer retrieves an instance of the collection from the CollectionFactoryManager.
+
+You can create custom Factories of Collection types, register them in the Requestor,
+ and use a custom CollectionCallback of this type.
 
 ## JSON, XML and whatever living together
 The [Serializer](https://github.com/growbit/turbogwt-http/tree/master/src/main/java/org/turbogwt/net/http/serialization/Serializer.java)
@@ -167,11 +184,11 @@ You can easily enhance all your requests with RequestFilter and your responses w
 
 Ps: Registration is a TurboG Core class. Inherits from HandlerRegistration,
  but is essentially a general purpose registration element.
- All register* methods in Requestor returns a registration instance, enabling the latter deregistration.
+ All register* methods in Requestor return a registration instance, enabling the latter deregistration.
 
 ## Easier header construction
 TurboG HTTP provides Header classes facilitating complex header construction.
- E.g., you can create a QualityFactorHeader and pass it to youy request.
+ E.g., you can create a QualityFactorHeader and pass it to your request.
 
 ## Extensible design
 All Requests are created by an underlying abstraction called Server. This Server interface is analogous to the JDBC Datasource and provides a new ServerConnection by calling getConnection(). This design allows you to determine how you want to communicate with your Server over all your application.
@@ -179,8 +196,6 @@ All Requests are created by an underlying abstraction called Server. This Server
 E.g., suppose you are creating a mobile application and want to prevent data loss by poor connection. You can create a new implementation of Server that stores the data on the browser's phone if no internet connection is availble, and sync the data when the signal is back.
 
 The default implementation of Server (ServerImpl) creates the ServerConnectionImpl (default implementation of ServerConnection), which performs the communication by directly creating a request using RequestBuilder and sending it. The binding is done via DefferedBinding. 
-
-## How does FluentRequest
 
 ## Tests
 Take a look at the [tests](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http) for more examples.
