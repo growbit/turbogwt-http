@@ -130,8 +130,8 @@ requestor.request(FormParam.class, Void.class)
 TurboG HTTP checks the type in compile time.
  It resorts to Java Generics to differentiate between single object and collection of the object.
 
-So if you want to retrieve a collection of T in your response, you can use a ListAsyncCallback<T>
- (or SetAsyncCallback<T>), instead of the AsyncCallback<T>.
+So if you want to retrieve a collection of T in your response, you can use a [ListAsyncCallback<T>](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/ListAsyncCallback.html)
+ (or [SetAsyncCallback<T>](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/SetAsyncCallback.html)), instead of the AsyncCallback<T>.
 
 ```java
 requestor.request(Void.class, Book.class).path("server").segment("books").get(new ListAsyncCallback<Book>() {
@@ -147,55 +147,58 @@ requestor.request(Void.class, Book.class).path("server").segment("books").get(ne
         });
 ```
 
-Both ListAsyncCallback and SetAsyncCallback inherits from CollectionAsyncCallback, which requires its subclasses to
+Both [ListAsyncCallback](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/ListAsyncCallback.java) and [SetAsyncCallback](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/SetAsyncCallback.java) inherits from [ContainerAsyncCallback](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/ContainerAsyncCallback.html), which requires its subclasses to
  inform the collection type they accumulate the result.
 
 When deserializing, the Deserializer retrieves an instance of the collection from the CollectionFactoryManager.
 
 You can create custom Factories of Collection types, register them in the Requestor,
- and use a custom CollectionCallback of this type.
+ and use a custom ContainerCallback of this type.
+ 
+### Requestor
+[Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, CollectionFactoryManager) and create [FluentRequests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) supporting those.
 
 ### JSON, XML and whatever living together
-The [Serializer](https://github.com/growbit/turbogwt-http/tree/master/src/main/java/org/turbogwt/net/http/serialization/Serializer.java)
- and [Deserializer](https://github.com/growbit/turbogwt-http/tree/master/src/main/java/org/turbogwt/net/http/serialization/Deserializer.java)
+The [Serializer](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/serialization/Serializer.html)
+ and [Deserializer](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/serialization/Deserializer.html)
  interfaces requires you to inform the *content-type patterns* they handle.
  After registering them at the Requestor, when requesting it will look for the most specific Serializer for serializing
  outgoing data and the most specific Deserializer for deserializing incoming data.
 
-The tests shows an example (see [this test](https://github.com/growbit/turbogwt-http/blob/master/src/test/java/org/turbogwt/net/http/MultipleSerdesByClassTest.java) and [here](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http/books))
- of having both Serdes for XML and JSON related to the same type.
+The tests shows an example (see [this test](https://github.com/growbit/turbogwt-http/blob/master/src/test/java/org/turbogwt/net/http/MultipleSerdesByClassTest.java) and [the SerDes](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http/books))
+ of having both SerDes for XML and JSON related to the same type.
 
-Notice FluentRequest (returned by Requestor) enables you to specify the exact content-type you want to serialize your
+Notice [FluentRequest](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) (returned by Requestor) enables you to specify the exact content-type you want to serialize your
  outgoing data (FluentRequest#content-type(String)) and the content-type you want to receive from the server
  (FluentRequest#accept(String) or FluentRequest#accept(AcceptHeader)). Both default values are "application/json".
 
 ### Multiple value parameters
-There's a feature called MultipleValueStrategy that defines the way params with more than one value should be composed
+There's a feature called [MultipleParamStrategy](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/MultipleParamStrategy.html) that defines the way params with more than one value should be composed
  when building a URL or a FormParam. There are two strategies provided: RepeatedParam and CommaSeparated. The former
  repeats the param name with each value - this is the default and most practiced strategy -, the latter puts only
  once the parameter name and join the values separated by comma.
 
 ### Request/Response filters
-You can easily enhance all your requests with RequestFilter and your responses with ResponseFilter.
+You can easily enhance all your requests with [RequestFilter](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/RequestFilter.html) and your responses with [ResponseFilter](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/ResponseFilter.html).
  Suppose you want to add a custom authentication header in all requests after the user successfully authenticated.
  Just register a RequestFilter in the Requestor that performs this operation.
  If latter you want do undo this registration, you can hold the Registration instance returned at the time of
  registering and execute Registration#removeHandler().
 
-Ps: Registration is a TurboG Core class. Inherits from HandlerRegistration,
+Ps: [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/Registration.html) is a TurboG Core class. Inherits from HandlerRegistration,
  but is essentially a general purpose registration element.
  All register* methods in Requestor return a registration instance, enabling the latter deregistration.
 
 ### Easier header construction
 TurboG HTTP provides Header classes facilitating complex header construction.
- E.g., you can create a QualityFactorHeader and pass it to your request.
+ E.g., you can create a [QualityFactorHeader](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/QualityFactorHeader.html) and pass it to your request.
 
 ### Extensible design
-All Requests are created by an underlying abstraction called Server. This Server interface is analogous to the JDBC Datasource and provides a new ServerConnection by calling getConnection(). This design allows you to determine how you want to communicate with your Server over all your application.
+All Requests are created by an underlying abstraction called [Server](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Server.html). This Server interface is analogous to the JDBC Datasource and provides a new [ServerConnection](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/ServerConnection.html) by calling getConnection(). This design allows you to determine how you want to communicate with your Server over all your application.
 
 E.g., suppose you are creating a mobile application and want to prevent data loss by poor connection. You can create a new implementation of Server that stores the data on the browser's phone if no internet connection is availble, and sync the data when the signal is back.
 
-The default implementation of Server (ServerImpl) creates the ServerConnectionImpl (default implementation of ServerConnection), which performs the communication by directly creating a request using RequestBuilder and sending it. The binding is done via DefferedBinding. 
+The default implementation of Server ([ServerImpl](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/ServerImpl.java)) creates the [ServerConnectionImpl](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/ServerConnectionImpl.java) (default implementation of ServerConnection), which performs the communication by directly creating a request using RequestBuilder and sending it. The binding is done via DefferedBinding. 
 
 ### Tests
 Take a look at the [tests](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http) for more examples.
