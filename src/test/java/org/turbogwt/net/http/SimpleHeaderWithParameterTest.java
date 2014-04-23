@@ -16,16 +16,22 @@
 
 package org.turbogwt.net.http;
 
+import com.google.gwt.junit.client.GWTTestCase;
+
 /**
  * @author Danilo Reinert
  */
-public class ContentTypeHeader extends SimpleHeaderWithParameter {
+public class SimpleHeaderWithParameterTest extends GWTTestCase {
 
-    public ContentTypeHeader(String value, Param... params) {
-        super("Content-Type", value, params);
+    @Override
+    public String getModuleName() {
+        return "org.turbogwt.net.http.HttpTest";
     }
 
-    public ContentTypeHeader(String value) {
-        super("Content-Type", value);
+    public void testGetValue() {
+        final String expected = "text/html; charset=ISO-8859-4";
+        final SimpleHeaderWithParameter header = new SimpleHeaderWithParameter("Content-Type", "text/html",
+                new SimpleHeaderWithParameter.Param("charset", "ISO-8859-4"));
+        assertEquals(expected, header.getValue());
     }
 }
