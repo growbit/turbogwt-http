@@ -155,7 +155,7 @@ When deserializing, the Deserializer retrieves an instance of the collection fro
 You can create custom Factories of Collection types, register them in the Requestor,
  and use a custom CollectionCallback of this type.
 
-## JSON, XML and whatever living together
+### JSON, XML and whatever living together
 The [Serializer](https://github.com/growbit/turbogwt-http/tree/master/src/main/java/org/turbogwt/net/http/serialization/Serializer.java)
  and [Deserializer](https://github.com/growbit/turbogwt-http/tree/master/src/main/java/org/turbogwt/net/http/serialization/Deserializer.java)
  interfaces requires you to inform the *content-type patterns* they handle.
@@ -169,13 +169,13 @@ Notice FluentRequest (returned by Requestor) enables you to specify the exact co
  outgoing data (FluentRequest#content-type(String)) and the content-type you want to receive from the server
  (FluentRequest#accept(String) or FluentRequest#accept(AcceptHeader)).
 
-## Multiple value parameters
+### Multiple value parameters
 There's a feature called MultipleValueStrategy that defines the way params with more than one value should be composed
  when building a URL or a FormParam. There are two strategies provided: RepeatedParam and CommaSeparated. The former
  repeats the param name with each value - this is the default and most practiced strategy -, the latter puts only
  once the parameter name and join the values separated by comma.
 
-## Request/Response filters
+### Request/Response filters
 You can easily enhance all your requests with RequestFilter and your responses with ResponseFilter.
  Suppose you want to add a custom authentication header in all requests after the user successfully authenticated.
  Just register a RequestFilter in the Requestor that performs this operation.
@@ -186,18 +186,18 @@ Ps: Registration is a TurboG Core class. Inherits from HandlerRegistration,
  but is essentially a general purpose registration element.
  All register* methods in Requestor return a registration instance, enabling the latter deregistration.
 
-## Easier header construction
+### Easier header construction
 TurboG HTTP provides Header classes facilitating complex header construction.
  E.g., you can create a QualityFactorHeader and pass it to your request.
 
-## Extensible design
+### Extensible design
 All Requests are created by an underlying abstraction called Server. This Server interface is analogous to the JDBC Datasource and provides a new ServerConnection by calling getConnection(). This design allows you to determine how you want to communicate with your Server over all your application.
 
 E.g., suppose you are creating a mobile application and want to prevent data loss by poor connection. You can create a new implementation of Server that stores the data on the browser's phone if no internet connection is availble, and sync the data when the signal is back.
 
 The default implementation of Server (ServerImpl) creates the ServerConnectionImpl (default implementation of ServerConnection), which performs the communication by directly creating a request using RequestBuilder and sending it. The binding is done via DefferedBinding. 
 
-## Tests
+### Tests
 Take a look at the [tests](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http) for more examples.
 
 ## Documentation
