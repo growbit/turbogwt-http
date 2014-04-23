@@ -67,7 +67,7 @@ requestor.request(Book.class, Void.class).path("server").segment("books")
         });
 ```
 
-If you are too lazy, Requestor provides **shortcut methods** to performing requests with only one method call. 
+If you are too lazy, Requestor provides **shortcut methods** to perform requests with only one method call. 
 The above could be done like this:
 
 ```java 
