@@ -42,8 +42,8 @@ public class RestTest extends GWTTestCase {
     public void testCreate() {
         ServerStub.clearStub();
 
-        final Requestor requestory = new Requestor();
-        requestory.registerSerdes(Book.class, BookJsonSerdes.getInstance());
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
 
         final String uri = "/server/books";
 
@@ -54,7 +54,7 @@ public class RestTest extends GWTTestCase {
         final boolean[] callbacksCalled = new boolean[1];
         final Book data = new Book(1, "RESTful Web Services", "Leonard Richardson");
 
-        requestory.request(Book.class, Void.class)
+        requestor.request(Book.class, Void.class)
                 .path("server").segment("books")
                 .post(data, new AsyncCallback<Void>() {
                     @Override
@@ -76,13 +76,13 @@ public class RestTest extends GWTTestCase {
     public void testDelete() {
         ServerStub.clearStub();
 
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/server/books/1";
 
         ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
 
-        requestory.request() // The same as request(Void.class, Void.class)
+        requestor.request() // The same as request(Void.class, Void.class)
                 .path("server").segment("books").segment(1)
                 .delete(); // You can optionally dismiss any server response
 
@@ -92,8 +92,8 @@ public class RestTest extends GWTTestCase {
     public void testGetAll() {
         ServerStub.clearStub();
 
-        final Requestor requestory = new Requestor();
-        requestory.registerSerdes(Book.class, BookJsonSerdes.getInstance());
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
 
         final String uri = "/server/books";
 
@@ -110,7 +110,7 @@ public class RestTest extends GWTTestCase {
 
         final boolean[] callbacksCalled = new boolean[1];
 
-        requestory.request(Void.class, Book.class).path("server").segment("books").get(new ListAsyncCallback<Book>() {
+        requestor.request(Void.class, Book.class).path("server").segment("books").get(new ListAsyncCallback<Book>() {
             @Override
             public void onFailure(Throwable caught) {
                 // Ignored
@@ -130,8 +130,8 @@ public class RestTest extends GWTTestCase {
     public void testGetOne() {
         ServerStub.clearStub();
 
-        final Requestor requestory = new Requestor();
-        requestory.registerSerdes(Book.class, BookJsonSerdes.getInstance());
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
 
         final String uri = "/server/books/1";
 
@@ -143,7 +143,7 @@ public class RestTest extends GWTTestCase {
 
         final boolean[] callbacksCalled = new boolean[1];
 
-        requestory.request(Void.class, Book.class)
+        requestor.request(Void.class, Book.class)
                 .path("server").segment("books").segment(1).get(new AsyncCallback<Book>() {
             @Override
             public void onFailure(Throwable caught) {
@@ -159,13 +159,19 @@ public class RestTest extends GWTTestCase {
 
         assertTrue(callbacksCalled[0]);
         assertEquals(RequestBuilder.GET, ServerStub.getRequestData(uri).getMethod());
+
+        final String firstBookSerializedAsXml = "<book>" +
+                "<id>1</id>" +
+                "<title>RESTful Web Services</title>" +
+                "<author>Leonard Richardson</author>" +
+                "</book>";
     }
 
     public void testUpdate() {
         ServerStub.clearStub();
 
-        final Requestor requestory = new Requestor();
-        requestory.registerSerdes(Book.class, BookJsonSerdes.getInstance());
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
 
         final String uri = "/server/books/1";
 
@@ -176,7 +182,7 @@ public class RestTest extends GWTTestCase {
         final boolean[] callbacksCalled = new boolean[1];
         final Book data = new Book(1, "RESTful Web Services", "Leonard Richardson");
 
-        requestory.request(Book.class, Void.class)
+        requestor.request(Book.class, Void.class)
                 .path("server").segment("books").segment(1)
                 .put(data, new AsyncCallback<Void>() {
                     @Override

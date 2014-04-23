@@ -162,12 +162,12 @@ The [Serializer](https://github.com/growbit/turbogwt-http/tree/master/src/main/j
  After registering them at the Requestor, when requesting it will look for the most specific Serializer for serializing
  outgoing data and the most specific Deserializer for deserializing incoming data.
 
-The tests shows an example ([here](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http/books))
+The tests shows an example (see [this test](https://github.com/growbit/turbogwt-http/blob/master/src/test/java/org/turbogwt/net/http/MultipleSerdesByClassTest.java) and [here](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http/books))
  of having both Serdes for XML and JSON related to the same type.
 
 Notice FluentRequest (returned by Requestor) enables you to specify the exact content-type you want to serialize your
  outgoing data (FluentRequest#content-type(String)) and the content-type you want to receive from the server
- (FluentRequest#accept(String) or FluentRequest#accept(AcceptHeader)).
+ (FluentRequest#accept(String) or FluentRequest#accept(AcceptHeader)). Both default values are "application/json".
 
 ### Multiple value parameters
 There's a feature called MultipleValueStrategy that defines the way params with more than one value should be composed
