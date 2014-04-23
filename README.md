@@ -156,7 +156,7 @@ You can create custom Factories of Collection types, register them in the Reques
  and use a custom ContainerCallback of this type.
  
 ### Requestor
-[Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, CollectionFactoryManager) and create [FluentRequests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) supporting those.
+[Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, CollectionFactoryManager) and create [FluentRequests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) supporting those. It should be used as a singleton over all your application.
 
 ### JSON, XML and whatever living together
 The [Serializer](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/serialization/Serializer.html)
