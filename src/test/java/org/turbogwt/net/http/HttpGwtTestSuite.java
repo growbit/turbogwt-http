@@ -32,12 +32,15 @@ public class HttpGwtTestSuite {
 
         suite.addTestSuite(MultipleHeaderTest.class);
         suite.addTestSuite(QualityFactorHeaderTest.class);
+        suite.addTestSuite(SimpleHeaderWithParameterTest.class);
 
         suite.addTestSuite(UriBuilderImplTest.class);
         suite.addTestSuite(FluentRequestImplTest.class);
         suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
         suite.addTestSuite(SerializerAndDeserializerMatchTest.class);
+        suite.addTestSuite(SerializerAndDeserializerPrecedenceTest.class);
         suite.addTestSuite(MultipleSerdesByClassTest.class);
+
         suite.addTestSuite(RestTest.class);
 
         return suite;
