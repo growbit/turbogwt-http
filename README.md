@@ -235,7 +235,8 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
         return new String[] { "application/json", "application/javascript", "*/json", "*/json+*, "*/*+json" };
     }
     
-    ...
+    // ... (omitted)
+}
     
 ```
 
