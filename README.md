@@ -209,6 +209,39 @@ The tests shows an example (see [this test](https://github.com/growbit/turbogwt-
 Notice [FluentRequest](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) (returned by Requestor) enables you to specify the exact content-type you want to serialize your
  outgoing data (FluentRequest#content-type(String)) and the content-type you want to receive from the server
  (FluentRequest#accept(String) or FluentRequest#accept(AcceptHeader)). Both default values are "application/json".
+ 
+An abstract SerDes implementation for JSON would be like:
+
+```
+public abstract class JsonSerdes<T> implements Serdes<T> {
+
+    public static String[] ACCEPT_PATTERNS = 
+    public static String[] CONTENT_TYPE_PATTERNS = 
+
+    /**
+     * Informs the content type this serializer handle.
+     *
+     * @return The content type handled by this serializer.
+     */
+    @Override
+    public String[] accept() {
+        return new String[] { "application/json", "application/javascript", "*/json", "*/json+*, "*/*+json" };
+    }
+
+    /**
+     * Informs the content type this serializer serializes.
+     *
+     * @return The content type serialized.
+     */
+    @Override
+    public String[] contentType() {
+        return new String[] { "application/json", "application/javascript", "*/json", "*/json+*, "*/*+json" };
+    }
+    
+    ...
+    
+```
+
 
 ### Multiple value parameters
 There's a feature called [MultipleParamStrategy](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/MultipleParamStrategy.html) that defines the way params with more than one value should be composed
