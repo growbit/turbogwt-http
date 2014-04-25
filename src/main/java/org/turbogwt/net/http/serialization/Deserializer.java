@@ -21,23 +21,23 @@ import java.util.Collection;
 /**
  * Performs deserialization of Types.
  *
- * @param <T> The type it can deserialize.
+ * @param <T> The type it can deserialize
  *
  * @author Danilo Reinert
  */
 public interface Deserializer<T> {
 
     /**
-     * Method for accessing type of Objects this deserializer can handle.
+     * Method for accessing type of the Object this deserializer can handle.
      *
      * @return The class which this deserializer can deserialize
      */
     Class<T> handledType();
 
     /**
-     * Informs the content type this serializer handle.
+     * Informs the content-type patterns this deserializer handle.
      *
-     * @return The content type handled by this serializer.
+     * @return The content-type patterns handled by this serializer.
      */
     String[] accept();
 

@@ -37,7 +37,7 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
     }
 
     /**
-     * Method for accessing type of Objects this serializer can handle.
+     * Method for accessing type of the Object this deserializer can handle.
      *
      * @return The class which this deserializer can deserialize
      */
@@ -47,9 +47,9 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
     }
 
     /**
-     * Informs the content type this serializer handle.
+     * Informs the content-type patterns this deserializer handle.
      *
-     * @return The content type handled by this serializer.
+     * @return The content-type patterns handled by this serializer.
      */
     @Override
     public String[] accept() {
@@ -57,9 +57,9 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
     }
 
     /**
-     * Informs the content type this serializer serializes.
+     * Informs the content-type patterns this serializer handle.
      *
-     * @return The content type serialized.
+     * @return The content-type patterns accepted by this serializer.
      */
     @Override
     public String[] contentType() {

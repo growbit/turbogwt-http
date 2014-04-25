@@ -28,16 +28,16 @@ import java.util.Collection;
 public interface Serializer<T> {
 
     /**
-     * Method for accessing type of Objects this deserializer can handle.
+     * Method for accessing type of the Object this deserializer can handle.
      *
      * @return The class which this serializer can serialize
      */
     Class<T> handledType();
 
     /**
-     * Informs the content type this serializer serializes.
+     * Informs the content-type patterns this serializer handle.
      *
-     * @return The content type serialized.
+     * @return The content-type patterns accepted by this serializer.
      */
     String[] contentType();
 
