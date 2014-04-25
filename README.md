@@ -2,7 +2,23 @@ Turbo GWT (*TurboG*) HTTP
 ==
 **Turbo GWT** is a suite of libs intended to speed up development of GWT applications. It aims to promote a fluent and enjoyable programming.
 
-**Turbo GWT HTTP** is a convenient API for managing/performing your requests.
+**Turbo GWT HTTP** is a convenient API for managing client-server communication and performing requests fluently.
+
+## Highlights
+
+* `GET`, `POST`, `PUT`, `DELETE` and `HEAD` requests
+* All common components extended from GWT HTTP and RPC APIs
+* Easy building of target URI with no string manipulation
+* Customizable multi-valued param composition
+* Nice support to form params
+* Native Basic Authentication support
+* Customizable timeout
+* Customizable callback execution based on server response
+* Handy header construction and application
+* Request and Response filtering (enhancement)
+* Customizable `ServerConnection` implementation (default directs to XMLHttpRequest)
+* Automatic JSON parsing into Overlay types
+* Easy De/Serialization and support to different content-types (by pattern matching)
 
 ## Quick Start
 
@@ -10,7 +26,7 @@ TurboG proposes a new fluent way of making http requests. It fits better the RES
 Just look how simple you can get a book from server:
 
 ```java
-requestor.request(Void.class, Book.class)
+Request request = requestor.request(Void.class, Book.class)
         .path("server").segment("books").segment(1)
         .get(new AsyncCallback<Book>() {
             @Override
@@ -53,7 +69,7 @@ If you are using *Overlays*, then you don't need any SerDes, *serialization/dese
 Doing a POST is as simple as:
 
 ```java 
-requestor.request(Book.class, Void.class).path("server").segment("books")
+Request request = requestor.request(Book.class, Void.class).path("server").segment("books")
         .post(new Book(1, "My Title", "My Author"), new AsyncCallback<Void>() {
             @Override
             public void onFailure(Throwable caught) {
@@ -71,7 +87,7 @@ If you are too lazy, Requestor provides **shortcut methods** to perform requests
 The above could be done like this:
 
 ```java 
-requestor.post("/server/books", Book.class, new Book(1, "My Title", "My Author"), Void.class, 
+Request request = requestor.post("/server/books", Book.class, new Book(1, "My Title", "My Author"), Void.class, 
         new AsyncCallback<Void>() {
             @Override
             public void onFailure(Throwable caught) {
@@ -83,47 +99,6 @@ requestor.post("/server/books", Book.class, new Book(1, "My Title", "My Author")
                 Window.alert("POST done!");
             }
         });
-```
-
-With FluentRequests you can also set callbacks for specific responses, with specificity priority.
-
-```java 
-requestor.request().path(uri)
-        .on(20, new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                Window.alert("200, 201, ..., 209");
-            }
-        })
-        .on(2, new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                Window.alert("210, 211, ..., 299");
-                // 200 - 209 responses won't reach here because you set a callback for the 20 dozen.
-            }
-        })
-        .get(new AsyncCallback<Void>() {
-            @Override
-            public void onFailure(Throwable caught) {
-                Window.alert("Some bad thing happened!");
-            }
-            @Override
-            public void onSuccess(Void result) {
-                // Won't reach here. 
-                // Only 200-299 responses call onSuccess, and you have already set callbacks for those.
-            }
-        });
-```
-
-Posting *Form Data* is like:
-
-```java
-FormData formData = FormData.builder().put("name", "John Doe").put("array", 1, 2.5).build();
-
-requestor.request(FormParam.class, Void.class)
-        .path(uri)
-        .contentType("application/x-www-form-urlencoded")
-        .post(formData);
 ```
 
 ### How do I retrieve a collection instead of a single object?
@@ -155,8 +130,71 @@ When deserializing, the Deserializer retrieves an instance of the collection fro
 You can create custom Factories of Collection types, register them in the Requestor,
  and use a custom ContainerCallback of this type.
  
+### Customizable callback execution
+With FluentRequests you can set callbacks for specific responses, with specificity priority.
+
+```java 
+Request request = requestor.request().path(uri)
+        .on(20, new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                Window.alert("200, 201, ..., 209");
+            }
+        })
+        .on(2, new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                Window.alert("210, 211, ..., 299");
+                // 200 - 209 responses won't reach here because you set a callback for the 20 dozen.
+            }
+        })
+        .get(new AsyncCallback<Void>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                Window.alert("Some bad thing happened!");
+            }
+            @Override
+            public void onSuccess(Void result) {
+                // Won't reach here. 
+                // Only 200-299 responses call onSuccess, and you have already set callbacks for those.
+            }
+        });
+```
+ 
+### Basic Authentication
+FluentRequest supports setting user and password.
+
+```java
+requestor.request(Void.class, String.class)
+        .path("hello")
+        .user(username).password(pwd)
+        .get(new AsyncCallback<String>() {
+            @Override
+            public void onFailure(Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                Window.alert("Hello " + result + "!");
+            }
+        });
+```
+
+### Sending FORM data
+TurboG HTTP provides two handful classes for dealing with Forms: *FormParam* and *FormData* (a collection of FormParams with a nice builder). You can use both of them to make a form post.
+
+```java
+FormData formData = FormData.builder().put("name", "John Doe").put("array", 1, 2.5).build();
+
+Request request = requestor.request(FormParam.class, Void.class)
+        .path(uri)
+        .contentType("application/x-www-form-urlencoded")
+        .post(formData); // We optionally set no callback, disregarding the server response
+```
+ 
 ### Requestor
-[Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, CollectionFactoryManager) and create [FluentRequests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) supporting those.
+[Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, CollectionFactoryManager) and create [FluentRequests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) supporting those. It should be used as a singleton over all your application.
 
 ### JSON, XML and whatever living together
 The [Serializer](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/serialization/Serializer.html)
@@ -171,6 +209,44 @@ The tests shows an example (see [this test](https://github.com/growbit/turbogwt-
 Notice [FluentRequest](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) (returned by Requestor) enables you to specify the exact content-type you want to serialize your
  outgoing data (FluentRequest#content-type(String)) and the content-type you want to receive from the server
  (FluentRequest#accept(String) or FluentRequest#accept(AcceptHeader)). Both default values are "application/json".
+ 
+An abstract SerDes implementation for JSON would be like:
+
+```
+public abstract class JsonSerdes<T> implements Serdes<T> {
+
+    /**
+     * Method for accessing type of the Object this deserializer can handle.
+     *
+     * @return The class handled by this serializer
+     */
+    abstract Class<T> handledType();
+
+    /**
+     * Informs the content type this deserializer handle.
+     *
+     * @return The content type handled by this deserializer.
+     */
+    @Override
+    public String[] accept() {
+        return new String[] { "application/json", "application/javascript", "*/json", "*/json+*, "*/*+json" };
+    }
+
+    /**
+     * Informs the content type this serializer serializes.
+     *
+     * @return The content type serialized.
+     */
+    @Override
+    public String[] contentType() {
+        return new String[] { "application/json", "application/javascript", "*/json", "*/json+*, "*/*+json" };
+    }
+    
+    // ... (omitted)
+}
+    
+```
+
 
 ### Multiple value parameters
 There's a feature called [MultipleParamStrategy](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/MultipleParamStrategy.html) that defines the way params with more than one value should be composed
