@@ -216,6 +216,13 @@ An abstract SerDes implementation for JSON would be like:
 public abstract class JsonSerdes<T> implements Serdes<T> {
 
     /**
+     * Method for accessing type of the Object this deserializer can handle.
+     *
+     * @return The class handled by this serializer
+     */
+    abstract Class<T> handledType();
+
+    /**
      * Informs the content type this deserializer handle.
      *
      * @return The content type handled by this deserializer.
