@@ -171,6 +171,26 @@ When deserializing, the Deserializer retrieves an instance of the collection fro
 You can create custom Factories of Collection types, register them in the Requestor,
  and use a custom ContainerCallback of this type.
  
+### Basic Authentication
+FluentRequest supports setting user and password.
+
+```java
+requestor.request(Void.class, String.class)
+        .path("hello")
+        .user(username).password(pwd)
+        .get(new AsyncCallback<String>() {
+            @Override
+            public void onFailure(Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                Window.alert("Hello " + result + "!");
+            }
+        });
+```
+ 
 ### Requestor
 [Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, CollectionFactoryManager) and create [FluentRequests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) supporting those. It should be used as a singleton over all your application.
 
