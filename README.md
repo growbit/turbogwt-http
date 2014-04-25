@@ -2,7 +2,22 @@ Turbo GWT (*TurboG*) HTTP
 ==
 **Turbo GWT** is a suite of libs intended to speed up development of GWT applications. It aims to promote a fluent and enjoyable programming.
 
-**Turbo GWT HTTP** is a convenient API for managing/performing your requests.
+**Turbo GWT HTTP** is a convenient API for managing client-server communication and performing requests fluently.
+
+## Highlights
+
+* `GET`, `POST`, `PUT`, `DELETE` and `HEAD` requests
+* All common components extended from GWT HTTP and RPC APIs
+* Nice support to form params
+* Easily build your destination URI with no string manipulation
+* Native Basic Authentication support
+* Customizable timeout
+* Customizable callback execution based on server response
+* Handy header construction and application
+* Request and Response filtering (enhancement)
+* Customizable `ServerConnection` implementation (default directs to XMLHttpRequest)
+* Automatic JSON parsing into Overlay types
+* Easy De/Serialization and support to different content-types (by pattern matching)
 
 ## Quick Start
 
@@ -10,7 +25,7 @@ TurboG proposes a new fluent way of making http requests. It fits better the RES
 Just look how simple you can get a book from server:
 
 ```java
-requestor.request(Void.class, Book.class)
+Request request = requestor.request(Void.class, Book.class)
         .path("server").segment("books").segment(1)
         .get(new AsyncCallback<Book>() {
             @Override
@@ -53,7 +68,7 @@ If you are using *Overlays*, then you don't need any SerDes, *serialization/dese
 Doing a POST is as simple as:
 
 ```java 
-requestor.request(Book.class, Void.class).path("server").segment("books")
+Request request = requestor.request(Book.class, Void.class).path("server").segment("books")
         .post(new Book(1, "My Title", "My Author"), new AsyncCallback<Void>() {
             @Override
             public void onFailure(Throwable caught) {
@@ -71,7 +86,7 @@ If you are too lazy, Requestor provides **shortcut methods** to perform requests
 The above could be done like this:
 
 ```java 
-requestor.post("/server/books", Book.class, new Book(1, "My Title", "My Author"), Void.class, 
+Request request = requestor.post("/server/books", Book.class, new Book(1, "My Title", "My Author"), Void.class, 
         new AsyncCallback<Void>() {
             @Override
             public void onFailure(Throwable caught) {
@@ -88,7 +103,7 @@ requestor.post("/server/books", Book.class, new Book(1, "My Title", "My Author")
 With FluentRequests you can also set callbacks for specific responses, with specificity priority.
 
 ```java 
-requestor.request().path(uri)
+Request request = requestor.request().path(uri)
         .on(20, new SingleCallback() {
             @Override
             public void onResponseReceived(Request request, Response response) {
@@ -120,10 +135,10 @@ Posting *Form Data* is like:
 ```java
 FormData formData = FormData.builder().put("name", "John Doe").put("array", 1, 2.5).build();
 
-requestor.request(FormParam.class, Void.class)
+Request request = requestor.request(FormParam.class, Void.class)
         .path(uri)
         .contentType("application/x-www-form-urlencoded")
-        .post(formData);
+        .post(formData); // We optionally set no callback, disregarding the server response
 ```
 
 ### How do I retrieve a collection instead of a single object?
