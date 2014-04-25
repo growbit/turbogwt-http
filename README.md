@@ -135,6 +135,12 @@ With FluentRequests you can set callbacks for specific responses, with specifici
 
 ```java 
 Request request = requestor.request().path(uri)
+        .on(404, new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                Window.alert("Hey! The resource does not exist!");
+            }
+        })
         .on(20, new SingleCallback() {
             @Override
             public void onResponseReceived(Request request, Response response) {
