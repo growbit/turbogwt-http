@@ -215,13 +215,10 @@ An abstract SerDes implementation for JSON would be like:
 ```
 public abstract class JsonSerdes<T> implements Serdes<T> {
 
-    public static String[] ACCEPT_PATTERNS = 
-    public static String[] CONTENT_TYPE_PATTERNS = 
-
     /**
-     * Informs the content type this serializer handle.
+     * Informs the content type this deserializer handle.
      *
-     * @return The content type handled by this serializer.
+     * @return The content type handled by this deserializer.
      */
     @Override
     public String[] accept() {
