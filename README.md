@@ -101,47 +101,6 @@ Request request = requestor.post("/server/books", Book.class, new Book(1, "My Ti
         });
 ```
 
-With FluentRequests you can also set callbacks for specific responses, with specificity priority.
-
-```java 
-Request request = requestor.request().path(uri)
-        .on(20, new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                Window.alert("200, 201, ..., 209");
-            }
-        })
-        .on(2, new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                Window.alert("210, 211, ..., 299");
-                // 200 - 209 responses won't reach here because you set a callback for the 20 dozen.
-            }
-        })
-        .get(new AsyncCallback<Void>() {
-            @Override
-            public void onFailure(Throwable caught) {
-                Window.alert("Some bad thing happened!");
-            }
-            @Override
-            public void onSuccess(Void result) {
-                // Won't reach here. 
-                // Only 200-299 responses call onSuccess, and you have already set callbacks for those.
-            }
-        });
-```
-
-Posting *Form Data* is like:
-
-```java
-FormData formData = FormData.builder().put("name", "John Doe").put("array", 1, 2.5).build();
-
-Request request = requestor.request(FormParam.class, Void.class)
-        .path(uri)
-        .contentType("application/x-www-form-urlencoded")
-        .post(formData); // We optionally set no callback, disregarding the server response
-```
-
 ### How do I retrieve a collection instead of a single object?
 TurboG HTTP checks the type in compile time.
  It resorts to Java Generics to differentiate between single object and collection of the object.
@@ -171,6 +130,37 @@ When deserializing, the Deserializer retrieves an instance of the collection fro
 You can create custom Factories of Collection types, register them in the Requestor,
  and use a custom ContainerCallback of this type.
  
+### Customizable callback execution
+With FluentRequests you can set callbacks for specific responses, with specificity priority.
+
+```java 
+Request request = requestor.request().path(uri)
+        .on(20, new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                Window.alert("200, 201, ..., 209");
+            }
+        })
+        .on(2, new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                Window.alert("210, 211, ..., 299");
+                // 200 - 209 responses won't reach here because you set a callback for the 20 dozen.
+            }
+        })
+        .get(new AsyncCallback<Void>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                Window.alert("Some bad thing happened!");
+            }
+            @Override
+            public void onSuccess(Void result) {
+                // Won't reach here. 
+                // Only 200-299 responses call onSuccess, and you have already set callbacks for those.
+            }
+        });
+```
+ 
 ### Basic Authentication
 FluentRequest supports setting user and password.
 
@@ -189,6 +179,18 @@ requestor.request(Void.class, String.class)
                 Window.alert("Hello " + result + "!");
             }
         });
+```
+
+### Sending FORM data
+TurboG HTTP provides two handful classes for dealing with Forms: *FormParam* and *FormData* (a collection of FormParams with a nice builder). You can use both of them to make a form post.
+
+```java
+FormData formData = FormData.builder().put("name", "John Doe").put("array", 1, 2.5).build();
+
+Request request = requestor.request(FormParam.class, Void.class)
+        .path(uri)
+        .contentType("application/x-www-form-urlencoded")
+        .post(formData); // We optionally set no callback, disregarding the server response
 ```
  
 ### Requestor
