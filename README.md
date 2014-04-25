@@ -8,8 +8,9 @@ Turbo GWT (*TurboG*) HTTP
 
 * `GET`, `POST`, `PUT`, `DELETE` and `HEAD` requests
 * All common components extended from GWT HTTP and RPC APIs
+* Easy building of target URI with no string manipulation
+* Customizable multi-valued param composition
 * Nice support to form params
-* Easily build your destination URI with no string manipulation
 * Native Basic Authentication support
 * Customizable timeout
 * Customizable callback execution based on server response
