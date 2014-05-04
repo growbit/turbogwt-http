@@ -26,7 +26,9 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.annotation.Nullable;
 
@@ -63,7 +65,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private UriBuilder uriBuilder;
     private String uri;
     private JsMap<SingleCallback> mappedCallbacks;
-    private List<SingleCallback> awaysCallbacks;
+    private List<SingleCallback> alwaysCallbacks;
     private Headers headers;
     private String user;
     private String password;
@@ -439,12 +441,12 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     /**
-     * @see FluentRequest#aways(SingleCallback) aways(callback)
+     * @see FluentRequest#always(SingleCallback) always(callback)
      */
     @Override
-    public FluentRequestSender<RequestType, ResponseType> aways(SingleCallback callback) {
-        if(awaysCallbacks == null) awaysCallbacks = new ArrayList<>();
-        awaysCallbacks.add(callback);
+    public FluentRequestSender<RequestType, ResponseType> always(SingleCallback callback) {
+        if(alwaysCallbacks == null) alwaysCallbacks = new ArrayList<>();
+        alwaysCallbacks.add(callback);
         return this;
     }
 
@@ -706,9 +708,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             }
 
             private void executeAwaysCallbacks(Request request, Response response) {
-                if(awaysCallbacks == null)
+                if(alwaysCallbacks == null)
                     return;
-                for(SingleCallback callback : awaysCallbacks) {
+                for(SingleCallback callback : alwaysCallbacks) {
                     callback.onResponseReceived(request, response);
                 }
             }

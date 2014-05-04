@@ -196,7 +196,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         final MutableBoolean executed = new MutableBoolean();
         executed.setValue(false);
 
-        requestory.request().path("/notValid").aways( new SingleCallback() {
+        requestory.request().path("/notValid").always( new SingleCallback() {
             @Override
             public void onResponseReceived(Request request, Response response) {
                 executed.setValue(true);
@@ -219,7 +219,7 @@ public class FluentRequestImplTest extends GWTTestCase {
         final MutableBoolean executed;
         executed = new MutableBoolean();
         executed.setValue(false);
-        requestory.request().path(uri).aways(new SingleCallback() {
+        requestory.request().path(uri).always(new SingleCallback() {
             @Override
             public void onResponseReceived(Request request, Response response) {
                 executed.setValue(true);
