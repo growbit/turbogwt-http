@@ -62,7 +62,7 @@ public class BookJsonSerdes extends JsonObjectSerdes<Book> {
 }
 ```
 
-One configuration step: just remember to register your SerDes in the Requestor.
+One configuration step: just remember to register your SerDes in the [Requestor](#requestor).
 <br />
 If you are using *Overlays*, then you don't need any SerDes, *serialization/deserialization is automatic*!
 
