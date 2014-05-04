@@ -141,6 +141,16 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUriParts {
     FluentRequestSender<RequestType, ResponseType> on(int statusCode, SingleCallback callback);
 
     /**
+     * Define a callback to be called when request is either resolved or rejected.
+     * <br />
+     * The argument is a Callback. When the request is resolved or rejected, the callback is executed. <br />
+     * When the request is resolved or rejected, the callback is executed using the request and response arguments.
+     * If it was failured request the response parameter is null.
+     * @param callback
+     */
+    FluentRequestSender<RequestType, ResponseType> aways(SingleCallback callback);
+
+    /**
      * Set the URI scheme.
      *
      * @param scheme the URI scheme. A null value will unset the URI scheme.
