@@ -26,8 +26,7 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.Nullable;
 
@@ -64,6 +63,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private UriBuilder uriBuilder;
     private String uri;
     private JsMap<SingleCallback> mappedCallbacks;
+    private List<SingleCallback> awaysCallbacks;
     private Headers headers;
     private String user;
     private String password;
@@ -438,6 +438,16 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         return this;
     }
 
+    /**
+     * @see FluentRequest#aways(SingleCallback) aways(callback)
+     */
+    @Override
+    public FluentRequestSender<RequestType, ResponseType> aways(SingleCallback callback) {
+        if(awaysCallbacks == null) awaysCallbacks = new ArrayList<>();
+        awaysCallbacks.add(callback);
+        return this;
+    }
+
     @Override
     public Request get(AsyncCallback<ResponseType> callback) {
         return send(RequestBuilder.GET, (String) null, callback);
@@ -684,17 +694,30 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
                             resultCallback.onSuccess(null);
                         }
                     }
+                    executeAwaysCallbacks(request, response);
                     return;
                 }
 
                 // Unsuccessful response
                 if (resultCallback != null)
                     resultCallback.onFailure(new UnsuccessfulResponseException(request, response));
+
+                executeAwaysCallbacks(request, response);
+            }
+
+            private void executeAwaysCallbacks(Request request, Response response) {
+                if(awaysCallbacks == null)
+                    return;
+                for(SingleCallback callback : awaysCallbacks) {
+                    callback.onResponseReceived(request, response);
+                }
             }
 
             @Override
             public void onError(Request request, Throwable exception) {
                 if (resultCallback != null) resultCallback.onFailure(exception);
+
+                executeAwaysCallbacks(request, null);
             }
         };
 
