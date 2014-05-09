@@ -14,6 +14,7 @@ Turbo GWT (*TurboG*) HTTP [![Build Status](https://travis-ci.org/growbit/turbogw
 * Native Basic Authentication support
 * Customizable timeout
 * Customizable callback execution based on server response
+* Always executed callbacks
 * Handy header construction and application
 * Request and Response filtering (enhancement)
 * Customizable `ServerConnection` implementation (default directs to XMLHttpRequest)
