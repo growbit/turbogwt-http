@@ -32,6 +32,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import org.turbogwt.core.js.Overlays;
+import org.turbogwt.core.js.collections.JsArray;
 import org.turbogwt.core.js.collections.JsMap;
 import org.turbogwt.net.http.serialization.DeserializationContext;
 import org.turbogwt.net.http.serialization.Deserializer;
@@ -64,6 +65,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private UriBuilder uriBuilder;
     private String uri;
     private JsMap<SingleCallback> mappedCallbacks;
+    private JsArray<SingleCallback> alwaysCallbacks;
     private Headers headers;
     private String user;
     private String password;
@@ -191,8 +193,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     /**
-     * Set the URI path. This method will overwrite any existing path and associated matrix parameters. Existing '/'
-     * characters are preserved thus a single value can represent multiple URI path segments.
+     * Set the URI path. This method will overwrite any existing path and associated matrix parameters.
+     * Existing '/' characters are preserved thus a single value can represent multiple URI path segments.
      *
      * @param path the path; a null value will unset the path component of the URI
      *
@@ -435,6 +437,16 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     public FluentRequestSender<RequestType, ResponseType> on(int statusCode, SingleCallback callback) {
         if (mappedCallbacks == null) mappedCallbacks = JsMap.create();
         mappedCallbacks.set(String.valueOf(statusCode), callback);
+        return this;
+    }
+
+    /**
+     * @see FluentRequest#always(SingleCallback) always(callback)
+     */
+    @Override
+    public FluentRequestSender<RequestType, ResponseType> always(SingleCallback callback) {
+        if (alwaysCallbacks == null) alwaysCallbacks = JsArray.create();
+        alwaysCallbacks.push(callback);
         return this;
     }
 
@@ -684,17 +696,31 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
                             resultCallback.onSuccess(null);
                         }
                     }
+                    executeAwaysCallbacks(request, response);
                     return;
                 }
 
                 // Unsuccessful response
                 if (resultCallback != null)
                     resultCallback.onFailure(new UnsuccessfulResponseException(request, response));
+
+                executeAwaysCallbacks(request, response);
+            }
+
+            private void executeAwaysCallbacks(Request request, Response response) {
+                if (alwaysCallbacks == null || alwaysCallbacks.length() <= 0)
+                    return;
+                int length = alwaysCallbacks.length();
+                for (int i = 0; i < length; i++) {
+                    alwaysCallbacks.get(i).onResponseReceived(request, response);
+                }
             }
 
             @Override
             public void onError(Request request, Throwable exception) {
                 if (resultCallback != null) resultCallback.onFailure(exception);
+
+                executeAwaysCallbacks(request, null);
             }
         };
 

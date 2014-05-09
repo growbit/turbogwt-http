@@ -53,6 +53,7 @@ public class ServerStub implements Server {
     public static void clearStub() {
         responseData.clear();
         requestData.clear();
+        returnSuccess = true;
     }
 
     static Response getResponseFor(String uri) {

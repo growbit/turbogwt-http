@@ -184,6 +184,48 @@ public class FluentRequestImplTest extends GWTTestCase {
         assertEquals(serializedRequest, ServerStub.getRequestData(uri).getData());
     }
 
+    public void testAwaysCallbackExecutionOnFailure() {
+        ServerStub.clearStub();
+
+        final Requestor requestory = new Requestor();
+
+        final String uri = "/failure";
+
+        ServerStub.responseFor(uri,
+                ResponseMock.of("not found", 404, "NOT FOUND", new ContentTypeHeader("plain/text")));
+        ServerStub.setReturnSuccess(false);
+        final boolean[] executed = new boolean[1];
+
+        requestory.request().path("/notValid").always(new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                executed[0] = true;
+            }
+        }).get();
+        assertTrue(executed[0]);
+    }
+
+    public void testAwaysCallbackExecutionOnSuccess() {
+
+        ServerStub.clearStub();
+        final Requestor requestory = new Requestor();
+
+        final String uri = "/success";
+
+        ServerStub.responseFor(uri, ResponseMock.of("success", 200, "OK", new ContentTypeHeader("plain/text")));
+
+        final boolean[] executed = new boolean[1];
+
+        requestory.request().path(uri).always(new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                executed[0] = true;
+            }
+        }).get();
+
+        assertTrue(executed[0]);
+    }
+
     public void testOnHttpCodeCallbackExecution() {
         ServerStub.clearStub();
         final Requestor requestory = new Requestor();
@@ -416,5 +458,21 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final RequestMock requestMock = ServerStub.getRequestData(uri);
         assertEquals(serialized, requestMock.getData());
+    }
+
+    class MutableBoolean {
+        private boolean value;
+
+        public void setValue(boolean value) {
+            this.value = value;
+        }
+
+        public boolean isTrue() {
+            return value;
+        }
+
+        public boolean isFalse() {
+            return !value;
+        }
     }
 }
