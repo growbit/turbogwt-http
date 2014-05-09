@@ -26,9 +26,9 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.ArrayList;
 
 import javax.annotation.Nullable;
 
@@ -193,8 +193,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     }
 
     /**
-     * Set the URI path. This method will overwrite any existing path and associated matrix parameters. Existing '/'
-     * characters are preserved thus a single value can represent multiple URI path segments.
+     * Set the URI path. This method will overwrite any existing path and associated matrix parameters.
+     * Existing '/' characters are preserved thus a single value can represent multiple URI path segments.
      *
      * @param path the path; a null value will unset the path component of the URI
      *
@@ -445,7 +445,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     @Override
     public FluentRequestSender<RequestType, ResponseType> always(SingleCallback callback) {
-        if(alwaysCallbacks == null) alwaysCallbacks = new ArrayList<>();
+        if (alwaysCallbacks == null) alwaysCallbacks = new ArrayList<>();
         alwaysCallbacks.add(callback);
         return this;
     }
@@ -708,9 +708,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             }
 
             private void executeAwaysCallbacks(Request request, Response response) {
-                if(alwaysCallbacks == null)
+                if (alwaysCallbacks == null)
                     return;
-                for(SingleCallback callback : alwaysCallbacks) {
+                for (SingleCallback callback : alwaysCallbacks) {
                     callback.onResponseReceived(request, response);
                 }
             }

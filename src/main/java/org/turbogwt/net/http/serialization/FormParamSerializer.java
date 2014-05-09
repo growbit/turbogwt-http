@@ -31,11 +31,11 @@ public class FormParamSerializer implements Serializer<FormParam> {
 
     private static final FormParamSerializer INSTANCE = new FormParamSerializer();
 
+    private MultipleParamStrategy multipleParamStrategy = MultipleParamStrategy.REPEATED_PARAM;
+
     public static FormParamSerializer getInstance() {
         return INSTANCE;
     }
-
-    private MultipleParamStrategy multipleParamStrategy = MultipleParamStrategy.REPEATED_PARAM;
 
     /**
      * Method for accessing type of Objects this deserializer can handle.

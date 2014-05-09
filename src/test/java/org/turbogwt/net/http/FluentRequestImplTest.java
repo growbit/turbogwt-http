@@ -191,20 +191,19 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final String uri = "/failure";
 
-        ServerStub.responseFor(uri, ResponseMock.of("not found", 404, "NOT FOUND", new ContentTypeHeader("plain/text")));
+        ServerStub.responseFor(uri,
+                ResponseMock.of("not found", 404, "NOT FOUND", new ContentTypeHeader("plain/text")));
         ServerStub.setReturnSuccess(false);
         final MutableBoolean executed = new MutableBoolean();
         executed.setValue(false);
 
-        requestory.request().path("/notValid").always( new SingleCallback() {
+        requestory.request().path("/notValid").always(new SingleCallback() {
             @Override
             public void onResponseReceived(Request request, Response response) {
                 executed.setValue(true);
             }
         }).get();
-
         assertTrue(executed.isTrue());
-
     }
 
     public void testAwaysCallbackExecutionOnSuccess() {
@@ -471,11 +470,11 @@ public class FluentRequestImplTest extends GWTTestCase {
         }
 
         public boolean isTrue() {
-            return value == true;
+            return value;
         }
 
         public boolean isFalse() {
-            return value == false;
+            return !value;
         }
     }
 }
