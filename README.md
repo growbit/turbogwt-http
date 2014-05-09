@@ -170,7 +170,7 @@ Request request = requestor.request().path(uri)
 ### Always executed callbacks
 Add callbacks to be called when request has either succeeded or failed.
 ```java 
-Request request = requestor.request().path(uri)
+requestor.request().path(uri)
         .always(new SingleCallback() {
             @Override
             public void onResponseReceived(Request request, Response response) {
