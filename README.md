@@ -166,7 +166,26 @@ Request request = requestor.request().path(uri)
             }
         });
 ```
- 
+
+### Always executed callbacks
+Add callbacks to be called when request has either succeeded or failed.
+```java 
+Request request = requestor.request().path(uri)
+        .always(new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                Window.alert("First always callback execution");
+            }
+        })
+        .always(new SingleCallback() {
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                Window.alert("Second always callback execution");
+            }
+        })
+        ...
+```
+
 ### Basic Authentication
 FluentRequest supports setting user and password.
 
@@ -252,7 +271,6 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
 }
     
 ```
-
 
 ### Multiple value parameters
 There's a feature called [MultipleParamStrategy](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/MultipleParamStrategy.html) that defines the way params with more than one value should be composed
