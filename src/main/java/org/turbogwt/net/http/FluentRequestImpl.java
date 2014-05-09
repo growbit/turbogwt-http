@@ -26,13 +26,13 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Nullable;
 
 import org.turbogwt.core.js.Overlays;
+import org.turbogwt.core.js.collections.JsArray;
 import org.turbogwt.core.js.collections.JsMap;
 import org.turbogwt.net.http.serialization.DeserializationContext;
 import org.turbogwt.net.http.serialization.Deserializer;
@@ -65,7 +65,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     private UriBuilder uriBuilder;
     private String uri;
     private JsMap<SingleCallback> mappedCallbacks;
-    private List<SingleCallback> alwaysCallbacks;
+    private JsArray<SingleCallback> alwaysCallbacks;
     private Headers headers;
     private String user;
     private String password;
@@ -445,8 +445,8 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      */
     @Override
     public FluentRequestSender<RequestType, ResponseType> always(SingleCallback callback) {
-        if (alwaysCallbacks == null) alwaysCallbacks = new ArrayList<>();
-        alwaysCallbacks.add(callback);
+        if (alwaysCallbacks == null) alwaysCallbacks = JsArray.create();
+        alwaysCallbacks.push(callback);
         return this;
     }
 
@@ -708,10 +708,11 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
             }
 
             private void executeAwaysCallbacks(Request request, Response response) {
-                if (alwaysCallbacks == null)
+                if (alwaysCallbacks == null || alwaysCallbacks.length() <= 0)
                     return;
-                for (SingleCallback callback : alwaysCallbacks) {
-                    callback.onResponseReceived(request, response);
+                int length = alwaysCallbacks.length();
+                for (int i = 0; i < length; i++) {
+                    alwaysCallbacks.get(i).onResponseReceived(request, response);
                 }
             }
 
