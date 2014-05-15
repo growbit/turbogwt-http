@@ -24,7 +24,7 @@ Turbo GWT (*TurboG*) HTTP [![Build Status](https://travis-ci.org/growbit/turbogw
 ## Quick Start
 
 TurboG proposes a new fluent way of making http requests. It fits better the REST style communication. 
-Just look how simple you can get a book from server:
+Just look how simple you can **GET** a book from server:
 
 ```java
 Request request = requestor.request(Void.class, Book.class)
@@ -42,7 +42,7 @@ Request request = requestor.request(Void.class, Book.class)
 });
 ```
 
-For serializing/deserializing this object you just need to create this simple SerDes.
+For **serializing/deserializing** this object you just need to create this simple SerDes.
 
 ```java 
 public class BookJsonSerdes extends JsonObjectSerdes<Book> {
@@ -67,7 +67,7 @@ One configuration step: just remember to register your SerDes in the [Requestor]
 <br />
 If you are using *Overlays*, then you don't need any SerDes, *serialization/deserialization is automatic*!
 
-Doing a POST is as simple as:
+Doing a **POST** is as simple as:
 
 ```java 
 Request request = requestor.request(Book.class, Void.class).path("server").segment("books")
