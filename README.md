@@ -104,7 +104,7 @@ Request request = requestor.post("/server/books", Book.class, new Book(1, "My Ti
 
 ### How do I retrieve a collection instead of a single object?
 TurboG HTTP checks the type in compile time.
- It resorts to Java Generics to differentiate between single object and collection of the object.
+ It resorts to Java Generics to differentiate between single object and collections.
 
 So if you want to retrieve a collection of T in your response, you can use a [ListAsyncCallback<T>](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/ListAsyncCallback.html)
  (or [SetAsyncCallback<T>](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/SetAsyncCallback.html)), instead of the AsyncCallback<T>.
