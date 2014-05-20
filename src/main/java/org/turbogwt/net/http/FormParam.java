@@ -17,6 +17,10 @@
 package org.turbogwt.net.http;
 
 /**
+ * Represents a single form parameter.
+ * <p/>
+ * It can hold one or more values.
+ *
  * @author Danilo Reinert
  */
 public class FormParam {

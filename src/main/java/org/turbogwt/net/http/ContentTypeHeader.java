@@ -17,6 +17,8 @@
 package org.turbogwt.net.http;
 
 /**
+ * HTTP Content-Type Header.
+ *
  * @author Danilo Reinert
  */
 public class ContentTypeHeader extends SimpleHeaderWithParameter {

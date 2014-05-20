@@ -17,6 +17,8 @@
 package org.turbogwt.net.http;
 
 /**
+ * The HTTP Accept Header.
+ *
  * @author Danilo Reinert
  */
 public class AcceptHeader extends QualityFactorHeader {
