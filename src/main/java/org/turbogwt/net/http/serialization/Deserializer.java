@@ -55,7 +55,10 @@ public interface Deserializer<T> {
     T deserialize(String response, DeserializationContext context);
 
     /**
-     * Deserialize the plain text into an object of type T.
+     * Deserialize the plain text into a collection T.
+     * 
+     * The collection instance can be retrieved from ContainerFactoryManager#getFactory(Class<C>)#get.
+     * The ContainerFactoryManager can be retrieved from DeserializationContext#getContainerFactoryManager.
      *
      * @param collectionType    The class of the collection
      * @param response          Http response body content
