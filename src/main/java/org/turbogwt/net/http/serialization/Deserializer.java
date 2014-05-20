@@ -59,8 +59,9 @@ public interface Deserializer<T> {
      * Deserialize the plain text into a collection T.
      * <p/>
      * 
-     * The collection instance can be retrieved from ContainerFactoryManager#getFactory(Class<C>)#get.<br>
-     * The ContainerFactoryManager can be retrieved from DeserializationContext#getContainerFactoryManager.
+     * The collection instance can be retrieved from its {@link org.turbogwt.core.util.Factory},
+     * obtained in {@link org.turbogwt.net.http.ContainerFactoryManager#getFactory}.<br>
+     * The ContainerFactoryManager can be retrieved from {@link DeserializationContext#getContainerFactoryManager}.
      *
      * @param collectionType    The class of the collection
      * @param response          Http response body content
