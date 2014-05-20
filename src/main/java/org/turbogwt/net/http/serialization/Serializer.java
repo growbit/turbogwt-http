@@ -38,7 +38,7 @@ public interface Serializer<T> {
      * Tells the content-type patterns which this serializer handles.
      * 
      * E.g., a serializer for JSON can return {"application/json", "application/javascript"}.
-     * If you want to create a serializer for any content-type just return "*/*".
+     * If you want to create a serializer for any content-type just return "*&#47;*".
      *
      * @return The content-type patterns accepted by this serializer.
      */
