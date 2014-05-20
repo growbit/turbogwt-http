@@ -36,10 +36,9 @@ public interface Deserializer<T> {
 
     /**
      * Tells the content-type patterns which this deserializer handles.
-     * <br/>
-     * <br/>
-     * E.g., a deserializer for JSON can return {"application/json", "application/javascript"}.
-     * <br/>
+     * <p/>
+     * 
+     * E.g., a deserializer for JSON can return {"application/json", "application/javascript"}.<br>
      * If you want to create a deserializer for any content-type just return "*&#47;*".
      * 
      * @return The content-type patterns handled by this deserializer.
@@ -58,10 +57,9 @@ public interface Deserializer<T> {
 
     /**
      * Deserialize the plain text into a collection T.
-     * <br/>
-     * <br/>
-     * The collection instance can be retrieved from ContainerFactoryManager#getFactory(Class<C>)#get.
-     * <br/>
+     * <p/>
+     * 
+     * The collection instance can be retrieved from ContainerFactoryManager#getFactory(Class<C>)#get.<br>
      * The ContainerFactoryManager can be retrieved from DeserializationContext#getContainerFactoryManager.
      *
      * @param collectionType    The class of the collection
