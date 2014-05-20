@@ -36,8 +36,10 @@ public interface Deserializer<T> {
 
     /**
      * Tells the content-type patterns which this deserializer handles.
-     * 
+     * <br/>
+     * <br/>
      * E.g., a deserializer for JSON can return {"application/json", "application/javascript"}.
+     * <br/>
      * If you want to create a deserializer for any content-type just return "*&#47;*".
      * 
      * @return The content-type patterns handled by this deserializer.
