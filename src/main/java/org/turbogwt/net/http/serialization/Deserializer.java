@@ -35,9 +35,12 @@ public interface Deserializer<T> {
     Class<T> handledType();
 
     /**
-     * Informs the content-type patterns this deserializer handle.
-     *
-     * @return The content-type patterns handled by this serializer.
+     * Tells the content-type patterns which this deserializer handles.
+     * 
+     * E.g., a deserializer for JSON can return {"application/json", "application/javascript"}.
+     * If you want to create a deserializer for any content-type just return "*&#47;*".
+     * 
+     * @return The content-type patterns handled by this deserializer.
      */
     String[] accept();
 
