@@ -58,8 +58,10 @@ public interface Deserializer<T> {
 
     /**
      * Deserialize the plain text into a collection T.
-     * 
+     * <br/>
+     * <br/>
      * The collection instance can be retrieved from ContainerFactoryManager#getFactory(Class<C>)#get.
+     * <br/>
      * The ContainerFactoryManager can be retrieved from DeserializationContext#getContainerFactoryManager.
      *
      * @param collectionType    The class of the collection
