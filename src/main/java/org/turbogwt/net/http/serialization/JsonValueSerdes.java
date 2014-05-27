@@ -31,15 +31,6 @@ public abstract class JsonValueSerdes<T> extends JsonSerdes<T> {
         super(handledType);
     }
 
-    /**
-     * Deserialize the plain text into an object of type T.
-     *
-     * @param collectionType The class of the collection
-     * @param response       Http response body content
-     * @param context        Context of the deserialization
-     *
-     * @return The object deserialized
-     */
     @Override
     public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response,
                                                                DeserializationContext context) {

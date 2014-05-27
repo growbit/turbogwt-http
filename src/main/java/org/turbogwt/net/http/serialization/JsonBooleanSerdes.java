@@ -17,7 +17,7 @@
 package org.turbogwt.net.http.serialization;
 
 /**
- * Serdes of JSON booleans.
+ * De/Serializer of JSON booleans.
  *
  * @author Danilo Reinert
  */
@@ -33,27 +33,11 @@ public class JsonBooleanSerdes extends JsonValueSerdes<Boolean> {
         return INSTANCE;
     }
 
-    /**
-     * Deserialize the plain text into a boolean.
-     *
-     * @param response  Http response body content
-     * @param context   Context of the deserialization
-     *
-     * @return The object deserialized
-     */
     @Override
     public Boolean deserialize(String response, DeserializationContext context) {
         return Boolean.valueOf(response);
     }
 
-    /**
-     * Serialize boolean to plain text.
-     *
-     * @param b         The boolean to be serialized
-     * @param context   Context of the serialization
-     *
-     * @return The object serialized
-     */
     @Override
     public String serialize(Boolean b, SerializationContext context) {
         return String.valueOf(b);

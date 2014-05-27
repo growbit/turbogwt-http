@@ -17,7 +17,7 @@
 package org.turbogwt.net.http.serialization;
 
 /**
- * Serdes of JSON numbers.
+ * De/Serializer of JSON numbers.
  *
  * @author Danilo Reinert
  */
@@ -33,14 +33,6 @@ public class JsonNumberSerdes extends JsonValueSerdes<Number> {
         return INSTANCE;
     }
 
-    /**
-     * Deserialize the plain text into a number.
-     *
-     * @param response  Http response body content
-     * @param context   Context of the deserialization
-     *
-     * @return The object deserialized
-     */
     @Override
     public Number deserialize(String response, DeserializationContext context) {
         try {
@@ -57,14 +49,6 @@ public class JsonNumberSerdes extends JsonValueSerdes<Number> {
         }
     }
 
-    /**
-     * Serialize T to plain text.
-     *
-     * @param n         The number to be serialized
-     * @param context   Context of the serialization
-     *
-     * @return The object serialized
-     */
     @Override
     public String serialize(Number n, SerializationContext context) {
         return String.valueOf(n);

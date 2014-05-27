@@ -24,4 +24,12 @@ package org.turbogwt.net.http.serialization;
  * @author Danilo Reinert
  */
 public interface Serdes<T> extends Deserializer<T>, Serializer<T> {
+
+    /**
+     * Method for accessing type of the Object this de/serializer can handle.
+     *
+     * @return The class which this de/serializer can de/serialize
+     */
+    @Override
+    Class<T> handledType();
 }

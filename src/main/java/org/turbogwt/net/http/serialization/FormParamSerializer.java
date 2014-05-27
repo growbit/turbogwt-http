@@ -23,6 +23,8 @@ import org.turbogwt.net.http.FormParam;
 import org.turbogwt.net.http.MultipleParamStrategy;
 
 /**
+ * Serializer for FORM requests.
+ *
  * @author Danilo Reinert
  */
 public class FormParamSerializer implements Serializer<FormParam> {
@@ -37,47 +39,21 @@ public class FormParamSerializer implements Serializer<FormParam> {
         return INSTANCE;
     }
 
-    /**
-     * Method for accessing type of Objects this deserializer can handle.
-     *
-     * @return The class which this serializer can serialize
-     */
     @Override
     public Class<FormParam> handledType() {
         return FormParam.class;
     }
 
-    /**
-     * Informs the content type this serializer serializes.
-     *
-     * @return The content type serialized.
-     */
     @Override
     public String[] contentType() {
         return CONTENT_TYPE_PATTERNS;
     }
 
-    /**
-     * Serialize T to plain text.
-     *
-     * @param formParam The object to be serialized
-     * @param context   Context of the serialization
-     *
-     * @return The object serialized.
-     */
     @Override
     public String serialize(FormParam formParam, SerializationContext context) {
         return multipleParamStrategy.asUriPart("&", formParam.getName(), formParam.getValues());
     }
 
-    /**
-     * Serialize a collection of T to plain text.
-     *
-     * @param c       The collection of the object to be serialized
-     * @param context Context of the serialization
-     *
-     * @return The object serialized.
-     */
     @Override
     public String serializeFromCollection(Collection<FormParam> c, SerializationContext context) {
         MultipleParamStrategy strategy = multipleParamStrategy;

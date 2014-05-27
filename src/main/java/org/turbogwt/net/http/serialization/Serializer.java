@@ -41,7 +41,7 @@ public interface Serializer<T> {
      * E.g., a serializer for JSON can return {"application/json", "application/javascript"}.<br>
      * If you want to create a serializer for any content-type just return "*&#47;*".
      *
-     * @return The content-type patterns accepted by this serializer.
+     * @return The content-type patterns handled by this serializer.
      */
     String[] contentType();
 

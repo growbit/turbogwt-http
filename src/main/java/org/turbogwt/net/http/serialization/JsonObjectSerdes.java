@@ -38,6 +38,25 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     }
 
     /**
+     * Verifies if the deserializer should evaluate the response safely.
+     * <p/>
+     * If this method returns <code>true</code>, then the deserializer will evaluate the response using
+     * {@link com.google.gwt.core.client.JsonUtils#safeEval(String)}, otherwise it will use
+     * {@link com.google.gwt.core.client.JsonUtils#unsafeEval(String)}.
+     * <p/>
+     * If you are completely sure you'll will always receive safe contents, then you can override it
+     * to return <code>false</code> and you'll benefit a faster deserialization.
+     * <p/>
+     * The default implementation is <code>true</code>.
+     *
+     * @return  <code>true</code> if you want to evaluate response safely,
+     *          or <code>false</code> to evaluate unsafely
+     */
+    public boolean useSafeEval() {
+        return true;
+    }
+
+    /**
      * Recover an instance of T from deserialized JSON.
      *
      * @param reader    The evaluated response
@@ -57,14 +76,6 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
      */
     public abstract void writeJson(T t, JsonRecordWriter writer, SerializationContext context);
 
-    /**
-     * Deserialize the plain text into an object of type T.
-     *
-     * @param response  Http response body content
-     * @param context   Context of the deserialization
-     *
-     * @return The object deserialized
-     */
     @Override
     public T deserialize(String response, DeserializationContext context) {
         if (!isObject(response))
@@ -73,15 +84,6 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
         return readJson((JsonRecordReader) deserialized, context);
     }
 
-    /**
-     * Deserialize the plain text into an object of type T.
-     *
-     * @param collectionType The class of the collection
-     * @param response       Http response body content
-     * @param context        Context of the deserialization
-     *
-     * @return The object deserialized
-     */
     @Override
     public <C extends Collection<T>> C deserializeAsCollection(Class<C> collectionType, String response,
                                                                DeserializationContext context) {
@@ -97,14 +99,6 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
         return col;
     }
 
-    /**
-     * Serialize T to plain text.
-     *
-     * @param t         The object to be serialized
-     * @param context   Context of the deserialization
-     *
-     * @return The object serialized
-     */
     @Override
     public String serialize(T t, SerializationContext context) {
         final JsonRecordWriter writer = JsonRecordWriter.create();
@@ -113,29 +107,28 @@ public abstract class JsonObjectSerdes<T> extends JsonSerdes<T> {
     }
 
     /**
-     * Verifies if the deserializer should evaluate the response safely.
-     * <p/>
-     * If this method returns <code>true</code>, then the deserializer will evaluate the response using
-     * {@link com.google.gwt.core.client.JsonUtils#safeEval(String)}, otherwise it will use
-     * {@link com.google.gwt.core.client.JsonUtils#unsafeEval(String)}.
-     * <p/>
-     * If you are completely sure you'll will always receive safe contents, then you can override it
-     * to return <code>false</code> and you'll benefit a faster deserialization.
-     * <p/>
-     * The default implementation is <code>true</code>.
+     * Checks if the serialized content is a JSON Object.
      *
-     * @return  <code>true</code> if you want to evaluate response safely,
-     *          or <code>false</code> to evaluate unsafely
+     * @param text Serialized response
+     *
+     * @return {@code true} if argument is a JSON object, {@code false} otherwise
      */
-    public boolean useSafeEval() {
-        return true;
-    }
-
     protected boolean isObject(String text) {
         final String trim = text.trim();
         return trim.startsWith("{") && trim.endsWith("}");
     }
 
+    /**
+     * Performs evaluation of serialized response obeying the #useSafeEval configuration.
+     * <p/>
+     *
+     * If #useSafeEval is {@code true} then the eval is performed using {@link JsonUtils#safeEval},
+     * otherwise then content will be loosely evaluated by {@link JsonUtils#unsafeEval}.
+     *
+     * @param response The serialized content
+     *
+     * @return The converted JavaScriptObject
+     */
     protected JavaScriptObject eval(String response) {
         return useSafeEval() ? JsonUtils.safeEval(response) : JsonUtils.unsafeEval(response);
     }

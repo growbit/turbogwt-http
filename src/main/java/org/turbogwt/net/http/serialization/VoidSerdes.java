@@ -19,7 +19,7 @@ package org.turbogwt.net.http.serialization;
 import java.util.Collection;
 
 /**
- * SerDes for Void type.
+ * De/Serializer for Void type.
  * Returns null for every method.
  *
  * @author Danilo Reinert
@@ -34,31 +34,16 @@ public class VoidSerdes implements Serdes<Void> {
         return INSTANCE;
     }
 
-    /**
-     * Method for accessing type of Objects this serializer can handle.
-     *
-     * @return The class which this deserializer can deserialize
-     */
     @Override
     public Class<Void> handledType() {
         return Void.class;
     }
 
-    /**
-     * Informs the content type this serializer serializes.
-     *
-     * @return The content type serialized.
-     */
     @Override
     public String[] contentType() {
         return CONTENT_TYPE_PATTERNS;
     }
 
-    /**
-     * Informs the content type this serializer handle.
-     *
-     * @return The content type handled by this serializer.
-     */
     @Override
     public String[] accept() {
         return CONTENT_TYPE_PATTERNS;

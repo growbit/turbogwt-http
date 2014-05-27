@@ -19,6 +19,8 @@ package org.turbogwt.net.http.serialization;
 import java.util.Collection;
 
 /**
+ * Pass-through deserializer for plain text and generic stuff.
+ *
  * @author Danilo Reinert
  */
 public class TextDeserializer implements Deserializer<String> {

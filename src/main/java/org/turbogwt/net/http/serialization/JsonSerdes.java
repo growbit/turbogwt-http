@@ -36,31 +36,16 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
         this.handledType = handledType;
     }
 
-    /**
-     * Method for accessing type of the Object this deserializer can handle.
-     *
-     * @return The class which this deserializer can deserialize
-     */
     @Override
     public Class<T> handledType() {
         return handledType;
     }
 
-    /**
-     * Informs the content-type patterns this deserializer handle.
-     *
-     * @return The content-type patterns handled by this serializer.
-     */
     @Override
     public String[] accept() {
         return ACCEPT_PATTERNS;
     }
 
-    /**
-     * Informs the content-type patterns this serializer handle.
-     *
-     * @return The content-type patterns accepted by this serializer.
-     */
     @Override
     public String[] contentType() {
         return CONTENT_TYPE_PATTERNS;
@@ -81,14 +66,6 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
         return col;
     }
 
-    /**
-     * Serialize a collection of T to plain text.
-     *
-     * @param c         The collection of the object to be serialized.
-     * @param context   Context of the serialization
-     *
-     * @return The object serialized.
-     */
     @Override
     public String serializeFromCollection(Collection<T> c, SerializationContext context) {
         if (c == null) return null;
