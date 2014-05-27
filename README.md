@@ -9,17 +9,17 @@ Turbo GWT (*TurboG*) HTTP [![Build Status](https://travis-ci.org/growbit/turbogw
 * `GET`, `POST`, `PUT`, `DELETE` and `HEAD` requests
 * All basic components extended from GWT HTTP and RPC APIs
 * Easy building of target URI with no string manipulation
-* Customizable multi-valued param composition
-* Nice support to form params
-* Native Basic Authentication support
+* [Customizable multi-valued param composition](#multiple-value-parameters)
+* [Nice support to form params](#sending-form-data)
+* [Native Basic Authentication support](#basic-authentication)
 * Customizable timeout
-* Customizable callback execution based on server response
-* Always executed callbacks
-* Handy header construction and application
-* Request and Response filtering (enhancement)
-* Customizable `ServerConnection` implementation (default directs to XMLHttpRequest)
+* [Customizable callback execution based on server response](#customizable-callback-execution)
+* [Always executed callbacks](#always-executed-callbacks)
+* [Handy header construction and application](#easier-header-construction)
+* [Request and Response filtering (enhancement)](#requestresponse-filters)
+* [Customizable `ServerConnection` implementation](#extensible-design) (default directs to XMLHttpRequest)
 * Automatic JSON parsing into Overlay types
-* Easy De/Serialization and support to different content-types (by pattern matching)
+* [Easy De/Serialization and support to different content-types](#json-xml-and-whatever-living-together) (by pattern matching)
 
 ## Quick Start
 
@@ -242,16 +242,16 @@ An abstract SerDes implementation for JSON would be like:
 public abstract class JsonSerdes<T> implements Serdes<T> {
 
     /**
-     * Method for accessing type of the Object this deserializer can handle.
+     * Method for accessing type of the Object this de/serializer can handle.
      *
-     * @return The class handled by this serializer
+     * @return The class which this deserializer can de/serialize
      */
     abstract Class<T> handledType();
 
     /**
-     * Informs the content type this deserializer handle.
+     * Tells the content-type patterns which this deserializer handles.
      *
-     * @return The content type handled by this deserializer.
+     * @return The content-type patterns handled by this deserializer.
      */
     @Override
     public String[] accept() {
@@ -259,9 +259,9 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
     }
 
     /**
-     * Informs the content type this serializer serializes.
+     * Tells the content-type patterns which this serializer handles.
      *
-     * @return The content type serialized.
+     * @return The content-type patterns handled by this serializer.
      */
     @Override
     public String[] contentType() {
