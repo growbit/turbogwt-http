@@ -24,17 +24,17 @@
     <inherits name="org.turbogwt.core.js.Js"/>
     <inherits name="org.turbogwt.core.util.Util"/>
 
-    <source path="" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*,books/*.*"/>
+    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*,books/*.*"/>
 
-    <replace-with class="org.turbogwt.net.http.UriBuilderImpl">
-        <when-type-is class="org.turbogwt.net.http.UriBuilder"/>
+    <replace-with class="org.turbogwt.net.http.client.UriBuilderImpl">
+        <when-type-is class="org.turbogwt.net.http.client.UriBuilder"/>
     </replace-with>
 
-    <replace-with class="org.turbogwt.net.http.ServerConnectionImpl">
-        <when-type-is class="org.turbogwt.net.http.ServerConnection"/>
+    <replace-with class="org.turbogwt.net.http.client.ServerConnectionImpl">
+        <when-type-is class="org.turbogwt.net.http.client.ServerConnection"/>
     </replace-with>
 
-    <replace-with class="org.turbogwt.net.http.ServerImpl">
-        <when-type-is class="org.turbogwt.net.http.Server"/>
+    <replace-with class="org.turbogwt.net.http.client.ServerImpl">
+        <when-type-is class="org.turbogwt.net.http.client.Server"/>
     </replace-with>
 </module>
