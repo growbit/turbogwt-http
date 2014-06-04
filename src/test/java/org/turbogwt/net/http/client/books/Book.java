@@ -16,9 +16,12 @@
 
 package org.turbogwt.net.http.client.books;
 
+import org.turbogwt.net.http.client.jackson.GwtJacksonSerialize;
+
 /**
  * @author Danilo Reinert
  */
+@GwtJacksonSerialize({"application/json", "application/javascript", "*/x-javascript"})
 public class Book {
 
     private final Integer id;

@@ -36,4 +36,10 @@
     <replace-with class="org.turbogwt.net.http.client.mock.ServerStub">
         <when-type-is class="org.turbogwt.net.http.client.Server"/>
     </replace-with>
+
+    <inherits name="com.github.nmorel.gwtjackson.GwtJackson" />
+
+    <generate-with class="org.turbogwt.net.http.rebind.GwtJacksonSerializersGenerator">
+        <when-type-assignable class="org.turbogwt.net.http.client.GwtJacksonSerializers" />
+    </generate-with>
 </module>
