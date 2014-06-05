@@ -23,9 +23,9 @@ import com.google.gwt.core.client.JsonUtils;
 import java.util.Collection;
 import java.util.List;
 
-import org.turbogwt.core.js.Overlays;
-import org.turbogwt.core.js.collections.JsArrayList;
-import org.turbogwt.core.util.Factory;
+import org.turbogwt.core.collections.client.JsArrayList;
+import org.turbogwt.core.util.client.Overlays;
+import org.turbogwt.core.util.shared.Factory;
 
 /**
  * Serializer/Deserializer of Overlay types.

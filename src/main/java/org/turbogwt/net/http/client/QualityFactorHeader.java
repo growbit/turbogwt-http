@@ -19,7 +19,7 @@ package org.turbogwt.net.http.client;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import org.turbogwt.core.js.collections.JsArrayIterator;
+import org.turbogwt.core.collections.client.JsArrayIterator;
 
 /**
  * HTTP Header with relative quality factors.

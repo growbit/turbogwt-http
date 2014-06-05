@@ -31,9 +31,9 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import org.turbogwt.core.js.Overlays;
-import org.turbogwt.core.js.collections.JsArray;
-import org.turbogwt.core.js.collections.JsMap;
+import org.turbogwt.core.collections.client.JsArray;
+import org.turbogwt.core.collections.client.JsMap;
+import org.turbogwt.core.util.client.Overlays;
 import org.turbogwt.net.http.client.serialization.DeserializationContext;
 import org.turbogwt.net.http.client.serialization.Deserializer;
 import org.turbogwt.net.http.client.serialization.SerdesManager;
@@ -436,7 +436,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
     @Override
     public FluentRequestSender<RequestType, ResponseType> on(int statusCode, SingleCallback callback) {
         if (mappedCallbacks == null) mappedCallbacks = JsMap.create();
-        mappedCallbacks.set(String.valueOf(statusCode), callback);
+        mappedCallbacks.put(String.valueOf(statusCode), callback);
         return this;
     }
 

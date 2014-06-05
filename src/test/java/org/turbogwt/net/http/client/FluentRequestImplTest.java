@@ -28,9 +28,9 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.turbogwt.core.js.Overlays;
-import org.turbogwt.core.js.collections.JsArray;
-import org.turbogwt.core.js.collections.JsArrayList;
+import org.turbogwt.core.collections.client.JsArray;
+import org.turbogwt.core.collections.client.JsArrayList;
+import org.turbogwt.core.util.client.Overlays;
 import org.turbogwt.net.http.client.mock.RequestMock;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;

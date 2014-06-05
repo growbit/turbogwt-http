@@ -22,8 +22,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import org.turbogwt.core.js.collections.JsArrayList;
-import org.turbogwt.core.js.collections.JsMapInteger;
+import org.turbogwt.core.collections.client.JsArrayList;
+import org.turbogwt.core.collections.client.JsMapInteger;
 
 /**
  * Stores form params and values.

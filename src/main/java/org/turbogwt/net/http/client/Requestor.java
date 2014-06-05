@@ -22,8 +22,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import java.util.Collection;
 
-import org.turbogwt.core.util.Factory;
-import org.turbogwt.core.util.Registration;
+import org.turbogwt.core.util.shared.Factory;
+import org.turbogwt.core.util.shared.Registration;
 import org.turbogwt.net.http.client.serialization.Deserializer;
 import org.turbogwt.net.http.client.serialization.FormParamSerializer;
 import org.turbogwt.net.http.client.serialization.JsonBooleanSerdes;
@@ -677,7 +677,7 @@ public class Requestor {
      * @param type          The class of the deserializer's type.
      * @param deserializer  The deserializer of T.
      *
-     * @return  The {@link org.turbogwt.core.util.Registration} object, capable of cancelling this registration.
+     * @return  The {@link org.turbogwt.core.util.shared.Registration} object, capable of cancelling this registration.
      */
     public <T> Registration registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
         return serdesManager.registerDeserializer(type, deserializer);

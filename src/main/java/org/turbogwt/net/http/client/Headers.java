@@ -20,8 +20,8 @@ import com.google.gwt.http.client.Header;
 
 import java.util.Iterator;
 
-import org.turbogwt.core.js.collections.JsArrayList;
-import org.turbogwt.core.js.collections.JsMapInteger;
+import org.turbogwt.core.collections.client.JsArrayList;
+import org.turbogwt.core.collections.client.JsMapInteger;
 
 /**
  * Stores the headers from a HTTP request/response.

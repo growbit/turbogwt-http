@@ -19,8 +19,8 @@ package org.turbogwt.net.http.client;
 import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.http.client.URL;
 
-import org.turbogwt.core.js.Overlays;
-import org.turbogwt.core.js.collections.JsMap;
+import org.turbogwt.core.collections.client.JsMap;
+import org.turbogwt.core.util.client.Overlays;
 
 /**
  * Default implementation of {@link UriBuilder}.
@@ -197,10 +197,10 @@ public class UriBuilderImpl implements UriBuilder {
         JsMap<Object[]> segmentParams = matrixParams.get(segment);
         if (segmentParams == null) {
             segmentParams = JsMap.create();
-            matrixParams.set(segment, segmentParams);
+            matrixParams.put(segment, segmentParams);
         }
         // TODO: instead of setting the array, incrementally add to an existing one?
-        segmentParams.set(name, values);
+        segmentParams.put(name, values);
 
         return this;
     }
@@ -223,7 +223,7 @@ public class UriBuilderImpl implements UriBuilder {
         assertNotNull(values, "Parameter values cannot be null.");
         if (queryParams == null)
             queryParams = JsMap.create();
-        queryParams.set(name, values);
+        queryParams.put(name, values);
         return this;
     }
 

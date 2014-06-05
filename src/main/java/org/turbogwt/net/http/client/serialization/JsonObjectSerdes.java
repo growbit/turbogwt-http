@@ -22,7 +22,7 @@ import com.google.gwt.core.client.JsonUtils;
 
 import java.util.Collection;
 
-import org.turbogwt.core.js.Overlays;
+import org.turbogwt.core.util.client.Overlays;
 
 /**
  * Base class for all SerDes that manipulates serialized JSON objects.

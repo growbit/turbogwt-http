@@ -26,10 +26,10 @@ import java.util.TreeSet;
 
 import javax.annotation.Nullable;
 
-import org.turbogwt.core.js.collections.JsArrayList;
-import org.turbogwt.core.js.collections.JsMap;
-import org.turbogwt.core.util.Factory;
-import org.turbogwt.core.util.Registration;
+import org.turbogwt.core.collections.client.JsArrayList;
+import org.turbogwt.core.collections.client.JsMap;
+import org.turbogwt.core.util.shared.Factory;
+import org.turbogwt.core.util.shared.Registration;
 
 /**
  * Manager of container (collection) factories.
@@ -54,11 +54,11 @@ public final class ContainerFactoryManager {
                 return new JsArrayList();
             }
         };
-        factories.set(JsArrayList.class.getName(), jsArrayListFactory);
-        factories.set(Collection.class.getName(), jsArrayListFactory);
-        factories.set(List.class.getName(), jsArrayListFactory);
-        factories.set(ArrayList.class.getName(), arrayListFactory);
-        factories.set(LinkedList.class.getName(), new Factory<LinkedList>() {
+        factories.put(JsArrayList.class.getName(), jsArrayListFactory);
+        factories.put(Collection.class.getName(), jsArrayListFactory);
+        factories.put(List.class.getName(), jsArrayListFactory);
+        factories.put(ArrayList.class.getName(), arrayListFactory);
+        factories.put(LinkedList.class.getName(), new Factory<LinkedList>() {
             @Override
             public LinkedList get() {
                 return new LinkedList<>();
@@ -71,9 +71,9 @@ public final class ContainerFactoryManager {
                 return new HashSet();
             }
         };
-        factories.set(Set.class.getName(), hashSetFactory);
-        factories.set(HashSet.class.getName(), hashSetFactory);
-        factories.set(TreeSet.class.getName(), new Factory<TreeSet>() {
+        factories.put(Set.class.getName(), hashSetFactory);
+        factories.put(HashSet.class.getName(), hashSetFactory);
+        factories.put(TreeSet.class.getName(), new Factory<TreeSet>() {
             @Override
             public TreeSet get() {
                 return new TreeSet();
@@ -88,12 +88,12 @@ public final class ContainerFactoryManager {
      * @param factory   The factory of the collection
      * @param <C>       The type of the collection
      *
-     * @return  The {@link org.turbogwt.core.util.Registration} object, capable of cancelling this registration
+     * @return  The {@link org.turbogwt.core.util.shared.Registration} object, capable of cancelling this registration
      *          to the {@link ContainerFactoryManager}
      */
     public <C extends Collection> Registration registerFactory(Class<C> type, Factory<C> factory) {
         final String typeName = type.getName();
-        factories.set(typeName, factory);
+        factories.put(typeName, factory);
 
         return new Registration() {
             @Override
@@ -111,6 +111,6 @@ public final class ContainerFactoryManager {
     @SuppressWarnings("unchecked")
     @Nullable
     public <C extends Collection> Factory<C> getFactory(Class<C> type) {
-        return (Factory<C>) factories.get(type.getName(), null);
+        return (Factory<C>) factories.get(type.getName());
     }
 }

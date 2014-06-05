@@ -68,7 +68,7 @@ public class PersonSerdes extends JsonObjectSerdes<Person> {
     /**
      * Map response deserialized as JavaScriptObject to T.
      * <p/>
-     * You may use {@link org.turbogwt.core.js.Overlays} helper methods to easily perform this mapping.
+     * You may use {@link org.turbogwt.core.Overlays} helper methods to easily perform this mapping.
      *
      * @param reader  The evaluated response
      * @param context Context of the deserialization
@@ -86,7 +86,7 @@ public class PersonSerdes extends JsonObjectSerdes<Person> {
     /**
      * Map T as JavaScriptObject to serialize using JSON.stringify.
      * <p/>
-     * You may use {@link org.turbogwt.core.js.Overlays} helper methods to easily perform this mapping.
+     * You may use {@link org.turbogwt.core.Overlays} helper methods to easily perform this mapping.
      *
      * @param person  The object to be serialized
      * @param writer  The serializing JSON

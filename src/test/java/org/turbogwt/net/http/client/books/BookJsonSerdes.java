@@ -40,7 +40,7 @@ public class BookJsonSerdes extends JsonObjectSerdes<Book> {
     /**
      * Map response deserialized as JavaScriptObject to T.
      * <p/>
-     * You may use {@link org.turbogwt.core.js.Overlays} helper methods to easily perform this mapping.
+     * You may use {@link org.turbogwt.core.Overlays} helper methods to easily perform this mapping.
      *
      * @param reader  The evaluated response
      * @param context Context of the deserialization
@@ -57,7 +57,7 @@ public class BookJsonSerdes extends JsonObjectSerdes<Book> {
     /**
      * Map T as JavaScriptObject to serialize using JSON.stringify.
      * <p/>
-     * You may use {@link org.turbogwt.core.js.Overlays} helper methods to easily perform this mapping.
+     * You may use {@link org.turbogwt.core.Overlays} helper methods to easily perform this mapping.
      *
      * @param book    The object to be serialized
      * @param writer  The serializing JSON

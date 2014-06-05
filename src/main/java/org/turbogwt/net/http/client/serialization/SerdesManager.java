@@ -18,9 +18,9 @@ package org.turbogwt.net.http.client.serialization;
 
 import java.util.Collections;
 
-import org.turbogwt.core.js.collections.JsArrayList;
-import org.turbogwt.core.js.collections.JsMap;
-import org.turbogwt.core.util.Registration;
+import org.turbogwt.core.collections.client.JsArrayList;
+import org.turbogwt.core.collections.client.JsMap;
+import org.turbogwt.core.util.shared.Registration;
 
 /**
  * Manager for registering and retrieving Serializers and Deserializers.
@@ -44,10 +44,10 @@ public class SerdesManager {
      */
     public <T> Registration registerDeserializer(Class<T> type, Deserializer<T> deserializer) {
         final String typeName = type.getName();
-        JsArrayList<DeserializerHolder> tDesList = deserializers.get(typeName, null);
+        JsArrayList<DeserializerHolder> tDesList = deserializers.get(typeName);
         if (tDesList == null) {
             tDesList = new JsArrayList<>();
-            deserializers.set(typeName, tDesList);
+            deserializers.put(typeName, tDesList);
         }
 
         final String[] accept = deserializer.accept();
@@ -84,10 +84,10 @@ public class SerdesManager {
      */
     public <T> Registration registerSerializer(Class<T> type, Serializer<T> serializer) {
         final String typeName = type.getName();
-        JsArrayList<SerializerHolder> tSerList = serializers.get(typeName, null);
+        JsArrayList<SerializerHolder> tSerList = serializers.get(typeName);
         if (tSerList == null) {
             tSerList = new JsArrayList<>();
-            serializers.set(typeName, tSerList);
+            serializers.put(typeName, tSerList);
         }
 
         final String[] contentType = serializer.contentType();
@@ -150,7 +150,7 @@ public class SerdesManager {
 
         final Key key = new Key(type, contentType);
 
-        JsArrayList<DeserializerHolder> holders = deserializers.get(type.getName(), null);
+        JsArrayList<DeserializerHolder> holders = deserializers.get(type.getName());
         if (holders != null) {
             for (DeserializerHolder holder : holders) {
                 if (holder.key.matches(key)) return (Deserializer<T>) holder.deserializer;
@@ -176,7 +176,7 @@ public class SerdesManager {
 
         final Key key = new Key(type, contentType);
 
-        JsArrayList<SerializerHolder> holders = serializers.get(type.getName(), null);
+        JsArrayList<SerializerHolder> holders = serializers.get(type.getName());
         if (holders != null) {
             for (SerializerHolder holder : holders) {
                 if (holder.key.matches(key)) return (Serializer<T>) holder.serializer;
