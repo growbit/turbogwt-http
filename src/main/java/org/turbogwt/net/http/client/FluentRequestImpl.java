@@ -703,7 +703,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
 
                 // Unsuccessful response
                 if (resultCallback != null)
-                    resultCallback.onFailure(new UnsuccessfulResponseException(request, response));
+                    resultCallback.onFailure(new UnsuccessfulResponseException(response));
 
                 executeAwaysCallbacks(request, response);
             }

@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.turbogwt.core.future.shared.AlwaysCallback;
-import org.turbogwt.core.future.shared.Deferred;
 import org.turbogwt.core.future.shared.Promise;
 import org.turbogwt.core.future.shared.impl.AbstractDeferred;
 
@@ -53,8 +52,7 @@ public class DeferredRequest<T> extends AbstractDeferred<T, Throwable, RequestPr
         return this;
     }
 
-    @Override
-    public Deferred<T, Throwable, RequestProgress, ResponseContext> resolve(final T resolve) {
+    public DeferredRequest<T> resolve(final T resolve) {
         if (!isPending())
             throw new IllegalStateException("Deferred object already finished, cannot resolve again");
 
@@ -70,10 +68,10 @@ public class DeferredRequest<T> extends AbstractDeferred<T, Throwable, RequestPr
         return this;
     }
 
-    @Override
-    public Deferred<T, Throwable, RequestProgress, ResponseContext> reject(final Throwable reject) {
+    public DeferredRequest<T> reject(final Throwable reject) {
         if (!isPending())
             throw new IllegalStateException("Deferred object already finished, cannot reject again");
+
         this.state = State.REJECTED;
         this.rejectResult = reject;
 

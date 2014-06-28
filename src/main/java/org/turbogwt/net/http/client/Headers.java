@@ -37,7 +37,7 @@ public class Headers implements Iterable<Header> {
         this.headers = new JsArrayList<>();
     }
 
-    protected Headers(Header... headers) {
+    Headers(Header... headers) {
         this.headers = new JsArrayList<>(headers);
         for (int i = 0; i < headers.length; i++) {
             Header header = headers[i];
