@@ -30,7 +30,7 @@ package org.turbogwt.net.http.client;
  * legal characters and will not be encoded. Percent encoded values are also recognized where allowed and will not be
  * double encoded.</p>
  */
-public interface UriBuilder extends HasUriParts {
+public interface UriBuilder {
 
     /**
      * Set the strategy for appending parameters with multiple values.
@@ -44,13 +44,22 @@ public interface UriBuilder extends HasUriParts {
     UriBuilder multipleParamStrategy(MultipleParamStrategy strategy) throws IllegalArgumentException;
 
     /**
-     * Set the URI user-info.
+     * Set the URI user of user-info part.
      *
-     * @param ui the URI user-info. A null value will unset userInfo component of the URI.
+     * @param user the URI user. A null value will unset userInfo (both user and password) component of the URI.
      *
      * @return the updated UriBuilder
      */
-    UriBuilder userInfo(String ui);
+    UriBuilder user(String user);
+
+    /**
+     * Set the URI password of user-info part.
+     *
+     * @param ui the URI user's password. A null value will unset password component of the user-info.
+     *
+     * @return the updated UriBuilder
+     */
+    UriBuilder password(String ui);
 
     /**
      * Set the URI scheme.
@@ -150,9 +159,31 @@ public interface UriBuilder extends HasUriParts {
     UriBuilder fragment(String fragment);
 
     /**
-     * Build a URI.
+     * Build a URI, using the supplied values in order to replace any URI
+     * template parameters. Values are converted to <code>String</code> using
+     * their <code>toString</code> method and are then encoded to match the
+     * rules of the URI component to which they pertain. All '%' characters
+     * in the stringified values will be encoded.
+     * The state of the builder is unaffected; this method may be called
+     * multiple times on the same builder instance.
+     * <p/>
      *
-     * @return the URI built from the UriBuilder as String
+     * All instances of the same template parameter
+     * will be replaced by the same value that corresponds to the position of the
+     * first instance of the template parameter. e.g. the template "{a}/{b}/{a}"
+     * with values {"x", "y", "z"} will result in the the URI "x/y/x", <i>not</i>
+     * "x/y/z".
+     *
+     * @param values a list of URI template parameter values
+     *
+     * @return the URI built from the UriBuilder
+     *
+     * @throws IllegalArgumentException if there are any URI template parameters
+     * without a supplied value, or if a value is null.
+     *
+     * @throws UriBuilderException if a URI cannot be constructed based on the
+     * current state of the builder.
      */
-    String build();
+    public abstract Uri build(Object... values)
+            throws IllegalArgumentException, UriBuilderException;
 }

@@ -725,7 +725,7 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
         };
 
         // If the uri was not set via #setUri, then build it.
-        if (uri == null) uri = uriBuilder.build();
+        if (uri == null) uri = uriBuilder.build().toString();
 
         // Ensure required fields
         ensureHeaders();

@@ -29,16 +29,17 @@ public class UriBuilderImplTest extends GWTTestCase {
     }
 
     public void testBasicFlow() {
-        String expected = "http://user:pwd@localhost:8888/server/root;class=2;class=5;class=6" +
+        String expected = "http://user:pwd@localhost:8888/server/root/resource;class=2;class=5;class=6" +
                 "/child;group=A;subGroup=A.1;subGroup=A.2?age=12&name=Aa&name=Zz#first";
 
         String uri = new UriBuilderImpl()
                 .scheme("http")
-                .userInfo("user:pwd")
+                .user("user")
+                .password("pwd")
                 .host("localhost")
                 .port(8888)
                 .path("server")
-                .segment("root")
+                .segment("root", "resource")
                 .matrixParam("class", 2, 5, 6)
                 .segment("child")
                 .matrixParam("group", "A")
@@ -46,7 +47,7 @@ public class UriBuilderImplTest extends GWTTestCase {
                 .queryParam("age", 12)
                 .queryParam("name", "Aa", "Zz")
                 .fragment("first")
-                .build();
+                .build().toString();
 
         assertEquals(expected, uri);
     }
@@ -58,7 +59,8 @@ public class UriBuilderImplTest extends GWTTestCase {
         String uri = new UriBuilderImpl()
                 .multipleParamStrategy(MultipleParamStrategy.COMMA_SEPARATED)
                 .scheme("http")
-                .userInfo("user:pwd")
+                .user("user")
+                .password("pwd")
                 .host("localhost")
                 .port(8888)
                 .path("server")
@@ -70,8 +72,44 @@ public class UriBuilderImplTest extends GWTTestCase {
                 .queryParam("age", 12)
                 .queryParam("name", "Aa", "Zz")
                 .fragment("first")
-                .build();
+                .build().toString();
 
         assertEquals(expected, uri);
+    }
+
+    public void testTemplateParams() {
+        String expected = "http://user:pwd@localhost:8888/server/root/any;class=2;class=5;class=6" +
+                "/child;group=A;subGroup=A.1;subGroup=A.2?age=12&name=Aa&name=Zz#firstserver";
+
+        String uri = new UriBuilderImpl()
+                .scheme("http")
+                .user("user")
+                .password("pwd")
+                .host("localhost")
+                .port(8888)
+                .path("{a}/{b}")
+                .segment("{c}")
+                .matrixParam("class", 2, 5, 6)
+                .segment("child")
+                .matrixParam("group", "A")
+                .matrixParam("subGroup", "A.1", "A.2")
+                .queryParam("age", 12)
+                .queryParam("name", "Aa", "Zz")
+                .fragment("{d}{a}")
+                .build("server", "root", "any", "first").toString();
+
+        assertEquals(expected, uri);
+    }
+
+    public void testInsufficientTemplateParams() {
+        try {
+            assertNull(new UriBuilderImpl()
+                    .path("{a}/{b}")
+                    .segment("{c}")
+                    .fragment("{d}{a}")
+                    .build("server", "root", "any").toString());
+        } catch (UriBuilderException e) {
+            assertNotNull(e);
+        }
     }
 }
