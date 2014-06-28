@@ -274,7 +274,7 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
 ```
 
 ### Multiple value parameters
-There's a feature called [MultipleParamStrategy](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/MultipleParamStrategy.html) that defines the way params with more than one value should be composed
+There's a feature called [MultivaluedParamStrategy](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/MultivaluedParamStrategy.html) that defines the way params with more than one value should be composed
  when building a URL or a FormParam. There are two strategies provided: RepeatedParam and CommaSeparated. The former
  repeats the param name with each value - this is the default and most practiced strategy -, the latter puts only
  once the parameter name and join the values separated by comma.
