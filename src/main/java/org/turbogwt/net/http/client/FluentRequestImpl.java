@@ -23,6 +23,7 @@ import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.RequestProgress;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -707,13 +708,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
                 executeAwaysCallbacks(request, response);
             }
 
-            private void executeAwaysCallbacks(Request request, Response response) {
-                if (alwaysCallbacks == null || alwaysCallbacks.length() <= 0)
-                    return;
-                int length = alwaysCallbacks.length();
-                for (int i = 0; i < length; i++) {
-                    alwaysCallbacks.get(i).onResponseReceived(request, response);
-                }
+            @Override
+            public void onProgress(RequestProgress requestProgress) {
+                // do nothing
             }
 
             @Override
@@ -721,6 +718,15 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
                 if (resultCallback != null) resultCallback.onFailure(exception);
 
                 executeAwaysCallbacks(request, null);
+            }
+
+            private void executeAwaysCallbacks(Request request, Response response) {
+                if (alwaysCallbacks == null || alwaysCallbacks.length() <= 0)
+                    return;
+                int length = alwaysCallbacks.length();
+                for (int i = 0; i < length; i++) {
+                    alwaysCallbacks.get(i).onResponseReceived(request, response);
+                }
             }
         };
 

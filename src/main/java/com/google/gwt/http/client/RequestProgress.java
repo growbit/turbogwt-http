@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client.future;
+package com.google.gwt.http.client;
 
-public interface RequestProgress extends com.google.gwt.http.client.RequestProgress {
+public interface RequestProgress {
+
+    boolean isLengthComputable();
+
+    Number loaded();
+
+    Number total();
 }

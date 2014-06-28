@@ -18,6 +18,7 @@ package org.turbogwt.net.http.client;
 
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestProgress;
 
 /**
  * Callback to handle responses from request without error handling.
@@ -25,6 +26,16 @@ import com.google.gwt.http.client.RequestCallback;
  * @author Danilo Reinert
  */
 public abstract class SingleCallback implements RequestCallback {
+
+    /**
+     * Called when a pending {@link com.google.gwt.http.client.Request} triggers a progress event.
+     *
+     * @param requestProgress the progress data
+     */
+    @Override
+    @Deprecated
+    public void onProgress(RequestProgress requestProgress) {
+    }
 
     /**
      * This method is not used.

@@ -14,24 +14,17 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client.future;
+package com.google.gwt.xhr.client;
 
-import com.google.gwt.core.client.JavaScriptObject;
+/**
+ * A progress callback for an {@link XMLHttpRequest} object.
+ */
+public interface ProgressHandler {
 
-public final class XhrRequestProgress extends JavaScriptObject {
-
-    protected XhrRequestProgress() {
-    }
-
-    public native boolean lengthComputable() /*-{
-        return lengthComputable;
-    }-*/;
-
-    public native double loaded() /*-{
-        return loaded;
-    }-*/;
-
-    public native double total() /*-{
-        return total;
-    }-*/;
+    /**
+     * This is called whenever the progress event of XMLHttpRequest is triggered.
+     *
+     * @param progress the progress data.
+     */
+    void onProgress(XhrRequestProgress progress);
 }

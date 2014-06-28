@@ -14,30 +14,24 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client.future;
+package com.google.gwt.xhr.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-public class RequestProgressImpl implements RequestProgress {
+public final class XhrRequestProgress extends JavaScriptObject {
 
-    private final XhrRequestProgress xhrRequestProgress;
-
-    public RequestProgressImpl(JavaScriptObject xhrRequestProgress) {
-        this.xhrRequestProgress = (XhrRequestProgress) xhrRequestProgress;
+    protected XhrRequestProgress() {
     }
 
-    @Override
-    public boolean isLengthComputable() {
-        return xhrRequestProgress.lengthComputable();
-    }
+    public native boolean lengthComputable() /*-{
+        return lengthComputable;
+    }-*/;
 
-    @Override
-    public Number loaded() {
-        return xhrRequestProgress.loaded();
-    }
+    public native double loaded() /*-{
+        return loaded;
+    }-*/;
 
-    @Override
-    public Number total() {
-        return xhrRequestProgress.total();
-    }
+    public native double total() /*-{
+        return total;
+    }-*/;
 }
