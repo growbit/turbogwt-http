@@ -26,7 +26,7 @@ import org.turbogwt.core.collections.client.JsArrayIterator;
  *
  * @author Danilo Reinert
  */
-public class QualityFactorHeader extends MultipleHeader implements Iterable<QualityFactorHeader.Value> {
+public class QualityFactorHeader extends MultivaluedHeader implements Iterable<QualityFactorHeader.Value> {
 
     private final Value[] values;
 

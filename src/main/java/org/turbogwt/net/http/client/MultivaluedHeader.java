@@ -23,13 +23,13 @@ import com.google.gwt.http.client.Header;
  *
  * @author Danilo Reinert
  */
-public class MultipleHeader extends Header {
+public class MultivaluedHeader extends Header {
 
     private final String name;
     private final String value;
     private final String[] values;
 
-    protected MultipleHeader(String name, Object... values) {
+    protected MultivaluedHeader(String name, Object... values) {
         this.name = name;
         this.values = new String[values.length];
         for (int i = 0; i < values.length; i++) {
@@ -39,7 +39,7 @@ public class MultipleHeader extends Header {
         this.value = mountValue(this.values);
     }
 
-    public MultipleHeader(String name, String... values) {
+    public MultivaluedHeader(String name, String... values) {
         this.name = name;
         this.values = values;
         this.value = mountValue(values);

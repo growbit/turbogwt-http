@@ -30,7 +30,7 @@ public class MultipleHeaderTest extends GWTTestCase {
 
     public void testGetValue() {
         final String expected = "a/b, x/y+z";
-        final MultipleHeader header = new MultipleHeader("name", "a/b", "x/y+z");
+        final MultivaluedHeader header = new MultivaluedHeader("name", "a/b", "x/y+z");
         assertEquals(expected, header.getValue());
     }
 }
