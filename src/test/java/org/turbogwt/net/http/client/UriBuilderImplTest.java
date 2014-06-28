@@ -57,7 +57,7 @@ public class UriBuilderImplTest extends GWTTestCase {
                 "/child;group=A;subGroup=A.1,A.2?age=12&name=Aa,Zz#first";
 
         String uri = new UriBuilderImpl()
-                .multipleParamStrategy(MultipleParamStrategy.COMMA_SEPARATED)
+                .multipleParamStrategy(MultivaluedParamStrategy.COMMA_SEPARATED)
                 .scheme("http")
                 .user("user")
                 .password("pwd")

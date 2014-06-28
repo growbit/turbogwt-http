@@ -141,9 +141,9 @@ public class FluentRequestImpl<RequestType, ResponseType> implements FluentReque
      * @throws IllegalArgumentException if strategy is null
      */
     @Override
-    public FluentRequestSender<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
+    public FluentRequestSender<RequestType, ResponseType> multivaluedParamStrategy(MultivaluedParamStrategy strategy)
             throws IllegalArgumentException {
-        uriBuilder.multipleParamStrategy(strategy);
+        uriBuilder.multivaluedParamStrategy(strategy);
         return this;
     }
 

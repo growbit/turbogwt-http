@@ -72,7 +72,7 @@ public abstract class Request {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    abstract Request multipleParamStrategy(MultipleParamStrategy strategy)
+    abstract Request multivaluedParamStrategy(MultivaluedParamStrategy strategy)
             throws IllegalArgumentException;
 
     /**

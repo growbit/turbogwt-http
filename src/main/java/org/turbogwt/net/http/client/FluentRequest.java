@@ -64,7 +64,7 @@ public interface FluentRequest<RequestType, ResponseType> extends HasUriParts {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    FluentRequestSender<RequestType, ResponseType> multipleParamStrategy(MultipleParamStrategy strategy)
+    FluentRequestSender<RequestType, ResponseType> multivaluedParamStrategy(MultivaluedParamStrategy strategy)
             throws IllegalArgumentException;
 
     /**

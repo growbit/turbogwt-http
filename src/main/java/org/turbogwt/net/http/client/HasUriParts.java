@@ -32,7 +32,7 @@ public interface HasUriParts {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    HasUriParts multipleParamStrategy(MultipleParamStrategy strategy) throws IllegalArgumentException;
+    HasUriParts multivaluedParamStrategy(MultivaluedParamStrategy strategy) throws IllegalArgumentException;
 
     /**
      * Set the URI scheme.

@@ -41,7 +41,7 @@ public interface UriBuilder {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    UriBuilder multipleParamStrategy(MultipleParamStrategy strategy) throws IllegalArgumentException;
+    UriBuilder multivaluedParamStrategy(MultivaluedParamStrategy strategy) throws IllegalArgumentException;
 
     /**
      * Set the URI user of user-info part.

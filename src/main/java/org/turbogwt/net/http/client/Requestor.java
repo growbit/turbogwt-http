@@ -67,12 +67,12 @@ public class Requestor {
     private final SerdesManager serdesManager = new SerdesManager();
     private final FilterManager filterManager = new FilterManager();
     private final ContainerFactoryManager collectionFactoryManager = new ContainerFactoryManager();
-    private MultipleParamStrategy defaultStrategy;
+    private MultivaluedParamStrategy defaultStrategy;
     private String defaultContentType;
     private String defaultAccept;
 
     public Requestor() {
-        defaultStrategy = MultipleParamStrategy.REPEATED_PARAM;
+        defaultStrategy = MultivaluedParamStrategy.REPEATED_PARAM;
         defaultContentType = "application/json";
         defaultAccept = "application/json";
         serdesManager.registerSerdes(String.class, JsonStringSerdes.getInstance());
@@ -105,7 +105,7 @@ public class Requestor {
 
     /**
      * Create a {@link FluentRequest} of RequestType request content and ResponseType response content,
-     * and set a custom {@link MultipleParamStrategy} for handling multiple params.
+     * and set a custom {@link MultivaluedParamStrategy} for handling multiple params.
      *
      * @param requestType       The class of the request content type.
      * @param responseType      The class of the response content type.
@@ -117,7 +117,7 @@ public class Requestor {
      */
     public <RequestType, ResponseType> FluentRequest<RequestType, ResponseType> request(Class<RequestType> requestType,
                                                                                        Class<ResponseType> responseType,
-                                                                                       MultipleParamStrategy strategy) {
+                                                                                       MultivaluedParamStrategy strategy) {
         return createFluentRequestImpl(requestType, responseType, strategy);
     }
 
@@ -132,13 +132,13 @@ public class Requestor {
 
     /**
      * Create a {@link FluentRequest} of no request/response content,
-     * and set a custom {@link MultipleParamStrategy} for handling multiple params.
+     * and set a custom {@link MultivaluedParamStrategy} for handling multiple params.
      *
      * @param strategy  The strategy for separating params with multiple values.
      *
      * @return The FluentRequest with void request and response contents.
      */
-    public FluentRequest<Void, Void> request(MultipleParamStrategy strategy) {
+    public FluentRequest<Void, Void> request(MultivaluedParamStrategy strategy) {
         return createFluentRequestImpl(Void.class, Void.class, strategy);
     }
 
@@ -648,18 +648,18 @@ public class Requestor {
     // Requestory configuration
     //===================================================================
 
-    public MultipleParamStrategy getDefaultStrategy() {
+    public MultivaluedParamStrategy getDefaultStrategy() {
         return defaultStrategy;
     }
 
     /**
      * Set the default strategy to separate params with multiple values.
-     * You can use one of the constants provided at {@link MultipleParamStrategy} or implement a customized one.
+     * You can use one of the constants provided at {@link MultivaluedParamStrategy} or implement a customized one.
      *
-     * @param defaultStrategy   The {@link MultipleParamStrategy} to be initially set
+     * @param defaultStrategy   The {@link MultivaluedParamStrategy} to be initially set
      *                          in all {@link FluentRequest}s created.
      */
-    public void setDefaultStrategy(MultipleParamStrategy defaultStrategy) {
+    public void setDefaultStrategy(MultivaluedParamStrategy defaultStrategy) {
         this.defaultStrategy = defaultStrategy;
     }
 
@@ -744,10 +744,10 @@ public class Requestor {
     private <RequestType, ResponseType> FluentRequestImpl<RequestType, ResponseType>
             createFluentRequestImpl(Class<RequestType> requestType,
                                     Class<ResponseType> responseType,
-                                    MultipleParamStrategy strategy) {
+                                    MultivaluedParamStrategy strategy) {
         final FluentRequestImpl<RequestType, ResponseType> request = new FluentRequestImpl<>(filterManager,
                 serdesManager, requestType, responseType, collectionFactoryManager);
-        request.multipleParamStrategy(strategy);
+        request.multivaluedParamStrategy(strategy);
         request.contentType(defaultContentType);
         request.accept(defaultAccept);
         return request;

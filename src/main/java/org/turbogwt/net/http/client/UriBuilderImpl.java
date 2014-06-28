@@ -34,7 +34,7 @@ import org.turbogwt.core.collections.client.LightMap;
  */
 public class UriBuilderImpl implements UriBuilder {
 
-    private MultipleParamStrategy strategy = MultipleParamStrategy.REPEATED_PARAM;
+    private MultivaluedParamStrategy strategy = MultivaluedParamStrategy.REPEATED_PARAM;
     private String scheme;
     private String user;
     private String password;
@@ -46,7 +46,7 @@ public class UriBuilderImpl implements UriBuilder {
     private Map<String, Map<String, Object[]>> matrixParams;
 
     @Override
-    public UriBuilder multipleParamStrategy(MultipleParamStrategy strategy) throws IllegalArgumentException {
+    public UriBuilder multivaluedParamStrategy(MultivaluedParamStrategy strategy) throws IllegalArgumentException {
         assertNotNull(strategy, "Strategy cannot be null.");
         this.strategy = strategy;
         return this;
