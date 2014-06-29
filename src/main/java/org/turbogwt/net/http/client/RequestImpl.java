@@ -5,6 +5,7 @@ import com.google.gwt.http.client.Header;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestCallbackWithProgress;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.RequestProgress;
 import com.google.gwt.http.client.Response;
@@ -225,7 +226,7 @@ public class RequestImpl implements RequestDispatcher {
     }
 
     private RequestCallback createRequestCallback(final DeferredRequestDecorator deferred) {
-        return new RequestCallback() {
+        return new RequestCallbackWithProgress() {
                 @Override
                 public void onResponseReceived(Request request, Response response) {
                     // Execute filters on this response

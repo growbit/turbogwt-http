@@ -18,6 +18,7 @@ package org.turbogwt.net.http.client.mock;
 
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestCallbackWithProgress;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.RequestProgress;
 import com.google.gwt.http.client.Response;
@@ -53,7 +54,7 @@ public class ServerConnectionMock implements ServerConnection {
     };
 
     private static String uri;
-    private static RequestCallback requestCallback;
+    private static RequestCallbackWithProgress requestCallback;
 
     static void triggerPendingRequest() {
         requestCallback.onProgress(REQUEST_PROGRESS);
@@ -72,7 +73,7 @@ public class ServerConnectionMock implements ServerConnection {
             throws RequestException {
         ServerStub.setRequestData(url, new RequestMock(method, url, data));
         uri = url;
-        requestCallback = callback;
+        requestCallback = (RequestCallbackWithProgress) callback;
     }
 
     @Override
@@ -80,6 +81,6 @@ public class ServerConnectionMock implements ServerConnection {
                             String url, String data, RequestCallback callback) throws RequestException {
         ServerStub.setRequestData(url, new RequestMock(method, url, data, headers));
         uri = url;
-        requestCallback = callback;
+        requestCallback = (RequestCallbackWithProgress) callback;
     }
 }

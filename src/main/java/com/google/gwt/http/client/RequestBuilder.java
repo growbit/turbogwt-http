@@ -417,12 +417,16 @@ public class RequestBuilder {
         });
 
         // ADDED BY TURBO GWT
-        xmlHttpRequest.setOnProgress(new ProgressHandler() {
-            @Override
-            public void onProgress(XhrRequestProgress progress) {
-                callback.onProgress(new RequestProgressImpl(progress));
-            }
-        });
+        if (callback instanceof RequestCallbackWithProgress) {
+            final RequestCallbackWithProgress pCallback = (RequestCallbackWithProgress) callback;
+            xmlHttpRequest.setOnProgress(new ProgressHandler() {
+                @Override
+                public void onProgress(XhrRequestProgress progress) {
+                    pCallback.onProgress(new RequestProgressImpl(progress));
+                }
+            });
+        }
+
 
         try {
             xmlHttpRequest.send(requestData);

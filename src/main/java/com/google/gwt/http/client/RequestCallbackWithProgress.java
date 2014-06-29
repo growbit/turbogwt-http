@@ -25,7 +25,7 @@ package com.google.gwt.http.client;
  *
  * {@gwt.include com/google/gwt/examples/http/InheritsExample.gwt.xml}
  */
-public interface RequestCallback {
+public interface RequestCallbackWithProgress extends RequestCallback {
 
     /**
      * Called when a pending {@link com.google.gwt.http.client.Request} completes
