@@ -23,7 +23,7 @@ import org.turbogwt.net.http.client.serialization.DeserializationContext;
 import org.turbogwt.net.http.client.serialization.Deserializer;
 import org.turbogwt.net.http.client.serialization.SerdesManager;
 
-public class DeferredSingleResult<T> extends DeferredSingleDecorator<T> {
+public class DeferredSingleResult<T> extends DeferredSingleDecorator<T> implements DeferredRequestDecorator {
 
     private final Class<T> responseType;
     private final SerdesManager serdesManager;
@@ -36,6 +36,7 @@ public class DeferredSingleResult<T> extends DeferredSingleDecorator<T> {
         this.containerFactoryManager = containerFactoryManager;
     }
 
+    @Override
     public void resolve(Response response) {
         final Headers headers = new Headers(response.getHeaders());
         final String responseContentType = headers.getValue("Content-Type");
@@ -49,13 +50,20 @@ public class DeferredSingleResult<T> extends DeferredSingleDecorator<T> {
         getDeferredDelegate().resolve(result);
     }
 
+    @Override
     public void notify(RequestProgress progress) {
         getDeferredDelegate().notify(progress);
     }
 
+    @Override
     public void reject(Response response) {
         // Set response before in order to correctly create the response context
         getDeferredDelegate().setResponse(response);
         getDeferredDelegate().reject(new UnsuccessfulResponseException(response));
+    }
+
+    @Override
+    public void reject(Throwable throwable) {
+        getDeferredDelegate().reject(throwable);
     }
 }
