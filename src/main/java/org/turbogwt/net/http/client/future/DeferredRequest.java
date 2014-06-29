@@ -86,7 +86,7 @@ public class DeferredRequest<T> extends AbstractDeferred<T, Throwable, RequestPr
 
     protected void triggerOn(ResponseContext context, T resolve, Throwable reject) {
         if (response != null) {
-            for (OnHolder holder : onCallbacks) {
+            for (OnHolder holder : ensureOnCallbacks()) {
                 final String responseCode = response.getStatusCode() + "";
                 final String onCode = holder.code + "";
                 if (responseCode.contains(onCode)) {

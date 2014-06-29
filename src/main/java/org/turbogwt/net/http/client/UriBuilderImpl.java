@@ -210,7 +210,7 @@ public class UriBuilderImpl implements UriBuilder {
         }
         final String encQuery = queryBuilder != null ? queryBuilder.toString() : null;
 
-        final String encFragment = encodePart(parsePart(values, templateParams, fragment));
+        final String encFragment = fragment != null ? encodePart(parsePart(values, templateParams, fragment)) : null;
 
         return new UriImpl(encScheme, encUser, encPassword, encHost, port, encPath, encQuery, encFragment);
     }
