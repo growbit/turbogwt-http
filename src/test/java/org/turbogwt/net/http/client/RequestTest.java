@@ -12,7 +12,7 @@ import org.turbogwt.net.http.client.future.ResponseContext;
 public class RequestTest {
 
     public static void main(String[] args) {
-        Request r = null;
+        RequestDispatcher r = null;
         final RequestPromise<Collection<Book>> listRequestPromise = r.get(Book.class, List.class);
 
         listRequestPromise.done(new DoneCallback<Collection<Book>>() {
