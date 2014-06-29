@@ -23,7 +23,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import org.turbogwt.core.future.shared.AlwaysCallback;
 import org.turbogwt.core.future.shared.DoneCallback;
+import org.turbogwt.core.future.shared.FailCallback;
+import org.turbogwt.core.future.shared.ProgressCallback;
+import org.turbogwt.net.http.client.future.RequestProgress;
+import org.turbogwt.net.http.client.future.ResponseContext;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 import org.turbogwt.net.http.client.model.Person;
@@ -81,7 +88,10 @@ public class RequestorTest extends GWTTestCase {
         ServerStub.responseFor(uri, ResponseMock.of(serializedArray, 200, "OK",
                 new ContentTypeHeader("application/json")));
 
-        final boolean[] callbackSuccessCalled = new boolean[1];
+        final boolean[] callbackDoneCalled = new boolean[1];
+        final boolean[] callbackFailCalled = new boolean[1];
+        final boolean[] callbackAlwaysCalled = new boolean[1];
+        final boolean[] callbackProgressCalled = new boolean[1];
 
         // Old style
 //        requestor.post(uri, Person.class, persons, Person.class, new ListAsyncCallback<Person>() {
@@ -96,15 +106,37 @@ public class RequestorTest extends GWTTestCase {
 //            }
 //        });
         requestor.request(uri).payload(persons).post(Person.class, List.class)
-        .done(new DoneCallback<Collection<Person>>() {
+                .progress(new ProgressCallback<RequestProgress>() {
+                    @Override
+                    public void onProgress(RequestProgress progress) {
+                        callbackProgressCalled[0] = true;
+                    }
+                }).done(new DoneCallback<Collection<Person>>() {
             @Override
             public void onDone(Collection<Person> result) {
                 assertTrue(Arrays.equals(persons.toArray(), result.toArray()));
-                callbackSuccessCalled[0] = true;
+                callbackDoneCalled[0] = true;
+            }
+        }).fail(new FailCallback<Throwable>() {
+            @Override
+            public void onFail(Throwable result) {
+                callbackFailCalled[0] = true;
+            }
+        }).always(new AlwaysCallback<Collection<Person>, Throwable, ResponseContext>() {
+            @Override
+            public void onAlways(ResponseContext context,
+                                 @Nullable Collection<Person> resolved,
+                                 @Nullable Throwable rejected) {
+                callbackAlwaysCalled[0] = true;
             }
         });
 
-        assertTrue(callbackSuccessCalled[0]);
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbackDoneCalled[0]);
+        assertFalse(callbackFailCalled[0]);
+        assertTrue(callbackAlwaysCalled[0]);
+        assertTrue(callbackProgressCalled[0]);
         assertEquals(serializedArray, ServerStub.getRequestData(uri).getData());
     }
 

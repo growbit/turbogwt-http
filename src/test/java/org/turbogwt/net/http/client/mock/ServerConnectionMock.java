@@ -19,6 +19,7 @@ package org.turbogwt.net.http.client.mock;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.RequestProgress;
 import com.google.gwt.http.client.Response;
 
 import org.turbogwt.net.http.client.Headers;
@@ -34,25 +35,51 @@ import org.turbogwt.net.http.client.ServerConnection;
  */
 public class ServerConnectionMock implements ServerConnection {
 
+    private static final RequestProgress REQUEST_PROGRESS = new RequestProgress() {
+        @Override
+        public boolean isLengthComputable() {
+            return false;
+        }
+
+        @Override
+        public Number loaded() {
+            return null;
+        }
+
+        @Override
+        public Number total() {
+            return null;
+        }
+    };
+
+    private static String uri;
+    private static RequestCallback requestCallback;
+
+    static void triggerPendingRequest() {
+        requestCallback.onProgress(REQUEST_PROGRESS);
+        if (ServerStub.isReturnSuccess()) {
+            requestCallback.onResponseReceived(null, ServerStub.getResponseFor(uri));
+        } else {
+            requestCallback.onError(null, new RequestException("This is a mock exception."));
+        }
+
+        uri = null;
+        requestCallback = null;
+    }
+
     @Override
     public void sendRequest(RequestBuilder.Method method, String url, String data, RequestCallback callback)
             throws RequestException {
         ServerStub.setRequestData(url, new RequestMock(method, url, data));
-        if (ServerStub.isReturnSuccess()) {
-            callback.onResponseReceived(null, ServerStub.getResponseFor(url));
-        } else {
-            callback.onError(null, new RequestException("This is a mock exception."));
-        }
+        uri = url;
+        requestCallback = callback;
     }
 
     @Override
     public void sendRequest(int timeout, String user, String password, Headers headers, RequestBuilder.Method method,
                             String url, String data, RequestCallback callback) throws RequestException {
         ServerStub.setRequestData(url, new RequestMock(method, url, data, headers));
-        if (ServerStub.isReturnSuccess()) {
-            callback.onResponseReceived(null, ServerStub.getResponseFor(url));
-        } else {
-            callback.onError(null, new RequestException("This is a mock exception."));
-        }
+        uri = url;
+        requestCallback = callback;
     }
 }
