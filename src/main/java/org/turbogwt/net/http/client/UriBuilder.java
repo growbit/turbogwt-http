@@ -19,7 +19,7 @@ package org.turbogwt.net.http.client;
 /**
  * Utility class for building URIs from their components.
  * <p/>
- * It is NOT aware of templates.
+ * It is aware of templates.
  * <p/>
  * <p>Builder methods perform contextual encoding of characters not permitted in the corresponding URI component
  * following the rules of the
@@ -55,11 +55,11 @@ public interface UriBuilder {
     /**
      * Set the URI password of user-info part.
      *
-     * @param ui the URI user's password. A null value will unset password component of the user-info.
+     * @param password the URI user's password. A null value will unset password component of the user-info.
      *
      * @return the updated UriBuilder
      */
-    UriBuilder password(String ui);
+    UriBuilder password(String password);
 
     /**
      * Set the URI scheme.
