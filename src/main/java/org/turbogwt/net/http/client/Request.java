@@ -18,23 +18,12 @@ package org.turbogwt.net.http.client;
 
 import com.google.gwt.http.client.Header;
 
-import java.util.Collection;
-
-import org.turbogwt.net.http.client.future.RequestPromise;
-
 /**
  * This type provides fluent style request building.
  *
  * @author Danilo Reinert
  */
-public abstract class Request {
-
-    protected final Uri uri;
-
-    protected Request(Uri uri) {
-        this.uri = uri;
-    }
-
+public interface Request {
 
     /**
      * Set the content type of this request.
@@ -43,7 +32,7 @@ public abstract class Request {
      *
      * @return the updated Request
      */
-    abstract Request contentType(String contentType);
+    Request contentType(String contentType);
 
     /**
      * Set the content type accepted for the response.
@@ -52,7 +41,7 @@ public abstract class Request {
      *
      * @return the updated Request
      */
-    abstract Request accept(String contentType);
+    Request accept(String contentType);
 
     /**
      * Set the Accept header of the request.
@@ -61,7 +50,7 @@ public abstract class Request {
      *
      * @return the updated Request
      */
-    abstract Request accept(AcceptHeader acceptHeader);
+    Request accept(AcceptHeader acceptHeader);
 
     /**
      * Set the strategy for appending parameters with multiple values.
@@ -72,7 +61,7 @@ public abstract class Request {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    abstract Request multivaluedParamStrategy(MultivaluedParamStrategy strategy)
+    Request multivaluedParamStrategy(MultivaluedParamStrategy strategy)
             throws IllegalArgumentException;
 
     /**
@@ -86,7 +75,7 @@ public abstract class Request {
      * @throws NullPointerException if header or value are null
      * @throws IllegalArgumentException if header or value are the empty string
      */
-    abstract Request header(String header, String value);
+    Request header(String header, String value);
 
     /**
      * Sets a request header. If a header with the specified name has already been set
@@ -94,7 +83,7 @@ public abstract class Request {
      *
      * @param header the header instance
      */
-    abstract Request header(Header header);
+    Request header(Header header);
 
     /**
      * Sets the user name that will be used in the request URL.
@@ -104,7 +93,7 @@ public abstract class Request {
      * @throws IllegalArgumentException if the user is empty
      * @throws NullPointerException if the user is null
      */
-    abstract Request user(String user);
+    Request user(String user);
 
     /**
      * Sets the password to use in the request URL. This is ignored if there is no
@@ -115,7 +104,7 @@ public abstract class Request {
      * @throws IllegalArgumentException if the password is empty
      * @throws NullPointerException if the password is null
      */
-    abstract Request password(String password);
+    Request password(String password);
 
     /**
      * Sets the number of milliseconds to wait for a request to complete. Should
@@ -132,7 +121,7 @@ public abstract class Request {
      *
      * @throws IllegalArgumentException if the timeout value is negative
      */
-    abstract Request timeout(int timeoutMillis);
+    Request timeout(int timeoutMillis);
 
     /**
      * Append a path parameter to the existing set of path parameters of the current final segment of the URI path.
@@ -145,7 +134,7 @@ public abstract class Request {
      *
      * @throws IllegalArgumentException if name or values is null
      */
-    abstract Request pathParam(String name, Object value)
+    Request pathParam(String name, Object value)
             throws IllegalArgumentException;
 
     /**
@@ -163,7 +152,7 @@ public abstract class Request {
      * @throws IllegalArgumentException if name or values is null
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
-    abstract Request matrixParam(String name, Object... values)
+    Request matrixParam(String name, Object... values)
             throws IllegalArgumentException;
 
     /**
@@ -178,7 +167,7 @@ public abstract class Request {
      *
      * @throws IllegalArgumentException if name or values is null
      */
-    abstract Request queryParam(String name, Object... values)
+    Request queryParam(String name, Object... values)
             throws IllegalArgumentException;
 
     /**
@@ -195,26 +184,7 @@ public abstract class Request {
      * @throws IllegalArgumentException if no serializer for this class and content-type
      * is registered in the source {@link Requestor}
      */
-    abstract Request payload(Object object)
+    Request payload(Object object)
             throws IllegalArgumentException;
 
-    abstract RequestPromise<Void> get();
-
-    abstract <T> RequestPromise<T> get(Class<T> responseType);
-
-    abstract <T, C extends Collection> RequestPromise<Collection<T>> get(Class<T> responseType, Class<C> containerType);
-
-    abstract RequestPromise<Void> post();
-
-    abstract <T> RequestPromise<T> post(Class<T> responseType);
-
-    abstract <T, C extends Collection> RequestPromise<Collection<T>> post(Class<T> responseType, Class<C> containerType);
-
-    /*
-    RequestPromise<Void> put();
-
-    <T> RequestPromise<T> put(Class<T> responseType);
-
-    <T, C extends Collection> RequestPromise<Collection<T>> put(Class<T> responseType, Class<C> containerType);
-    */
 }
