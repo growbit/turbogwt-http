@@ -25,7 +25,7 @@ import org.turbogwt.net.http.client.serialization.DeserializationContext;
 import org.turbogwt.net.http.client.serialization.Deserializer;
 import org.turbogwt.net.http.client.serialization.SerdesManager;
 
-public class DeferredCollectionResult<T> extends DeferredCollectionDecorator<T> implements DeferredRequestDecorator {
+class DeferredCollectionResult<T> extends DeferredCollectionDecorator<T> implements DeferredRequestDecorator {
 
     private final Class<T> responseType;
     private final Class<? extends Collection> containerType;

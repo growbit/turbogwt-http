@@ -23,7 +23,7 @@ import org.turbogwt.net.http.client.serialization.DeserializationContext;
 import org.turbogwt.net.http.client.serialization.Deserializer;
 import org.turbogwt.net.http.client.serialization.SerdesManager;
 
-public class DeferredSingleResult<T> extends DeferredSingleDecorator<T> implements DeferredRequestDecorator {
+class DeferredSingleResult<T> extends DeferredSingleDecorator<T> implements DeferredRequestDecorator {
 
     private final Class<T> responseType;
     private final SerdesManager serdesManager;

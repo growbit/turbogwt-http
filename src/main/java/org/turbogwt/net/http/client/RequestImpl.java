@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.turbogwt.net.http.client.future.RequestProgressWrapper;
+import org.turbogwt.net.http.client.future.RequestProgressImpl;
 import org.turbogwt.net.http.client.future.RequestPromise;
 import org.turbogwt.net.http.client.serialization.SerdesManager;
 import org.turbogwt.net.http.client.serialization.SerializationContext;
@@ -217,7 +217,7 @@ public class RequestImpl implements RequestDispatcher {
 
                 @Override
                 public void onProgress(RequestProgress requestProgress) {
-                    deferred.notify(new RequestProgressWrapper(requestProgress));
+                    deferred.notify(new RequestProgressImpl(requestProgress));
                 }
 
                 @Override

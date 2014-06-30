@@ -1,10 +1,10 @@
 package org.turbogwt.net.http.client.future;
 
-public class RequestProgressWrapper implements RequestProgress {
+public class RequestProgressImpl implements RequestProgress {
 
     private final com.google.gwt.http.client.RequestProgress requestProgress;
 
-    public RequestProgressWrapper(com.google.gwt.http.client.RequestProgress requestProgress) {
+    public RequestProgressImpl(com.google.gwt.http.client.RequestProgress requestProgress) {
         this.requestProgress = requestProgress;
     }
 
