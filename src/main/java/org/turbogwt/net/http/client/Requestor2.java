@@ -65,12 +65,10 @@ public class Requestor2 {
     private final SerdesManager serdesManager = new SerdesManager();
     private final FilterManager filterManager = new FilterManager();
     private final ContainerFactoryManager collectionFactoryManager = new ContainerFactoryManager();
-    private MultivaluedParamStrategy defaultStrategy;
     private String defaultContentType;
     private String defaultAccept;
 
     public Requestor2() {
-        defaultStrategy = MultivaluedParamStrategy.REPEATED_PARAM;
         defaultContentType = "application/json";
         defaultAccept = "application/json";
         serdesManager.registerSerdes(String.class, JsonStringSerdes.getInstance());
@@ -92,42 +90,13 @@ public class Requestor2 {
      * @return The FluentRequest with void request and response contents.
      */
     public RequestDispatcher request(String uri) {
-        return createRequest(uri, defaultStrategy);
-    }
-
-
-
-    /**
-     * Create a {@link org.turbogwt.net.http.client.FluentRequest} of no request/response content,
-     * and set a custom {@link org.turbogwt.net.http.client.MultivaluedParamStrategy} for handling multiple params.
-     *
-     * @param strategy  The strategy for separating params with multiple values.
-     *
-     * @return The FluentRequest with void request and response contents.
-     */
-    public RequestDispatcher request(String uri, MultivaluedParamStrategy strategy) {
-        return createRequest(uri, strategy);
+        return createRequest(uri);
     }
 
 
     //===================================================================
-    // Requestory configuration
+    // Requestor configuration
     //===================================================================
-
-    public MultivaluedParamStrategy getDefaultStrategy() {
-        return defaultStrategy;
-    }
-
-    /**
-     * Set the default strategy to separate params with multiple values.
-     * You can use one of the constants provided at {@link org.turbogwt.net.http.client.MultivaluedParamStrategy} or implement a customized one.
-     *
-     * @param defaultStrategy   The {@link org.turbogwt.net.http.client.MultivaluedParamStrategy} to be initially set
-     *                          in all {@link org.turbogwt.net.http.client.FluentRequest}s created.
-     */
-    public void setDefaultStrategy(MultivaluedParamStrategy defaultStrategy) {
-        this.defaultStrategy = defaultStrategy;
-    }
 
     public String getDefaultContentType() {
         return defaultContentType;
@@ -207,9 +176,8 @@ public class Requestor2 {
         return collectionFactoryManager.registerFactory(collectionType, factory);
     }
 
-    private RequestDispatcher createRequest(String uri, MultivaluedParamStrategy strategy) {
+    private RequestDispatcher createRequest(String uri) {
         final RequestImpl request = new RequestImpl(uri, serdesManager, collectionFactoryManager, filterManager);
-        request.multivaluedParamStrategy(strategy);
         request.contentType(defaultContentType);
         request.accept(defaultAccept);
         return request;
