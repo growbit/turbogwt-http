@@ -21,10 +21,10 @@ import com.google.gwt.junit.tools.GWTTestSuite;
 import junit.framework.Test;
 
 import org.turbogwt.net.http.client.ContentTypeAcceptPatternsTest;
-import org.turbogwt.net.http.client.FluentRequestImplTest;
 import org.turbogwt.net.http.client.MultipleHeaderTest;
 import org.turbogwt.net.http.client.MultipleSerdesByClassTest;
 import org.turbogwt.net.http.client.QualityFactorHeaderTest;
+import org.turbogwt.net.http.client.RequestTest;
 import org.turbogwt.net.http.client.SerializerAndDeserializerMatchTest;
 import org.turbogwt.net.http.client.SerializerAndDeserializerPrecedenceTest;
 import org.turbogwt.net.http.client.SimpleHeaderWithParameterTest;
@@ -44,7 +44,7 @@ public class HttpGwtTestSuite {
         suite.addTestSuite(SimpleHeaderWithParameterTest.class);
 
         suite.addTestSuite(UriBuilderTest.class);
-        suite.addTestSuite(FluentRequestImplTest.class);
+        suite.addTestSuite(RequestTest.class);
         suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
         suite.addTestSuite(SerializerAndDeserializerMatchTest.class);
         suite.addTestSuite(SerializerAndDeserializerPrecedenceTest.class);

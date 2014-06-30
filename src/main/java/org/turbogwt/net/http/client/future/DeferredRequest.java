@@ -23,11 +23,9 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.turbogwt.core.future.shared.AlwaysCallback;
-import org.turbogwt.core.future.shared.Promise;
 import org.turbogwt.core.future.shared.impl.AbstractDeferred;
 
-public class DeferredRequest<T> extends AbstractDeferred<T, Throwable, RequestProgress, ResponseContext>
-        implements RequestPromise<T> {
+public class DeferredRequest<T> extends AbstractDeferred<T, Throwable, RequestProgress, ResponseContext> {
 
     private List<OnHolder> onCallbacks;
     private Response response;
@@ -43,13 +41,6 @@ public class DeferredRequest<T> extends AbstractDeferred<T, Throwable, RequestPr
     @Override
     protected ResponseContext getContext() {
         return new ResponseContextImpl(state, response);
-    }
-
-    @Override
-    public Promise<T, Throwable, RequestProgress, ResponseContext> on(
-            int statusCode, AlwaysCallback<T, Throwable, ResponseContext> callback) {
-        ensureOnCallbacks().add(new OnHolder(statusCode, callback));
-        return this;
     }
 
     public DeferredRequest<T> resolve(final T resolve) {

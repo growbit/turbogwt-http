@@ -52,7 +52,7 @@ public class RequestorTest extends GWTTestCase {
 
     public void testCustomObjectArraySerializationDeserialization() {
         ServerStub.clearStub();
-        final Requestor2 requestor = new Requestor2();
+        final Requestor requestor = new Requestor();
         requestor.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override

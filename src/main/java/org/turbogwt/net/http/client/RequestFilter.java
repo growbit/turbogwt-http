@@ -29,5 +29,5 @@ public interface RequestFilter {
      *
      * @param request   The request to be dispatched.
      */
-    void filter(FluentRequest<?, ?> request);
+    void filter(Request request);
 }

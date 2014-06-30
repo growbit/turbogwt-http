@@ -33,19 +33,12 @@ abstract class DeferredCollectionDecorator<T> implements RequestPromise<Collecti
     private final DeferredRequest<Collection<T>> deferredDelegate = new DeferredRequest<Collection<T>>();
 
     @Override
-    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> on(
-            int statusCode, AlwaysCallback<Collection<T>, Throwable, ResponseContext> callback) {
-        return deferredDelegate.on(statusCode, callback);
-    }
-
-    @Override
     public State state() {
         return deferredDelegate.state();
     }
 
     @Override
-    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> done(
-            DoneCallback<Collection<T>> callback) {
+    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> done(DoneCallback<Collection<T>> callback) {
         return deferredDelegate.done(callback);
     }
 
@@ -55,14 +48,12 @@ abstract class DeferredCollectionDecorator<T> implements RequestPromise<Collecti
     }
 
     @Override
-    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> always(
-            AlwaysCallback<Collection<T>, Throwable, ResponseContext> callback) {
+    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> always(AlwaysCallback<Collection<T>, Throwable, ResponseContext> callback) {
         return deferredDelegate.always(callback);
     }
 
     @Override
-    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> progress(
-            ProgressCallback<RequestProgress> callback) {
+    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> progress(ProgressCallback<RequestProgress> callback) {
         return deferredDelegate.progress(callback);
     }
 

@@ -31,15 +31,10 @@ abstract class DeferredSingleDecorator<T> implements RequestPromise<T> {
     private final DeferredRequest<T> deferredDelegate = new DeferredRequest<T>();
 
     @Override
-    public Promise<T, Throwable, RequestProgress, ResponseContext> on(int statusCode, AlwaysCallback<T, Throwable,
-            ResponseContext> callback) {
-        return deferredDelegate.on(statusCode, callback);
-    }
-
-    @Override
     public State state() {
         return deferredDelegate.state();
     }
+
     @Override
     public Promise<T, Throwable, RequestProgress, ResponseContext> done(DoneCallback<T> callback) {
         return deferredDelegate.done(callback);
@@ -57,8 +52,7 @@ abstract class DeferredSingleDecorator<T> implements RequestPromise<T> {
     }
 
     @Override
-    public Promise<T, Throwable, RequestProgress, ResponseContext> progress(ProgressCallback<RequestProgress>
-                                                                                        callback) {
+    public Promise<T, Throwable, RequestProgress, ResponseContext> progress(ProgressCallback<RequestProgress> callback) {
         return deferredDelegate.progress(callback);
     }
 

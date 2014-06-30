@@ -16,7 +16,6 @@
 
 package org.turbogwt.net.http.client;
 
-import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.Response;
 
 /**
@@ -30,8 +29,7 @@ public interface ResponseFilter {
     /**
      * Filter method called after a response has been provided for a request.
      *
-     * @param request   The original request.
      * @param response  The received response.
      */
-    void filter(Request request, Response response);
+    void filter(Response response);
 }

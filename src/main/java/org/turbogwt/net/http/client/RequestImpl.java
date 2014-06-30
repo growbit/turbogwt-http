@@ -205,7 +205,7 @@ public class RequestImpl implements RequestDispatcher {
                     // Execute filters on this response
                     final List<ResponseFilter> filters = filterManager.getResponseFilters();
                     for (ResponseFilter filter : filters) {
-                        filter.filter(request, response);
+                        filter.filter(response);
                     }
 
                     if (response.getStatusCode()/100 == 2) {
@@ -231,11 +231,10 @@ public class RequestImpl implements RequestDispatcher {
         ensureHeaders();
 
         // Execute filters on this request
-        // TODO: uncomment
-//        final List<RequestFilter> filters = filterManager.getRequestFilters();
-//        for (RequestFilter filter : filters) {
-//            filter.filter(this);
-//        }
+        final List<RequestFilter> filters = filterManager.getRequestFilters();
+        for (RequestFilter filter : filters) {
+            filter.filter(this);
+        }
 
         String body = serializePayload();
 
