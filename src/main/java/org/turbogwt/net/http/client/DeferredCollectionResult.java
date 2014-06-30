@@ -23,7 +23,6 @@ import java.util.Collection;
 import org.turbogwt.net.http.client.future.RequestProgress;
 import org.turbogwt.net.http.client.serialization.DeserializationContext;
 import org.turbogwt.net.http.client.serialization.Deserializer;
-import org.turbogwt.net.http.client.serialization.SerdesManager;
 
 class DeferredCollectionResult<T> extends DeferredCollectionDecorator<T> implements DeferredRequestDecorator {
 

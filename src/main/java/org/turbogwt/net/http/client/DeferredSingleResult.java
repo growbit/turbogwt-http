@@ -21,7 +21,6 @@ import com.google.gwt.http.client.Response;
 import org.turbogwt.net.http.client.future.RequestProgress;
 import org.turbogwt.net.http.client.serialization.DeserializationContext;
 import org.turbogwt.net.http.client.serialization.Deserializer;
-import org.turbogwt.net.http.client.serialization.SerdesManager;
 
 class DeferredSingleResult<T> extends DeferredSingleDecorator<T> implements DeferredRequestDecorator {
 

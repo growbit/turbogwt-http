@@ -27,7 +27,7 @@ import org.turbogwt.core.util.shared.Registration;
  *
  * @author Danilo Reinert
  */
-public class FilterManager {
+class FilterManager {
 
     private final List<RequestFilter> requestFilters = new ArrayList<>();
     private final List<ResponseFilter> responseFilters = new ArrayList<>();

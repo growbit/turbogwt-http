@@ -29,7 +29,6 @@ import org.turbogwt.net.http.client.serialization.JsonNumberSerdes;
 import org.turbogwt.net.http.client.serialization.JsonStringSerdes;
 import org.turbogwt.net.http.client.serialization.OverlaySerdes;
 import org.turbogwt.net.http.client.serialization.Serdes;
-import org.turbogwt.net.http.client.serialization.SerdesManager;
 import org.turbogwt.net.http.client.serialization.Serializer;
 import org.turbogwt.net.http.client.serialization.TextDeserializer;
 import org.turbogwt.net.http.client.serialization.VoidSerdes;

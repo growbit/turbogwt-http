@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.turbogwt.net.http.client.future.RequestProgressImpl;
 import org.turbogwt.net.http.client.future.RequestPromise;
-import org.turbogwt.net.http.client.serialization.SerdesManager;
 import org.turbogwt.net.http.client.serialization.SerializationContext;
 import org.turbogwt.net.http.client.serialization.Serializer;
 
