@@ -25,7 +25,7 @@ public class RequestImpl implements RequestDispatcher {
     private final Server server = GWT.create(Server.class);
     private final SerdesManager serdesManager;
     private final ContainerFactoryManager containerFactoryManager;
-    private final UriBuilder uriBuilder = new UriBuilderImpl();
+    private final String uri;
     private final FilterManager filterManager;
     private Headers headers;
     private String user;
@@ -41,7 +41,7 @@ public class RequestImpl implements RequestDispatcher {
         this.containerFactoryManager = containerFactoryManager;
         this.filterManager = filterManager;
         // TODO: parse URI
-        uriBuilder.path(uri);
+        this.uri = uri;
     }
 
     @Override
@@ -63,13 +63,6 @@ public class RequestImpl implements RequestDispatcher {
     }
 
     @Override
-    public RequestDispatcher multivaluedParamStrategy(MultivaluedParamStrategy strategy)
-            throws IllegalArgumentException {
-        uriBuilder.multivaluedParamStrategy(strategy);
-        return this;
-    }
-
-    @Override
     public RequestDispatcher header(String header, String value) {
         ensureHeaders().add(new SimpleHeader(header, value));
         return this;
@@ -83,14 +76,12 @@ public class RequestImpl implements RequestDispatcher {
 
     @Override
     public RequestDispatcher user(String user) {
-//        uriBuilder.user(user);
         this.user = user;
         return this;
     }
 
     @Override
     public RequestDispatcher password(String password) {
-//        uriBuilder.password(password);
         this.password = password;
         return this;
     }
@@ -98,24 +89,6 @@ public class RequestImpl implements RequestDispatcher {
     @Override
     public RequestDispatcher timeout(int timeoutMillis) {
         timeout = timeoutMillis;
-        return this;
-    }
-
-    @Override
-    public RequestDispatcher pathParam(String name, Object value) throws IllegalArgumentException {
-        // TODO: implement
-        return this;
-    }
-
-    @Override
-    public RequestDispatcher matrixParam(String name, Object... values) throws IllegalArgumentException {
-        uriBuilder.matrixParam(name, values);
-        return this;
-    }
-
-    @Override
-    public RequestDispatcher queryParam(String name, Object... values) throws IllegalArgumentException {
-        uriBuilder.matrixParam(name, values);
         return this;
     }
 
@@ -269,8 +242,7 @@ public class RequestImpl implements RequestDispatcher {
         ServerConnection connection = server.getConnection();
 
         try {
-            final String url = uriBuilder.build().toString();
-            connection.sendRequest(timeout, user, password, headers, method, url, body, callback);
+            connection.sendRequest(timeout, user, password, headers, method, uri, body, callback);
         } catch (final RequestException e) {
             throw new RequestDispatchException("It was not possible to dispatch the request.", e);
         }

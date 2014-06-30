@@ -52,17 +52,17 @@ public interface Request {
      */
     Request accept(AcceptHeader acceptHeader);
 
-    /**
-     * Set the strategy for appending parameters with multiple values.
-     *
-     * @param strategy the strategy
-     *
-     * @return the updated Request
-     *
-     * @throws IllegalArgumentException if strategy is null
-     */
-    Request multivaluedParamStrategy(MultivaluedParamStrategy strategy)
-            throws IllegalArgumentException;
+//    /**
+//     * Set the strategy for appending parameters with multiple values.
+//     *
+//     * @param strategy the strategy
+//     *
+//     * @return the updated Request
+//     *
+//     * @throws IllegalArgumentException if strategy is null
+//     */
+//    Request multivaluedParamStrategy(MultivaluedParamStrategy strategy)
+//            throws IllegalArgumentException;
 
     /**
      * Sets a request header with the given name and value. If a header with the
@@ -123,52 +123,52 @@ public interface Request {
      */
     Request timeout(int timeoutMillis);
 
-    /**
-     * Append a path parameter to the existing set of path parameters of the current final segment of the URI path.
-     *
-     * @param name   the path parameter name
-     * @param value  the path parameter value, the object will be converted to a {@code String} using its {@code
-     *               toString()} method.
-     *
-     * @return the updated Request
-     *
-     * @throws IllegalArgumentException if name or values is null
-     */
-    Request pathParam(String name, Object value)
-            throws IllegalArgumentException;
-
-    /**
-     * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.
-     * If multiple values are supplied the parameter will be added once per value. Note that the matrix parameters are
-     * tied to a particular path segment; subsequent addition of path segments will not affect their position in the URI
-     * path.
-     *
-     * @param name   the matrix parameter name
-     * @param values the matrix parameter value(s), each object will be converted to a {@code String} using its {@code
-     *               toString()} method.
-     *
-     * @return the updated Request
-     *
-     * @throws IllegalArgumentException if name or values is null
-     * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
-     */
-    Request matrixParam(String name, Object... values)
-            throws IllegalArgumentException;
-
-    /**
-     * Append a query parameter to the existing set of query parameters. If multiple values are supplied the parameter
-     * will be added once per value.
-     *
-     * @param name   the query parameter name
-     * @param values the query parameter value(s), each object will be converted to a {@code String} using its {@code
-     *               toString()} method.
-     *
-     * @return the updated Request
-     *
-     * @throws IllegalArgumentException if name or values is null
-     */
-    Request queryParam(String name, Object... values)
-            throws IllegalArgumentException;
+//    /**
+//     * Append a path parameter to the existing set of path parameters of the current final segment of the URI path.
+//     *
+//     * @param name   the path parameter name
+//     * @param value  the path parameter value, the object will be converted to a {@code String} using its {@code
+//     *               toString()} method.
+//     *
+//     * @return the updated Request
+//     *
+//     * @throws IllegalArgumentException if name or values is null
+//     */
+//    Request pathParam(String name, Object value)
+//            throws IllegalArgumentException;
+//
+//    /**
+//     * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.
+//     * If multiple values are supplied the parameter will be added once per value. Note that the matrix parameters are
+//     * tied to a particular path segment; subsequent addition of path segments will not affect their position in the URI
+//     * path.
+//     *
+//     * @param name   the matrix parameter name
+//     * @param values the matrix parameter value(s), each object will be converted to a {@code String} using its {@code
+//     *               toString()} method.
+//     *
+//     * @return the updated Request
+//     *
+//     * @throws IllegalArgumentException if name or values is null
+//     * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
+//     */
+//    Request matrixParam(String name, Object... values)
+//            throws IllegalArgumentException;
+//
+//    /**
+//     * Append a query parameter to the existing set of query parameters. If multiple values are supplied the parameter
+//     * will be added once per value.
+//     *
+//     * @param name   the query parameter name
+//     * @param values the query parameter value(s), each object will be converted to a {@code String} using its {@code
+//     *               toString()} method.
+//     *
+//     * @return the updated Request
+//     *
+//     * @throws IllegalArgumentException if name or values is null
+//     */
+//    Request queryParam(String name, Object... values)
+//            throws IllegalArgumentException;
 
     /**
      * Input a object to be sent in the HTTP Request payload.
@@ -180,11 +180,8 @@ public interface Request {
      * @param object the payload of the request
      *
      * @return the updated Request
-     *
-     * @throws IllegalArgumentException if no serializer for this class and content-type
-     * is registered in the source {@link Requestor}
      */
-    Request payload(Object object)
-            throws IllegalArgumentException;
+    // TODO: return some exception if no serializer is registered for this object and content-type, or let the SerdesManager claim?
+    Request payload(Object object);
 
 }
