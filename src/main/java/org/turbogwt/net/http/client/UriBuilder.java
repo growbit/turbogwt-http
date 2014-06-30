@@ -16,6 +16,8 @@
 
 package org.turbogwt.net.http.client;
 
+import com.google.gwt.core.shared.GWT;
+
 /**
  * Utility class for building URIs from their components.
  * <p/>
@@ -30,7 +32,17 @@ package org.turbogwt.net.http.client;
  * legal characters and will not be encoded. Percent encoded values are also recognized where allowed and will not be
  * double encoded.</p>
  */
-public interface UriBuilder {
+public abstract class UriBuilder {
+
+    public static UriBuilder fromPath(String path) {
+        final UriBuilder uriBuilder = GWT.create(UriBuilder.class);
+        uriBuilder.path(path);
+        return uriBuilder;
+    }
+
+    public static UriBuilder newInstance() {
+        return GWT.create(UriBuilder.class);
+    }
 
     /**
      * Set the strategy for appending parameters with multiple values.
@@ -41,7 +53,7 @@ public interface UriBuilder {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    UriBuilder multivaluedParamStrategy(MultivaluedParamStrategy strategy) throws IllegalArgumentException;
+    abstract UriBuilder multivaluedParamStrategy(MultivaluedParamStrategy strategy) throws IllegalArgumentException;
 
     /**
      * Set the URI user of user-info part.
@@ -50,7 +62,7 @@ public interface UriBuilder {
      *
      * @return the updated UriBuilder
      */
-    UriBuilder user(String user);
+    abstract UriBuilder user(String user);
 
     /**
      * Set the URI password of user-info part.
@@ -59,7 +71,7 @@ public interface UriBuilder {
      *
      * @return the updated UriBuilder
      */
-    UriBuilder password(String password);
+    abstract UriBuilder password(String password);
 
     /**
      * Set the URI scheme.
@@ -70,7 +82,7 @@ public interface UriBuilder {
      *
      * @throws IllegalArgumentException if scheme is invalid
      */
-    UriBuilder scheme(String scheme) throws IllegalArgumentException;
+    abstract UriBuilder scheme(String scheme) throws IllegalArgumentException;
 
     /**
      * Set the URI host.
@@ -81,7 +93,7 @@ public interface UriBuilder {
      *
      * @throws IllegalArgumentException if host is invalid.
      */
-    UriBuilder host(String host) throws IllegalArgumentException;
+    abstract UriBuilder host(String host) throws IllegalArgumentException;
 
     /**
      * Set the URI port.
@@ -92,7 +104,7 @@ public interface UriBuilder {
      *
      * @throws IllegalArgumentException if port is invalid
      */
-    UriBuilder port(int port) throws IllegalArgumentException;
+    abstract UriBuilder port(int port) throws IllegalArgumentException;
 
     /**
      * Set the URI path. This method will overwrite any existing path and associated matrix parameters. Existing '/'
@@ -102,7 +114,7 @@ public interface UriBuilder {
      *
      * @return the updated UriBuilder
      */
-    UriBuilder path(String path);
+    abstract UriBuilder path(String path);
 
     /**
      * Append path segments to the existing path. When constructing the final path, a '/' separator will be inserted
@@ -116,7 +128,7 @@ public interface UriBuilder {
      *
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
-    UriBuilder segment(Object... segments) throws IllegalArgumentException;
+    abstract UriBuilder segment(Object... segments) throws IllegalArgumentException;
 
     /**
      * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.
@@ -133,7 +145,7 @@ public interface UriBuilder {
      * @throws IllegalArgumentException if name or values is null
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
-    UriBuilder matrixParam(String name, Object... values) throws IllegalArgumentException;
+    abstract UriBuilder matrixParam(String name, Object... values) throws IllegalArgumentException;
 
     /**
      * Append a query parameter to the existing set of query parameters. If multiple values are supplied the parameter
@@ -147,7 +159,7 @@ public interface UriBuilder {
      *
      * @throws IllegalArgumentException if name or values is null
      */
-    UriBuilder queryParam(String name, Object... values) throws IllegalArgumentException;
+    abstract UriBuilder queryParam(String name, Object... values) throws IllegalArgumentException;
 
     /**
      * Set the URI fragment.
@@ -156,7 +168,7 @@ public interface UriBuilder {
      *
      * @return the updated UriBuilder
      */
-    UriBuilder fragment(String fragment);
+    abstract UriBuilder fragment(String fragment);
 
     /**
      * Build a URI, using the supplied values in order to replace any URI

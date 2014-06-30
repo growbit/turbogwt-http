@@ -32,7 +32,7 @@ import org.turbogwt.core.collections.client.LightMap;
  *
  * @author Danilo Reinert
  */
-public class UriBuilderImpl implements UriBuilder {
+public class UriBuilderImpl extends UriBuilder {
 
     private MultivaluedParamStrategy strategy = MultivaluedParamStrategy.REPEATED_PARAM;
     private String scheme;
@@ -212,7 +212,7 @@ public class UriBuilderImpl implements UriBuilder {
 
         final String encFragment = fragment != null ? encodePart(parsePart(values, templateParams, fragment)) : null;
 
-        return new UriImpl(encScheme, encUser, encPassword, encHost, port, encPath, encQuery, encFragment);
+        return new Uri(encScheme, encUser, encPassword, encHost, port, encPath, encQuery, encFragment);
     }
 
     private String encodePart(String segment) {
