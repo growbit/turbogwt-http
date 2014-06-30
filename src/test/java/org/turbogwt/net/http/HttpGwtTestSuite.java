@@ -28,7 +28,7 @@ import org.turbogwt.net.http.client.QualityFactorHeaderTest;
 import org.turbogwt.net.http.client.SerializerAndDeserializerMatchTest;
 import org.turbogwt.net.http.client.SerializerAndDeserializerPrecedenceTest;
 import org.turbogwt.net.http.client.SimpleHeaderWithParameterTest;
-import org.turbogwt.net.http.client.UriBuilderImplTest;
+import org.turbogwt.net.http.client.UriBuilderTest;
 import org.turbogwt.net.http.client.books.RestTest;
 
 /**
@@ -43,7 +43,7 @@ public class HttpGwtTestSuite {
         suite.addTestSuite(QualityFactorHeaderTest.class);
         suite.addTestSuite(SimpleHeaderWithParameterTest.class);
 
-        suite.addTestSuite(UriBuilderImplTest.class);
+        suite.addTestSuite(UriBuilderTest.class);
         suite.addTestSuite(FluentRequestImplTest.class);
         suite.addTestSuite(ContentTypeAcceptPatternsTest.class);
         suite.addTestSuite(SerializerAndDeserializerMatchTest.class);

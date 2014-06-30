@@ -13,7 +13,7 @@ public class Uri implements Comparable<Uri> {
     private String uriString;
 
     public Uri(String scheme, String user, String password, String host, Integer port, String path, String query,
-                   String fragment) {
+               String fragment) {
         // TODO: validate
         this.scheme = scheme;
         this.user = user;

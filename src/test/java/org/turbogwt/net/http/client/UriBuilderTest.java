@@ -21,7 +21,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 /**
  * @author Danilo Reinert
  */
-public class UriBuilderImplTest extends GWTTestCase {
+public class UriBuilderTest extends GWTTestCase {
 
     @Override
     public String getModuleName() {
@@ -32,7 +32,7 @@ public class UriBuilderImplTest extends GWTTestCase {
         String expected = "http://user:pwd@localhost:8888/server/root/resource;class=2;class=5;class=6" +
                 "/child;group=A;subGroup=A.1;subGroup=A.2?age=12&name=Aa&name=Zz#first";
 
-        String uri = new UriBuilderImpl()
+        String uri = UriBuilder.newInstance()
                 .scheme("http")
                 .user("user")
                 .password("pwd")
@@ -53,17 +53,11 @@ public class UriBuilderImplTest extends GWTTestCase {
     }
 
     public void testCommaSeparatedStrategy() {
-        String expected = "http://user:pwd@localhost:8888/server/root;class=2,5,6" +
+        String expected = "/server/root;class=2,5,6" +
                 "/child;group=A;subGroup=A.1,A.2?age=12&name=Aa,Zz#first";
 
-        String uri = new UriBuilderImpl()
+        String uri = UriBuilder.fromPath("server")
                 .multivaluedParamStrategy(MultivaluedParamStrategy.COMMA_SEPARATED)
-                .scheme("http")
-                .user("user")
-                .password("pwd")
-                .host("localhost")
-                .port(8888)
-                .path("server")
                 .segment("root")
                 .matrixParam("class", 2, 5, 6)
                 .segment("child")
@@ -81,7 +75,7 @@ public class UriBuilderImplTest extends GWTTestCase {
         String expected = "http://user:pwd@localhost:8888/server/root/any;class=2;class=5;class=6" +
                 "/child;group=A;subGroup=A.1;subGroup=A.2?age=12&name=Aa&name=Zz#firstserver";
 
-        String uri = new UriBuilderImpl()
+        String uri = UriBuilder.newInstance()
                 .scheme("http")
                 .user("user")
                 .password("pwd")
@@ -103,7 +97,7 @@ public class UriBuilderImplTest extends GWTTestCase {
 
     public void testInsufficientTemplateParams() {
         try {
-            assertNull(new UriBuilderImpl()
+            assertNull(UriBuilder.newInstance()
                     .path("{a}/{b}")
                     .segment("{c}")
                     .fragment("{d}{a}")
