@@ -145,7 +145,9 @@ class SerdesManager {
      * @param type The type class of the deserializer.
      * @param <T> The type of the deserializer.
      * @return The deserializer of the specified type.
-     * @throws org.turbogwt.net.http.client.serialization.SerializationException if no deserializer was registered for the class.
+     *
+     * @throws org.turbogwt.net.http.client.serialization.SerializationException if no deserializer was registered
+     * for the class.
      */
     @SuppressWarnings("unchecked")
     public <T> Deserializer<T> getDeserializer(Class<T> type, String contentType) throws SerializationException {

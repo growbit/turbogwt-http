@@ -38,10 +38,10 @@ import org.turbogwt.net.http.client.serialization.VoidSerdes;
  * Usually, you will use it as a singleton along your project.
  * <p/>
  *
- * It provides a convenience API for building/executing HTTP Requests.
+ * It provides a convenience API for managing/creating HTTP Requests.
  * <p/>
  *
- * You can register {@link org.turbogwt.net.http.client.RequestFilter}s with #registerRequestFilter, so the are executed over all your requests.
+ * You can register {@link RequestFilter}s with #registerRequestFilter, so the are executed over all your requests.
  * The same for {@link org.turbogwt.net.http.client.ResponseFilter}.
  * <p/>
  *
@@ -53,9 +53,6 @@ import org.turbogwt.net.http.client.serialization.VoidSerdes;
  *
  * SerDes for {@link String}, {@link Number}, {@link Boolean}
  * and {@link com.google.gwt.core.client.JavaScriptObject} are already provided.
- * <p/>
- *
- * Define the way params with multiple values should be processed to form your URIs with #setDefaultStrategy.
  *
  * @author Danilo Reinert
  */
@@ -91,7 +88,6 @@ public class Requestor {
     public RequestDispatcher request(String uri) {
         return createRequest(uri);
     }
-
 
     //===================================================================
     // Requestor configuration

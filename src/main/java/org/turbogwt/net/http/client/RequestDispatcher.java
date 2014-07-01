@@ -23,6 +23,9 @@ import java.util.Collection;
 import org.turbogwt.net.http.client.future.RequestPromise;
 import org.turbogwt.net.http.client.header.AcceptHeader;
 
+/**
+ * A {@link Request} with dispatching capabilities.
+ */
 public interface RequestDispatcher extends Request {
 
     @Override

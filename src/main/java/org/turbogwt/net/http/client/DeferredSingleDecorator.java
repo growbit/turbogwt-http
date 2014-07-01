@@ -52,7 +52,8 @@ abstract class DeferredSingleDecorator<T> implements RequestPromise<T> {
     }
 
     @Override
-    public Promise<T, Throwable, RequestProgress, ResponseContext> progress(ProgressCallback<RequestProgress> callback) {
+    public Promise<T, Throwable, RequestProgress, ResponseContext> progress(
+            ProgressCallback<RequestProgress> callback) {
         return deferredDelegate.progress(callback);
     }
 

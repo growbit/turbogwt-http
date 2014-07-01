@@ -38,22 +38,26 @@ abstract class DeferredCollectionDecorator<T> implements RequestPromise<Collecti
     }
 
     @Override
-    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> done(DoneCallback<Collection<T>> callback) {
+    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> done(
+            DoneCallback<Collection<T>> callback) {
         return deferredDelegate.done(callback);
     }
 
     @Override
-    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> fail(FailCallback<Throwable> callback) {
+    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> fail(
+            FailCallback<Throwable> callback) {
         return deferredDelegate.fail(callback);
     }
 
     @Override
-    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> always(AlwaysCallback<Collection<T>, Throwable, ResponseContext> callback) {
+    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> always(
+            AlwaysCallback<Collection<T>, Throwable, ResponseContext> callback) {
         return deferredDelegate.always(callback);
     }
 
     @Override
-    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> progress(ProgressCallback<RequestProgress> callback) {
+    public Promise<Collection<T>, Throwable, RequestProgress, ResponseContext> progress(
+            ProgressCallback<RequestProgress> callback) {
         return deferredDelegate.progress(callback);
     }
 

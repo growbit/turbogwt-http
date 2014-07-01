@@ -16,6 +16,9 @@
 
 package org.turbogwt.net.http.client;
 
+/**
+ * Exception for dispatching {@link Request}s.
+ */
 public class RequestDispatchException extends RuntimeException {
 
     public RequestDispatchException() {

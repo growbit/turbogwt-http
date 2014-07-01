@@ -140,9 +140,9 @@ public interface Request {
 //            throws IllegalArgumentException;
 //
 //    /**
-//     * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.
+//   * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.
 //     * If multiple values are supplied the parameter will be added once per value. Note that the matrix parameters are
-//     * tied to a particular path segment; subsequent addition of path segments will not affect their position in the URI
+//   * tied to a particular path segment; subsequent addition of path segments will not affect their position in the URI
 //     * path.
 //     *
 //     * @param name   the matrix parameter name
@@ -183,7 +183,8 @@ public interface Request {
      *
      * @return the updated Request
      */
-    // TODO: return some exception if no serializer is registered for this object and content-type, or let the SerdesManager claim?
+    /* TODO: return some exception if no serializer is registered for this object and content-type,
+       or let the SerdesManager claim? */
     Request payload(Object object);
 
 }
