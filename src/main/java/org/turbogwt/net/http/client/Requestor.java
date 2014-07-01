@@ -171,7 +171,7 @@ public class Requestor {
      *
      * @return  The {@link org.turbogwt.core.util.shared.Registration} object, capable of cancelling this registration.
      */
-    public <C extends Collection> Registration registerCollectionFactoy(Class<C> collectionType, Factory<C> factory) {
+    public <C extends Collection> Registration registerContainerFactoy(Class<C> collectionType, Factory<C> factory) {
         return collectionFactoryManager.registerFactory(collectionType, factory);
     }
 
