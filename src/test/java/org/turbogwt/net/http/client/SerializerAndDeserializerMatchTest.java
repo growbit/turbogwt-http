@@ -20,6 +20,7 @@ import com.google.gwt.junit.client.GWTTestCase;
 
 import java.util.Date;
 
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 import org.turbogwt.net.http.client.model.Person;

@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
+package org.turbogwt.net.http.client.header;
 
 /**
- * The HTTP Accept Header.
+ * HTTP Content-Type Header.
  *
  * @author Danilo Reinert
  */
-public class AcceptHeader extends QualityFactorHeader {
+public class ContentTypeHeader extends SimpleHeaderWithParameter {
 
-    public AcceptHeader(Value... values) {
-        super("Accept", values);
+    public ContentTypeHeader(String value, Param... params) {
+        super("Content-Type", value, params);
     }
 
-    public AcceptHeader(String... values) {
-        super("Accept", values);
+    public ContentTypeHeader(String value) {
+        super("Content-Type", value);
     }
 }

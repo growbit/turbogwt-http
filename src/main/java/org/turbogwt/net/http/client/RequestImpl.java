@@ -16,6 +16,9 @@ import java.util.List;
 
 import org.turbogwt.net.http.client.future.RequestProgressImpl;
 import org.turbogwt.net.http.client.future.RequestPromise;
+import org.turbogwt.net.http.client.header.AcceptHeader;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
+import org.turbogwt.net.http.client.header.SimpleHeader;
 import org.turbogwt.net.http.client.serialization.SerializationContext;
 import org.turbogwt.net.http.client.serialization.Serializer;
 
@@ -174,8 +177,8 @@ public class RequestImpl implements RequestDispatcher {
     }
 
     private <T> RequestPromise<T> send(RequestBuilder.Method method, Class<T> responseType) {
-        final DeferredSingleResult<T> deferred = new DeferredSingleResult<T>(responseType,
-                serdesManager, containerFactoryManager);
+        final DeferredSingleResult<T> deferred = new DeferredSingleResult<T>(responseType, serdesManager,
+                containerFactoryManager);
 
         RequestCallback callback = createRequestCallback(deferred);
 
@@ -267,7 +270,8 @@ public class RequestImpl implements RequestDispatcher {
                 }
             } else {
                 @SuppressWarnings("unchecked")
-                Serializer<Object> serializer = (Serializer<Object>) serdesManager.getSerializer(payload.getClass(), contentType);
+                Serializer<Object> serializer = (Serializer<Object>) serdesManager.getSerializer(payload.getClass(),
+                        contentType);
                 body = serializer.serialize(payload, SerializationContext.of(ensureHeaders()));
             }
         }

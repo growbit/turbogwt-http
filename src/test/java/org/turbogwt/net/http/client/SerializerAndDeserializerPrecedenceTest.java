@@ -19,6 +19,7 @@ package org.turbogwt.net.http.client;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import org.turbogwt.core.future.shared.DoneCallback;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 

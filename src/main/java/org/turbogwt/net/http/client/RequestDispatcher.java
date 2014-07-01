@@ -21,6 +21,7 @@ import com.google.gwt.http.client.Header;
 import java.util.Collection;
 
 import org.turbogwt.net.http.client.future.RequestPromise;
+import org.turbogwt.net.http.client.header.AcceptHeader;
 
 public interface RequestDispatcher extends Request {
 

@@ -25,7 +25,6 @@ import java.util.List;
 
 import org.turbogwt.core.collections.client.JsArrayList;
 import org.turbogwt.core.util.client.Overlays;
-import org.turbogwt.core.util.shared.Factory;
 
 /**
  * Serializer/Deserializer of Overlay types.
@@ -72,7 +71,7 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
         if (collectionType.equals(List.class) || collectionType.equals(Collection.class)) {
             return (C) new JsArrayList(jsArray);
         } else {
-            C col = getCollectionInstance(context, collectionType);
+            C col = context.getContainerInstance(collectionType);
             for (int i = 0; i < jsArray.length(); i++) {
                 T t = jsArray.get(i);
                 col.add(t);
@@ -102,21 +101,5 @@ public class OverlaySerdes<T extends JavaScriptObject> implements Serdes<T> {
             jsArray.push(t);
         }
         return Overlays.stringify(jsArray);
-    }
-
-    /**
-     * Given a collection class, returns a new instance of it.
-     *
-     * @param collectionType    The class of the collection.
-     * @param <C>               The type of the collection.
-     *
-     * @return A new instance to the collection.
-     */
-    protected <C extends Collection<T>> C getCollectionInstance(DeserializationContext context,
-                                                                Class<C> collectionType) {
-        final Factory<C> factory = context.getContainerFactoryManager().getFactory(collectionType);
-        if (factory == null)
-            throw new UnableToDeserializeException("Could not instantiate the given collection type.");
-        return factory.get();
     }
 }

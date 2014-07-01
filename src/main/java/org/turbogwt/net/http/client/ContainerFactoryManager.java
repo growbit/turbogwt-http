@@ -36,7 +36,7 @@ import org.turbogwt.core.util.shared.Registration;
  *
  * @author Danilo Reinert
  */
-final class ContainerFactoryManager {
+public final class ContainerFactoryManager {
 
     private final JsMap<Factory<? extends Collection>> factories;
 

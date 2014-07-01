@@ -24,6 +24,7 @@ import java.util.List;
 import org.turbogwt.net.http.client.books.Book;
 import org.turbogwt.net.http.client.books.BookJsonSerdes;
 import org.turbogwt.net.http.client.books.BookXmlSerdes;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 import org.turbogwt.net.http.client.serialization.Serdes;

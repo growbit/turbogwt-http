@@ -18,6 +18,8 @@ package org.turbogwt.net.http.client;
 
 import com.google.gwt.http.client.Header;
 
+import org.turbogwt.net.http.client.header.AcceptHeader;
+
 /**
  * This type provides fluent style request building.
  *

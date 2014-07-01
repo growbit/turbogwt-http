@@ -31,6 +31,7 @@ import org.turbogwt.core.future.shared.FailCallback;
 import org.turbogwt.core.future.shared.ProgressCallback;
 import org.turbogwt.net.http.client.future.RequestProgress;
 import org.turbogwt.net.http.client.future.ResponseContext;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 import org.turbogwt.net.http.client.model.Person;

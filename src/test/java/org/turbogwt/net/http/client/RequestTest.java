@@ -30,6 +30,7 @@ import org.turbogwt.core.future.shared.AlwaysCallback;
 import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.core.util.client.Overlays;
 import org.turbogwt.net.http.client.future.ResponseContext;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.RequestMock;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;

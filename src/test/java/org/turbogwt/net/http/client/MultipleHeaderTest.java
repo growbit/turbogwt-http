@@ -18,6 +18,8 @@ package org.turbogwt.net.http.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
+import org.turbogwt.net.http.client.header.MultivaluedHeader;
+
 /**
  * @author Danilo Reinert
  */

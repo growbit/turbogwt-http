@@ -60,7 +60,7 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
      * @return A new instance to the collection.
      */
     public <C extends Collection<T>> C getCollectionInstance(DeserializationContext context, Class<C> collectionType) {
-        final C col = context.getContainerFactoryManager().getFactory(collectionType).get();
+        final C col = context.getContainerInstance(collectionType);
         if (col == null)
             throw new UnableToDeserializeException("Could not instantiate the given collection type.");
         return col;

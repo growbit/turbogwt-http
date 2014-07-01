@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
+package org.turbogwt.net.http.client.header;
 
 import com.google.gwt.http.client.Header;
 
