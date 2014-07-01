@@ -16,8 +16,6 @@
 
 package org.turbogwt.net.http.client.header;
 
-import org.turbogwt.net.http.client.QualityFactorHeader;
-
 /**
  * The HTTP Accept Header.
  *

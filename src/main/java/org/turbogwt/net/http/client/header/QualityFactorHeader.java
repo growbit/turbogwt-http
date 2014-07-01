@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
+package org.turbogwt.net.http.client.header;
 
 import java.util.Arrays;
 import java.util.Iterator;
 
 import org.turbogwt.core.collections.client.JsArrayIterator;
-import org.turbogwt.net.http.client.header.MultivaluedHeader;
 
 /**
  * HTTP Header with relative quality factors.
