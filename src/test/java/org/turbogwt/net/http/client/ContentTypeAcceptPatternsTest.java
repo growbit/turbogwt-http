@@ -20,11 +20,13 @@ import com.google.gwt.junit.client.GWTTestCase;
 
 import java.util.Date;
 
+import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 import org.turbogwt.net.http.client.model.Person;
 import org.turbogwt.net.http.client.model.PersonSerdes;
+import org.turbogwt.net.http.client.serialization.SerializationException;
 
 /**
  * @author Danilo Reinert
@@ -41,259 +43,247 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         return "org.turbogwt.net.http.HttpTest";
     }
 
-//    public void testWildcardBothParts() {
-//        personSerdes.setAcceptPatterns("*/*");
-//        personSerdes.setContentTypePatterns("*/*");
-//
-//        prepareStub("application/json");
-//        final Requestor requestory = getRequestory();
-//
-//        final boolean[] callbackSuccessCalled = new boolean[1];
-//
-//        try {
-//            requestory.request(Person.class, Person.class).path(uri).post(person, new AsyncCallback<Person>() {
-//                @Override
-//                public void onFailure(Throwable caught) {
-//                }
-//
-//                @Override
-//                public void onSuccess(Person result) {
-//                    callbackSuccessCalled[0] = true;
-//                }
-//            });
-//        } catch (SerializationException e) {
-//            // This piece of code should not be called
-//            assertNull(e);
-//        }
-//
-//        assertTrue(callbackSuccessCalled[0]);
-//    }
-//
-//    public void testWildcardFirstPart() {
-//        personSerdes.setAcceptPatterns("*/json");
-//        personSerdes.setContentTypePatterns("*/json");
-//
-//        prepareStub("application/json");
-//        final Requestor requestory = getRequestory();
-//
-//        final boolean[] callbackSuccessCalled = new boolean[1];
-//
-//        try {
-//            requestory.request(Person.class, Person.class).path(uri)
-//                    .contentType("anything/json")
-//                    .accept("anything/json")
-//                    .post(person, new AsyncCallback<Person>() {
-//                        @Override
-//                        public void onFailure(Throwable caught) {
-//                        }
-//
-//                        @Override
-//                        public void onSuccess(Person result) {
-//                            callbackSuccessCalled[0] = true;
-//                        }
-//                    });
-//        } catch (SerializationException e) {
-//            // This piece of code should not be called
-//            assertNull(e);
-//        }
-//
-//        assertTrue(callbackSuccessCalled[0]);
-//    }
-//
-//    public void testWildcardLastPart() {
-//        personSerdes.setAcceptPatterns("application/*");
-//        personSerdes.setContentTypePatterns("application/*");
-//
-//        prepareStub("application/json");
-//        final Requestor requestory = getRequestory();
-//
-//        final boolean[] callbackSuccessCalled = new boolean[1];
-//
-//        try {
-//            requestory.request(Person.class, Person.class).path(uri)
-//                    .contentType("application/anything")
-//                    .accept("application/anything")
-//                    .post(person, new AsyncCallback<Person>() {
-//                        @Override
-//                        public void onFailure(Throwable caught) {
-//                        }
-//
-//                        @Override
-//                        public void onSuccess(Person result) {
-//                            callbackSuccessCalled[0] = true;
-//                        }
-//                    });
-//        } catch (SerializationException e) {
-//            // This piece of code should not be called
-//            assertNull(e);
-//        }
-//
-//        assertTrue(callbackSuccessCalled[0]);
-//    }
-//
-//    public void testAcceptInvalidFirstPart() {
-//        personSerdes.setAcceptPatterns("anything/json");
-//        personSerdes.setContentTypePatterns("application/json");
-//
-//        prepareStub("application/json");
-//        Requestor requestory = getRequestory();
-//
-//        final boolean[] callbackCalled = new boolean[2];
-//
-//        requestory.request(Person.class, Person.class).path(uri)
-//                .accept("application/json")
-//                .contentType("application/json")
-//                .post(person, new AsyncCallback<Person>() {
-//                    @Override
-//                    public void onFailure(Throwable caught) {
-//                        callbackCalled[1] = true;
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(Person result) {
-//                        callbackCalled[0] = true;
-//                    }
-//                });
-//
-//        assertFalse(callbackCalled[0]);
-//        assertTrue(callbackCalled[1]);
-//
-//        callbackCalled[1] = false;
-//        personSerdes.setAcceptPatterns("application/json");
-//
-//        prepareStub("anything/json");
-//        requestory = getRequestory();
-//
-//        requestory.request(Person.class, Person.class).path(uri)
-//                .accept("anything/json")
-//                .contentType("application/json")
-//                .post(person, new AsyncCallback<Person>() {
-//                    @Override
-//                    public void onFailure(Throwable caught) {
-//                        callbackCalled[1] = true;
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(Person result) {
-//                        callbackCalled[0] = true;
-//                    }
-//                });
-//
-//        assertFalse(callbackCalled[0]);
-//        assertTrue(callbackCalled[1]);
-//    }
-//
-//    public void testAcceptInvalidLastPart() {
-//        personSerdes.setAcceptPatterns("application/xml");
-//        personSerdes.setContentTypePatterns("application/json");
-//
-//        prepareStub("application/json");
-//        Requestor requestory = getRequestory();
-//
-//        final boolean[] callbackCalled = new boolean[2];
-//
-//        requestory.request(Person.class, Person.class).path(uri)
-//                .accept("application/json")
-//                .contentType("application/json")
-//                .post(person, new AsyncCallback<Person>() {
-//                    @Override
-//                    public void onFailure(Throwable caught) {
-//                        callbackCalled[1] = true;
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(Person result) {
-//                        callbackCalled[0] = true;
-//                    }
-//                });
-//
-//        assertFalse(callbackCalled[0]);
-//        assertTrue(callbackCalled[1]);
-//
-//        callbackCalled[1] = false;
-//        personSerdes.setAcceptPatterns("application/json");
-//
-//        prepareStub("application/xml");
-//        requestory = getRequestory();
-//
-//        requestory.request(Person.class, Person.class).path(uri)
-//                .accept("application/xml")
-//                .contentType("application/json")
-//                .post(person, new AsyncCallback<Person>() {
-//                    @Override
-//                    public void onFailure(Throwable caught) {
-//                        callbackCalled[1] = true;
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(Person result) {
-//                        callbackCalled[0] = true;
-//                    }
-//                });
-//
-//        assertFalse(callbackCalled[0]);
-//        assertTrue(callbackCalled[1]);
-//    }
-//
-//    public void testContentTypeInvalidBothParts() {
-//        personSerdes.setAcceptPatterns("application/json");
-//        personSerdes.setContentTypePatterns("app/js");
-//
-//        prepareStub("application/json");
-//        Requestor requestory = getRequestory();
-//
-//        final boolean[] callbackSuccessCalled = new boolean[1];
-//
-//        try {
-//            requestory.request(Person.class, Person.class).path(uri)
-//                    .accept("application/json")
-//                    .contentType("application/json")
-//                    .post(person, new AsyncCallback<Person>() {
-//                        @Override
-//                        public void onFailure(Throwable caught) {
-//                        }
-//
-//                        @Override
-//                        public void onSuccess(Person result) {
-//                            callbackSuccessCalled[0] = true;
-//                        }
-//                    });
-//        } catch (SerializationException e) {
-//            assertNotNull(e);
-//        }
-//
-//        assertFalse(callbackSuccessCalled[0]);
-//
-//        personSerdes.setContentTypePatterns("application/json");
-//
-//        prepareStub("application/json");
-//        requestory = getRequestory();
-//
-//        try {
-//            requestory.request(Person.class, Person.class).path(uri)
-//                    .accept("application/json")
-//                    .contentType("app/js")
-//                    .post(person, new AsyncCallback<Person>() {
-//                        @Override
-//                        public void onFailure(Throwable caught) {
-//                        }
-//
-//                        @Override
-//                        public void onSuccess(Person result) {
-//                            callbackSuccessCalled[0] = true;
-//                        }
-//                    });
-//        } catch (SerializationException e) {
-//            assertNotNull(e);
-//        }
-//
-//        assertFalse(callbackSuccessCalled[0]);
-//    }
+    public void testWildcardBothParts() {
+        personSerdes.setAcceptPatterns("*/*");
+        personSerdes.setContentTypePatterns("*/*");
 
-    private Requestor getRequestory() {
-        final Requestor requestory = new Requestor();
-        requestory.registerSerdes(Person.class, personSerdes);
-        return requestory;
+        prepareStub("application/json");
+        final Requestor requestor = getRequestor();
+
+        final boolean[] callbackSuccessCalled = new boolean[1];
+
+        try {
+            requestor.request(uri).payload(person).post(Person.class).done(new DoneCallback<Person>() {
+                @Override
+                public void onDone(Person person) {
+                    callbackSuccessCalled[0] = true;
+                }
+            });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNull(e);
+        }
+
+        assertTrue(callbackSuccessCalled[0]);
+    }
+
+    public void testWildcardFirstPart() {
+        personSerdes.setAcceptPatterns("*/json");
+        personSerdes.setContentTypePatterns("*/json");
+
+        prepareStub("application/json");
+        final Requestor requestor = getRequestor();
+
+        final boolean[] callbackSuccessCalled = new boolean[1];
+
+        try {
+            requestor.request(uri).contentType("anything/json").accept("anything/json").payload(person)
+                    .post(Person.class).done(new DoneCallback<Person>() {
+                @Override
+                public void onDone(Person person) {
+                    callbackSuccessCalled[0] = true;
+                }
+            });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNull(e);
+        }
+
+        assertTrue(callbackSuccessCalled[0]);
+    }
+
+    public void testWildcardLastPart() {
+        personSerdes.setAcceptPatterns("application/*");
+        personSerdes.setContentTypePatterns("application/*");
+
+        prepareStub("application/json");
+        final Requestor requestor = getRequestor();
+
+        final boolean[] callbackSuccessCalled = new boolean[1];
+
+        try {
+            requestor.request(uri)
+                    .contentType("application/anything")
+                    .accept("application/anything")
+                    .payload(person).post(Person.class).done(new DoneCallback<Person>() {
+                @Override
+                public void onDone(Person person) {
+                    callbackSuccessCalled[0] = true;
+                }
+            });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNull(e);
+        }
+
+        assertTrue(callbackSuccessCalled[0]);
+    }
+
+    public void testAcceptInvalidFirstPart() {
+        personSerdes.setAcceptPatterns("anything/json");
+        personSerdes.setContentTypePatterns("application/json");
+
+        prepareStub("application/json");
+        Requestor requestor = getRequestor();
+
+        final boolean[] callbackCalled = new boolean[2];
+        try {
+            requestor.request(uri)
+                    .contentType("application/json")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNotNull(e);
+        }
+
+        assertFalse(callbackCalled[0]);
+
+        callbackCalled[1] = false;
+        personSerdes.setAcceptPatterns("application/json");
+
+        prepareStub("anything/json");
+        requestor = getRequestor();
+
+        try {
+            requestor.request(uri)
+                    .contentType("anything/json")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNotNull(e);
+        }
+
+        assertFalse(callbackCalled[0]);
+    }
+
+    public void testAcceptInvalidLastPart() {
+        personSerdes.setAcceptPatterns("application/xml");
+        personSerdes.setContentTypePatterns("application/json");
+
+        prepareStub("application/json");
+        Requestor requestor = getRequestor();
+
+        final boolean[] callbackCalled = new boolean[2];
+
+        try {
+            requestor.request(uri)
+                    .contentType("application/json")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNotNull(e);
+        }
+
+        assertFalse(callbackCalled[0]);
+
+        callbackCalled[1] = false;
+        personSerdes.setAcceptPatterns("application/json");
+
+        prepareStub("application/xml");
+        requestor = getRequestor();
+
+        try {
+            requestor.request(uri)
+                    .contentType("application/xml")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNotNull(e);
+        }
+
+        assertFalse(callbackCalled[0]);
+    }
+
+    public void testContentTypeInvalidBothParts() {
+        personSerdes.setAcceptPatterns("application/json");
+        personSerdes.setContentTypePatterns("app/js");
+
+        prepareStub("application/json");
+        Requestor requestor = getRequestor();
+
+        final boolean[] callbackSuccessCalled = new boolean[1];
+
+        try {
+            requestor.request(uri)
+                    .contentType("application/json")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackSuccessCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            assertNotNull(e);
+        }
+
+        assertFalse(callbackSuccessCalled[0]);
+
+        personSerdes.setContentTypePatterns("application/json");
+
+        prepareStub("application/json");
+        requestor = getRequestor();
+
+        try {
+            requestor.request(uri)
+                    .contentType("app/js")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackSuccessCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            assertNotNull(e);
+        }
+
+        assertFalse(callbackSuccessCalled[0]);
+    }
+
+    private Requestor getRequestor() {
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Person.class, personSerdes);
+        return requestor;
     }
 
     private void prepareStub(String responseContentType) {
