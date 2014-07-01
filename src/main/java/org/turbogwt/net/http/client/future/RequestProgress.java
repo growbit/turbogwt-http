@@ -16,5 +16,8 @@
 
 package org.turbogwt.net.http.client.future;
 
+/**
+ * Progress data of requests.
+ */
 public interface RequestProgress extends com.google.gwt.http.client.RequestProgress {
 }

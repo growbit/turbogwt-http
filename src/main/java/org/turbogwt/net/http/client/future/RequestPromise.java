@@ -18,5 +18,10 @@ package org.turbogwt.net.http.client.future;
 
 import org.turbogwt.core.future.shared.Promise;
 
+/**
+ * A Promise for requests.
+ *
+ * @param <T> The type of successful result
+ */
 public interface RequestPromise<T> extends Promise<T, Throwable, RequestProgress, ResponseContext> {
 }

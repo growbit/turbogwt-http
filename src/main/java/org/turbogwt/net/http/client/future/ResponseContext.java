@@ -18,6 +18,9 @@ package org.turbogwt.net.http.client.future;
 
 import org.turbogwt.core.future.shared.Context;
 
+/**
+ * Context of requests.
+ */
 public interface ResponseContext extends Context {
 
     /**
@@ -30,26 +33,26 @@ public interface ResponseContext extends Context {
      * @throws IllegalArgumentException if the header name is empty
      * @throws NullPointerException if the header name is null
      */
-    public abstract String getHeader(String header);
+    String getHeader(String header);
 
     /**
      * Returns the HTTP status code that is part of this response.
      *
      * @return the HTTP status code
      */
-    public abstract int getStatusCode();
+    int getStatusCode();
 
     /**
      * Returns the HTTP status message text.
      *
      * @return the HTTP status message text
      */
-    public abstract String getStatusText();
+    String getStatusText();
 
     /**
      * Returns the text associated with the response.
      *
      * @return the response text
      */
-    public abstract String getText();
+    String getText();
 }

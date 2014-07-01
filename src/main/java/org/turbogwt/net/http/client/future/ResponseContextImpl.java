@@ -21,6 +21,9 @@ import com.google.gwt.http.client.Response;
 import org.turbogwt.core.future.shared.Promise;
 import org.turbogwt.core.future.shared.impl.ContextImpl;
 
+/**
+ * Default implementation of {@link ResponseContext}.
+ */
 public class ResponseContextImpl extends ContextImpl implements ResponseContext {
 
     private final Response response;

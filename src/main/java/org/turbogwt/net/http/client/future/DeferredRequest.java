@@ -25,6 +25,11 @@ import java.util.logging.Level;
 import org.turbogwt.core.future.shared.AlwaysCallback;
 import org.turbogwt.core.future.shared.impl.AbstractDeferred;
 
+/**
+ * A deferred implementation for requests.
+ *
+ * @param <T> The type of the successful result
+ */
 public class DeferredRequest<T> extends AbstractDeferred<T, Throwable, RequestProgress, ResponseContext> {
 
     private List<OnHolder> onCallbacks;
