@@ -25,6 +25,7 @@ import org.turbogwt.net.http.client.QualityFactorHeaderTest;
 import org.turbogwt.net.http.client.RequestTest;
 import org.turbogwt.net.http.client.SimpleHeaderWithParameterTest;
 import org.turbogwt.net.http.client.UriBuilderTest;
+import org.turbogwt.net.http.client.books.RestTest;
 
 /**
  * @author Danilo Reinert
@@ -45,7 +46,7 @@ public class HttpGwtTestSuite {
 //        suite.addTestSuite(SerializerAndDeserializerPrecedenceTest.class);
 //        suite.addTestSuite(MultipleSerdesByClassTest.class);
 //
-//        suite.addTestSuite(RestTest.class);
+        suite.addTestSuite(RestTest.class);
 
         return suite;
     }

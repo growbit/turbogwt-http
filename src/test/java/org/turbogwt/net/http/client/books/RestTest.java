@@ -16,7 +16,18 @@
 
 package org.turbogwt.net.http.client.books;
 
+import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.junit.client.GWTTestCase;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.turbogwt.core.future.shared.DoneCallback;
+import org.turbogwt.net.http.client.Requestor;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
+import org.turbogwt.net.http.client.mock.ResponseMock;
+import org.turbogwt.net.http.client.mock.ServerStub;
 
 /**
  * @author Danilo Reinert
@@ -28,165 +39,137 @@ public class RestTest extends GWTTestCase {
         return "org.turbogwt.net.http.HttpTest";
     }
 
-//    public void testCreate() {
-//        ServerStub.clearStub();
-//
-//        final Requestor requestor = new Requestor();
-//        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
-//
-//        final String uri = "/server/books";
-//
-//        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
-//
-//        final String expected = "{\"id\":1,\"title\":\"RESTful Web Services\",\"author\":\"Leonard Richardson\"}";
-//
-//        final boolean[] callbacksCalled = new boolean[1];
-//        final Book data = new Book(1, "RESTful Web Services", "Leonard Richardson");
-//
-//        requestor.request(Book.class, Void.class)
-//                .path("server").segment("books")
-//                .post(data, new AsyncCallback<Void>() {
-//                    @Override
-//                    public void onFailure(Throwable caught) {
-//                        // Ignored
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(Void result) {
-//                        callbacksCalled[0] = true;
-//                    }
-//                });
-//
-//        assertTrue(callbacksCalled[0]);
-//        assertEquals(expected, ServerStub.getRequestData(uri).getData());
-//        assertEquals(RequestBuilder.POST, ServerStub.getRequestData(uri).getMethod());
-//    }
-//
-//    public void testDelete() {
-//        ServerStub.clearStub();
-//
-//        final Requestor requestor = new Requestor();
-//
-//        final String uri = "/server/books/1";
-//
-//        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
-//
-//        requestor.request() // The same as request(Void.class, Void.class)
-//                .path("server").segment("books").segment(1)
-//                .delete(); // You can optionally dismiss any server response
-//
-//        assertEquals(RequestBuilder.DELETE, ServerStub.getRequestData(uri).getMethod());
-//    }
-//
-//    public void testGetAll() {
-//        ServerStub.clearStub();
-//
-//        final Requestor requestor = new Requestor();
-//        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
-//
-//        final String uri = "/server/books";
-//
-//      final String responseText = "[{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}"
-//                + ", {\"id\":2, \"title\":\"Agile Software Development: Principles, Patterns, and Practices\", "
-//                + "\"author\":\"Robert C. Martin\"}]";
-//        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK",
-//                new ContentTypeHeader("application/json")));
-//
-//        final List<Book> expected = new ArrayList<>(2);
-//        expected.add(new Book(1, "RESTful Web Services", "Leonard Richardson"));
-//        expected.add(new Book(2, "Agile Software Development: Principles, Patterns, and Practices",
-//                "Robert C. Martin"));
-//
-//        final boolean[] callbacksCalled = new boolean[1];
-//
-//        requestor.request(Void.class, Book.class).path("server").segment("books").get(new ListAsyncCallback<Book>() {
-//            @Override
-//            public void onFailure(Throwable caught) {
-//                // Ignored
-//            }
-//
-//            @Override
-//            public void onSuccess(List<Book> result) {
-//                callbacksCalled[0] = true;
-//                assertEquals(expected, result);
-//            }
-//        });
-//
-//        assertTrue(callbacksCalled[0]);
-//        assertEquals(RequestBuilder.GET, ServerStub.getRequestData(uri).getMethod());
-//    }
-//
-//    public void testGetOne() {
-//        ServerStub.clearStub();
-//
-//        final Requestor requestor = new Requestor();
-//        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
-//
-//        final String uri = "/server/books/1";
-//
-//      final String responseText = "{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}";
-//        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK",
-//                new ContentTypeHeader("application/json")));
-//
-//        final Book expected = new Book(1, "RESTful Web Services", "Leonard Richardson");
-//
-//        final boolean[] callbacksCalled = new boolean[1];
-//
-//        requestor.request(Void.class, Book.class)
-//                .path("server").segment("books").segment(1).get(new AsyncCallback<Book>() {
-//            @Override
-//            public void onFailure(Throwable caught) {
-//                // Ignored
-//            }
-//
-//            @Override
-//            public void onSuccess(Book result) {
-//                callbacksCalled[0] = true;
-//                assertEquals(expected, result);
-//            }
-//        });
-//
-//        assertTrue(callbacksCalled[0]);
-//        assertEquals(RequestBuilder.GET, ServerStub.getRequestData(uri).getMethod());
-//
-//        final String firstBookSerializedAsXml = "<book>" +
-//                "<id>1</id>" +
-//                "<title>RESTful Web Services</title>" +
-//                "<author>Leonard Richardson</author>" +
-//                "</book>";
-//    }
-//
-//    public void testUpdate() {
-//        ServerStub.clearStub();
-//
-//        final Requestor requestor = new Requestor();
-//        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
-//
-//        final String uri = "/server/books/1";
-//
-//        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
-//
-//        final String expected = "{\"id\":1,\"title\":\"RESTful Web Services\",\"author\":\"Leonard Richardson\"}";
-//
-//        final boolean[] callbacksCalled = new boolean[1];
-//        final Book data = new Book(1, "RESTful Web Services", "Leonard Richardson");
-//
-//        requestor.request(Book.class, Void.class)
-//                .path("server").segment("books").segment(1)
-//                .put(data, new AsyncCallback<Void>() {
-//                    @Override
-//                    public void onFailure(Throwable caught) {
-//                        // Ignored
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(Void result) {
-//                        callbacksCalled[0] = true;
-//                    }
-//                });
-//
-//        assertTrue(callbacksCalled[0]);
-//        assertEquals(expected, ServerStub.getRequestData(uri).getData());
-//        assertEquals(RequestBuilder.PUT, ServerStub.getRequestData(uri).getMethod());
-//    }
+    public void testCreate() {
+        ServerStub.clearStub();
+
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
+
+        final String uri = "/server/books";
+
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
+
+        final String expected = "{\"id\":1,\"title\":\"RESTful Web Services\",\"author\":\"Leonard Richardson\"}";
+
+        final boolean[] callbacksCalled = new boolean[1];
+        final Book data = new Book(1, "RESTful Web Services", "Leonard Richardson");
+
+        requestor.request(uri).payload(data).post().done(new DoneCallback<Void>() {
+            @Override
+            public void onDone(Void aVoid) {
+                callbacksCalled[0] = true;
+            }
+        });
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbacksCalled[0]);
+        assertEquals(expected, ServerStub.getRequestData(uri).getData());
+        assertEquals(RequestBuilder.POST, ServerStub.getRequestData(uri).getMethod());
+    }
+
+    public void testDelete() {
+        ServerStub.clearStub();
+
+        final Requestor requestor = new Requestor();
+
+        final String uri = "/server/books/1";
+
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
+
+        requestor.request(uri).delete(); // You can optionally dismiss any server response
+        ServerStub.triggerPendingRequest();
+
+        assertEquals(RequestBuilder.DELETE, ServerStub.getRequestData(uri).getMethod());
+    }
+
+    public void testGetAll() {
+        ServerStub.clearStub();
+
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
+
+        final String uri = "/server/books";
+
+      final String responseText = "[{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}"
+                + ", {\"id\":2, \"title\":\"Agile Software Development: Principles, Patterns, and Practices\", "
+                + "\"author\":\"Robert C. Martin\"}]";
+        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK",
+                new ContentTypeHeader("application/json")));
+
+        final List<Book> expected = new ArrayList<>(2);
+        expected.add(new Book(1, "RESTful Web Services", "Leonard Richardson"));
+        expected.add(new Book(2, "Agile Software Development: Principles, Patterns, and Practices",
+                "Robert C. Martin"));
+
+        final boolean[] callbacksCalled = new boolean[1];
+
+        requestor.request(uri).get(Book.class, List.class).done(new DoneCallback<Collection<Book>>() {
+            @Override
+            public void onDone(Collection<Book> books) {
+                callbacksCalled[0] = true;
+                assertEquals(expected, books);
+            }
+        });
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbacksCalled[0]);
+        assertEquals(RequestBuilder.GET, ServerStub.getRequestData(uri).getMethod());
+    }
+
+    public void testGetOne() {
+        ServerStub.clearStub();
+
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
+
+        final String uri = "/server/books/1";
+
+      final String responseText = "{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}";
+        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK",
+                new ContentTypeHeader("application/json")));
+
+        final Book expected = new Book(1, "RESTful Web Services", "Leonard Richardson");
+
+        final boolean[] callbacksCalled = new boolean[1];
+
+        requestor.request(uri).get(Book.class).done(new DoneCallback<Book>() {
+            @Override
+            public void onDone(Book book) {
+                callbacksCalled[0] = true;
+                assertEquals(expected, book);
+            }
+        });
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbacksCalled[0]);
+        assertEquals(RequestBuilder.GET, ServerStub.getRequestData(uri).getMethod());
+    }
+
+    public void testUpdate() {
+        ServerStub.clearStub();
+
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
+
+        final String uri = "/server/books/1";
+
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
+
+        final String expected = "{\"id\":1,\"title\":\"RESTful Web Services\",\"author\":\"Leonard Richardson\"}";
+
+        final boolean[] callbacksCalled = new boolean[1];
+        final Book data = new Book(1, "RESTful Web Services", "Leonard Richardson");
+
+        requestor.request(uri).payload(data).put().done(new DoneCallback<Void>() {
+            @Override
+            public void onDone(Void result) {
+                callbacksCalled[0] = true;
+            }
+        });
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbacksCalled[0]);
+        assertEquals(expected, ServerStub.getRequestData(uri).getData());
+        assertEquals(RequestBuilder.PUT, ServerStub.getRequestData(uri).getMethod());
+    }
 }
