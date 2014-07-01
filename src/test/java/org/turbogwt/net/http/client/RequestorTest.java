@@ -23,8 +23,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import org.turbogwt.core.future.shared.AlwaysCallback;
 import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.core.future.shared.FailCallback;
@@ -94,18 +92,6 @@ public class RequestorTest extends GWTTestCase {
         final boolean[] callbackAlwaysCalled = new boolean[1];
         final boolean[] callbackProgressCalled = new boolean[1];
 
-        // Old style
-//        requestor.post(uri, Person.class, persons, Person.class, new ListAsyncCallback<Person>() {
-//            @Override
-//            public void onFailure(Throwable caught) {
-//            }
-//
-//            @Override
-//            public void onSuccess(List<Person> result) {
-//                assertTrue(Arrays.equals(persons.toArray(), result.toArray()));
-//                callbackSuccessCalled[0] = true;
-//            }
-//        });
         requestor.request(uri).payload(persons).post(Person.class, List.class)
                 .progress(new ProgressCallback<RequestProgress>() {
                     @Override
@@ -113,24 +99,22 @@ public class RequestorTest extends GWTTestCase {
                         callbackProgressCalled[0] = true;
                     }
                 }).done(new DoneCallback<Collection<Person>>() {
-            @Override
-            public void onDone(Collection<Person> result) {
-                assertTrue(Arrays.equals(persons.toArray(), result.toArray()));
-                callbackDoneCalled[0] = true;
-            }
-        }).fail(new FailCallback<Throwable>() {
-            @Override
-            public void onFail(Throwable result) {
-                callbackFailCalled[0] = true;
-            }
-        }).always(new AlwaysCallback<Collection<Person>, Throwable, ResponseContext>() {
-            @Override
-            public void onAlways(ResponseContext context,
-                                 @Nullable Collection<Person> resolved,
-                                 @Nullable Throwable rejected) {
-                callbackAlwaysCalled[0] = true;
-            }
-        });
+                    @Override
+                    public void onDone(Collection<Person> result) {
+                        assertTrue(Arrays.equals(persons.toArray(), result.toArray()));
+                        callbackDoneCalled[0] = true;
+                    }
+                }).fail(new FailCallback<Throwable>() {
+                    @Override
+                    public void onFail(Throwable result) {
+                        callbackFailCalled[0] = true;
+                    }
+                }).always(new AlwaysCallback<Collection<Person>, Throwable, ResponseContext>() {
+                    @Override
+                    public void onAlways(ResponseContext context, Collection<Person> resolved,  Throwable rejected) {
+                        callbackAlwaysCalled[0] = true;
+                    }
+                });
 
         ServerStub.triggerPendingRequest();
 
