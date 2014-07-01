@@ -86,7 +86,7 @@ public class RestTest extends GWTTestCase {
 //
 //        final String uri = "/server/books";
 //
-//        final String responseText = "[{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}"
+//      final String responseText = "[{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}"
 //                + ", {\"id\":2, \"title\":\"Agile Software Development: Principles, Patterns, and Practices\", "
 //                + "\"author\":\"Robert C. Martin\"}]";
 //        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK",
@@ -124,7 +124,7 @@ public class RestTest extends GWTTestCase {
 //
 //        final String uri = "/server/books/1";
 //
-//        final String responseText = "{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}";
+//      final String responseText = "{\"id\":1, \"title\":\"RESTful Web Services\", \"author\":\"Leonard Richardson\"}";
 //        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK",
 //                new ContentTypeHeader("application/json")));
 //

@@ -97,9 +97,9 @@ public class UriBuilderImpl extends UriBuilder {
     public UriBuilder path(String path) {
         assertNotNull(path, "Path cannot be null.");
         if (!path.isEmpty()) {
-            String[] segments = path.split("/");
+            String[] splittedSegments = path.split("/");
             ensureSegments();
-            for (String segment : segments) {
+            for (String segment : splittedSegments) {
                 if (!segment.isEmpty())
                     this.segments.push(segment);
             }
@@ -172,14 +172,10 @@ public class UriBuilderImpl extends UriBuilder {
 
         StringBuilder pathBuilder = new StringBuilder();
         if (segments != null) {
-            // Prevent doubling the char '/'
-            //if (uri.charAt(uri.length() - 1) == '/')
-            //    uri.deleteCharAt(uri.length() - 1);
-
             for (int i = 0; i < segments.length(); i++) {
-                String segment = segments.get(i);
-
-                pathBuilder.append(URL.encodePathSegment(parsePart(values, templateParams, segment)));
+                final String segment = segments.get(i);
+                final String parsed = parsePart(values, templateParams, segment);
+                pathBuilder.append(URL.encodePathSegment(parsed));
 
                 // Check if there are matrix params for this segment
                 if (matrixParams != null) {
@@ -229,7 +225,8 @@ public class UriBuilderImpl extends UriBuilder {
                 if (i == -1) {
                     // Check if has more template values
                     if (values.length < templateParams.size() + 1)
-                        throw new UriBuilderException("The supplied values are not enough to replace the existing template params");
+                        throw new UriBuilderException("The supplied values are not enough to replace the existing " +
+                                "template params");
                     // Add template param
                     i = templateParams.size();
                     templateParams.add(param);

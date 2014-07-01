@@ -16,6 +16,9 @@
 
 package org.turbogwt.net.http.client;
 
+/**
+ * Exception for URI building.
+ */
 public class UriBuilderException extends RuntimeException {
 
     public UriBuilderException() {
