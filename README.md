@@ -6,9 +6,9 @@ Turbo GWT (*TurboG*) HTTP [![Build Status](https://travis-ci.org/growbit/turbogw
 
 ## Highlights
 
-* `GET`, `POST`, `PUT`, `DELETE` and `HEAD` requests
-* All basic components extended from GWT HTTP and RPC APIs
-* Easy building of target URI with no string manipulation
+* Handle the requests results with Promises!
+* Fluent `GET`, `POST`, `PUT`, `DELETE` and `HEAD` requests
+* Easy construction of target URI with UriBuilder
 * [Customizable multi-valued param composition](#multiple-value-parameters)
 * [Nice support to form params](#sending-form-data)
 * [Native Basic Authentication support](#basic-authentication)
@@ -23,23 +23,21 @@ Turbo GWT (*TurboG*) HTTP [![Build Status](https://travis-ci.org/growbit/turbogw
 
 ## Quick Start
 
-TurboG proposes a new fluent way of making http requests. It fits better the REST style communication. 
+TurboG proposes a fluent way of making http requests. It fits better the REST style communication. 
 Just look how simple you can **GET** a book from server:
 
 ```java
-Request request = requestor.request(Void.class, Book.class)
-        .path("server").segment("books").segment(1)
-        .get(new AsyncCallback<Book>() {
-            @Override
-            public void onFailure(Throwable caught) {
-        
-            }
-        
-            @Override
-            public void onSuccess(Book result) {
-                Window.alert("My book title: " + result.getTitle());
-            }
+requestor.request("/books/1").get(Book.class).done(new DoneCallback<Book>() {
+    public void onDone(Book book) {
+        Window.alert("My book title: " + book.getTitle());
+    }
 });
+```
+
+Java 8 Lambda syntax
+```java
+requestor.request("/books/1").get(Book.class)
+        .done(book -> Window.alert("My book title: " + book.getTitle()));
 ```
 
 For **serializing/deserializing** this object you just need to create this simple SerDes.
@@ -67,144 +65,55 @@ One configuration step: just remember to register your SerDes in the [Requestor]
 <br />
 If you are using *Overlays*, then you don't need any SerDes, *serialization/deserialization is automatic*!
 
-Doing a **POST** is as simple as:
+To **POST** an object, use the payload method:
 
 ```java 
-Request request = requestor.request(Book.class, Void.class).path("server").segment("books")
-        .post(new Book(1, "My Title", "My Author"), new AsyncCallback<Void>() {
-            @Override
-            public void onFailure(Throwable caught) {
+final Book data = new Book(1, "RESTful Web Services", "Leonard Richardson");
 
-            }
-
-            @Override
-            public void onSuccess(Void result) {
-                Window.alert("POST done!");
-            }
-        });
+requestor.request("/books").payload(data).post().done(new DoneCallback<Void>() {
+    public void onDone(Void result) {
+        Window.alert("POST done!");
+    }
+}).fail(new FailCallback<Throwable>() {
+    public void onFail(Throwable throwable) {
+        Window.alert("Failed!");
+    }
+});
 ```
 
-If you are too lazy, Requestor provides **shortcut methods** to perform requests with only one method call. 
-The above could be done like this:
-
-```java 
-Request request = requestor.post("/server/books", Book.class, new Book(1, "My Title", "My Author"), Void.class, 
-        new AsyncCallback<Void>() {
-            @Override
-            public void onFailure(Throwable caught) {
-
-            }
-
-            @Override
-            public void onSuccess(Void result) {
-                Window.alert("POST done!");
-            }
-        });
-```
-
-### How do I retrieve a collection instead of a single object?
-TurboG HTTP checks the type in compile time.
- It resorts to Java Generics to differentiate between single object and collections.
-
-So if you want to retrieve a collection of T in your response, you can use a [ListAsyncCallback<T>](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/ListAsyncCallback.html)
- (or [SetAsyncCallback<T>](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/SetAsyncCallback.html)), instead of the AsyncCallback<T>.
+### Accumulate your result array in a container
 
 ```java
-requestor.request(Void.class, Book.class).path("server").segment("books").get(new ListAsyncCallback<Book>() {
-            @Override
-            public void onFailure(Throwable caught) {
-
-            }
-
-            @Override
-            public void onSuccess(List<Book> result) {
-                // w00t! A list of books!
-            }
-        });
+requestor.request("/books").get(Book.class, List.class).done(new DoneCallback<Collection<Book>>() {
+    public void onDone(Collection<Book> books) {
+        List<Book> bookList = (List<Book>) books;
+    }
+});
 ```
 
-Both [ListAsyncCallback](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/ListAsyncCallback.java) and [SetAsyncCallback](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/SetAsyncCallback.java) inherits from [ContainerAsyncCallback](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/ContainerAsyncCallback.html), which requires its subclasses to
- inform the collection type they accumulate the result.
+When deserializing, the Deserializer retrieves an instance of the collection (container) from the ContainerFactoryManager, managed by the Requestor.
 
-When deserializing, the Deserializer retrieves an instance of the collection from the CollectionFactoryManager.
-
-You can create custom Factories of Collection types, register them in the Requestor,
- and use a custom ContainerCallback of this type.
- 
-### Customizable callback execution
-With FluentRequests you can set callbacks for specific responses, with specificity priority.
-
-```java 
-Request request = requestor.request().path(uri)
-        .on(404, new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                Window.alert("Hey! The resource does not exist!");
-            }
-        })
-        .on(20, new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                Window.alert("200, 201, ..., 209");
-            }
-        })
-        .on(2, new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                Window.alert("210, 211, ..., 299");
-                // 200 - 209 responses won't reach here because you set a callback for the 20 dozen.
-            }
-        })
-        .get(new AsyncCallback<Void>() {
-            @Override
-            public void onFailure(Throwable caught) {
-                Window.alert("Some bad thing happened!");
-            }
-            @Override
-            public void onSuccess(Void result) {
-                // Won't reach here. 
-                // Only 200-299 responses call onSuccess, and you have already set callbacks for those.
-            }
-        });
-```
+You can create custom Factories of Coontainers and register them in the Requestor.
 
 ### Always executed callbacks
 Add callbacks to be called when request has either succeeded or failed.
 ```java 
-requestor.request().path(uri)
-        .always(new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                Window.alert("First always callback execution");
-            }
-        })
-        .always(new SingleCallback() {
-            @Override
-            public void onResponseReceived(Request request, Response response) {
-                Window.alert("Second always callback execution");
-            }
-        })
-        ...
+requestor.request(uri).get(Book.class).always(new AlwaysCallback<Book, Throwable, ResponseContext>() {
+    public void onAlways(ResponseContext responseContext, Book book, Throwable throwable) {
+        if (responseContext.getState() == Promise.State.RESOLVED) {
+            // Do something with book
+        } else {
+            // Do something with throwable
+        }
+    }
+});
 ```
 
 ### Basic Authentication
 FluentRequest supports setting user and password.
 
 ```java
-requestor.request(Void.class, String.class)
-        .path("hello")
-        .user(username).password(pwd)
-        .get(new AsyncCallback<String>() {
-            @Override
-            public void onFailure(Throwable caught) {
-
-            }
-
-            @Override
-            public void onSuccess(String result) {
-                Window.alert("Hello " + result + "!");
-            }
-        });
+requestor.request("/user/auth").user(username).password(pwd)...
 ```
 
 ### Sending FORM data
@@ -213,14 +122,13 @@ TurboG HTTP provides two handful classes for dealing with Forms: *FormParam* and
 ```java
 FormData formData = FormData.builder().put("name", "John Doe").put("array", 1, 2.5).build();
 
-Request request = requestor.request(FormParam.class, Void.class)
-        .path(uri)
+requestor.request(uri)
         .contentType("application/x-www-form-urlencoded")
         .post(formData); // We optionally set no callback, disregarding the server response
 ```
  
 ### Requestor
-[Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, CollectionFactoryManager) and create [FluentRequests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) supporting those. It should be used as a singleton over all your application.
+[Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, ContainerFactoryManager) and create [Requests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Request.html) supporting those. It should be used as a singleton over all your application.
 
 ### JSON, XML and whatever living together
 The [Serializer](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/serialization/Serializer.html)
