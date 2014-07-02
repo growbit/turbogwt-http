@@ -16,10 +16,6 @@
 
 package org.turbogwt.net.http.client;
 
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsonUtils;
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 
 /**
@@ -28,30 +24,18 @@ import com.google.gwt.http.client.Response;
  *
  * @author Danilo Reinert
  */
-public class UnsuccessfulResponseException extends RequestException {
+public class UnsuccessfulResponseException extends RuntimeException {
 
-    private final Request request;
     private final Response response;
 
     /**
      * Constructs the exception with the request and respective response.
      *
-     * @param request The request that originated the unsuccessful response.
      * @param response The response received from request.
      */
-    public UnsuccessfulResponseException(Request request, Response response) {
+    public UnsuccessfulResponseException(Response response) {
         super("The response was received but the status code was not from 'Success' class (2xx).");
-        this.request = request;
         this.response = response;
-    }
-
-    /**
-     * Returns the request which received the unsuccessful response.
-     *
-     * @return The request which received the unsuccessful response.
-     */
-    public Request getRequest() {
-        return request;
     }
 
     /**
@@ -79,16 +63,5 @@ public class UnsuccessfulResponseException extends RequestException {
      */
     public String getReponseBody() {
         return response.getText();
-    }
-
-    /**
-     * Response's HTTP body as JSON.
-     *
-     * The text is evaluated using {@link com.google.gwt.core.client.JsonUtils#safeEval(String)}.
-     *
-     * @return The response's body text.
-     */
-    public JavaScriptObject getReponseAsJson() {
-        return JsonUtils.safeEval(response.getText());
     }
 }

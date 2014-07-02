@@ -16,25 +16,19 @@
 
 package org.turbogwt.net.http.client;
 
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestCallback;
-
 /**
- * Callback to handle responses from request without error handling.
- *
- * @author Danilo Reinert
+ * Exception for URI building.
  */
-public abstract class SingleCallback implements RequestCallback {
+public class UriBuilderException extends RuntimeException {
 
-    /**
-     * This method is not used.
-     *
-     * @param request   the request object which has experienced the error condition, may be null if the request was
-     *                  never generated
-     * @param exception the error that was encountered
-     */
-    @Override
-    @Deprecated
-    public void onError(Request request, Throwable exception) {
+    public UriBuilderException() {
+    }
+
+    public UriBuilderException(String s) {
+        super(s);
+    }
+
+    public UriBuilderException(String s, Throwable throwable) {
+        super(s, throwable);
     }
 }

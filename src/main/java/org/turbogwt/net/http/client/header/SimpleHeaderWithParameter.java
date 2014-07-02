@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
+package org.turbogwt.net.http.client.header;
 
 /**
  * Simple header with optional parameters.

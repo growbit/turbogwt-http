@@ -13,26 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.google.gwt.http.client;
 
-package org.turbogwt.net.http.client;
+public interface RequestProgress {
 
-import com.google.gwt.junit.client.GWTTestCase;
+    boolean isLengthComputable();
 
-import org.turbogwt.net.http.client.header.MultivaluedHeader;
+    Number loaded();
 
-/**
- * @author Danilo Reinert
- */
-public class MultipleHeaderTest extends GWTTestCase {
-
-    @Override
-    public String getModuleName() {
-        return "org.turbogwt.net.http.HttpTest";
-    }
-
-    public void testGetValue() {
-        final String expected = "a/b, x/y+z";
-        final MultivaluedHeader header = new MultivaluedHeader("name", "a/b", "x/y+z");
-        assertEquals(expected, header.getValue());
-    }
+    Number total();
 }

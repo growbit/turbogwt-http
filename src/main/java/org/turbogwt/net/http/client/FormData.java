@@ -33,7 +33,7 @@ import org.turbogwt.core.collections.client.JsMapInteger;
 public class FormData implements Collection<FormParam> {
 
     private final List<FormParam> params;
-    private MultipleParamStrategy multipleParamStrategy;
+    private MultivaluedParamStrategy multivaluedParamStrategy;
 
     public FormData() {
         this.params = new JsArrayList<>();
@@ -56,13 +56,13 @@ public class FormData implements Collection<FormParam> {
         return new Builder();
     }
 
-    public void setMultipleParamStrategy(MultipleParamStrategy multipleParamStrategy) {
-        this.multipleParamStrategy = multipleParamStrategy;
+    public void setMultivaluedParamStrategy(MultivaluedParamStrategy multivaluedParamStrategy) {
+        this.multivaluedParamStrategy = multivaluedParamStrategy;
     }
 
     @Nullable
-    public MultipleParamStrategy getMultipleParamStrategy() {
-        return multipleParamStrategy;
+    public MultivaluedParamStrategy getMultivaluedParamStrategy() {
+        return multivaluedParamStrategy;
     }
 
     @Override
@@ -137,7 +137,7 @@ public class FormData implements Collection<FormParam> {
 
         private final JsArrayList<FormParam> params = new JsArrayList<>();
         private final JsMapInteger indexes = JsMapInteger.create();
-        private MultipleParamStrategy multipleParamStrategy;
+        private MultivaluedParamStrategy multivaluedParamStrategy;
 
         private Builder() {
         }
@@ -153,14 +153,14 @@ public class FormData implements Collection<FormParam> {
             return this;
         }
 
-        public Builder strategy(MultipleParamStrategy multipleParamStrategy) {
-            this.multipleParamStrategy = multipleParamStrategy;
+        public Builder strategy(MultivaluedParamStrategy multivaluedParamStrategy) {
+            this.multivaluedParamStrategy = multivaluedParamStrategy;
             return this;
         }
 
         public FormData build() {
             final FormData data = new FormData(params);
-            data.setMultipleParamStrategy(multipleParamStrategy);
+            data.setMultivaluedParamStrategy(multivaluedParamStrategy);
             return data;
         }
     }

@@ -16,23 +16,19 @@
 
 package org.turbogwt.net.http.client;
 
-import com.google.gwt.junit.client.GWTTestCase;
-
-import org.turbogwt.net.http.client.header.MultivaluedHeader;
-
 /**
- * @author Danilo Reinert
+ * Exception for dispatching {@link Request}s.
  */
-public class MultipleHeaderTest extends GWTTestCase {
+public class RequestDispatchException extends RuntimeException {
 
-    @Override
-    public String getModuleName() {
-        return "org.turbogwt.net.http.HttpTest";
+    public RequestDispatchException() {
     }
 
-    public void testGetValue() {
-        final String expected = "a/b, x/y+z";
-        final MultivaluedHeader header = new MultivaluedHeader("name", "a/b", "x/y+z");
-        assertEquals(expected, header.getValue());
+    public RequestDispatchException(String s) {
+        super(s);
+    }
+
+    public RequestDispatchException(String s, Throwable throwable) {
+        super(s, throwable);
     }
 }

@@ -17,10 +17,11 @@
 package org.turbogwt.net.http.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import java.util.Date;
 
+import org.turbogwt.core.future.shared.DoneCallback;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 import org.turbogwt.net.http.client.model.Person;
@@ -47,21 +48,18 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("*/*");
 
         prepareStub("application/json");
-        final Requestor requestory = getRequestory();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
         try {
-            requestory.request(Person.class, Person.class).path(uri).post(person, new AsyncCallback<Person>() {
+            requestor.request(uri).payload(person).post(Person.class).done(new DoneCallback<Person>() {
                 @Override
-                public void onFailure(Throwable caught) {
-                }
-
-                @Override
-                public void onSuccess(Person result) {
+                public void onDone(Person person) {
                     callbackSuccessCalled[0] = true;
                 }
             });
+            ServerStub.triggerPendingRequest();
         } catch (SerializationException e) {
             // This piece of code should not be called
             assertNull(e);
@@ -75,24 +73,19 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("*/json");
 
         prepareStub("application/json");
-        final Requestor requestory = getRequestory();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
         try {
-            requestory.request(Person.class, Person.class).path(uri)
-                    .contentType("anything/json")
-                    .accept("anything/json")
-                    .post(person, new AsyncCallback<Person>() {
-                        @Override
-                        public void onFailure(Throwable caught) {
-                        }
-
-                        @Override
-                        public void onSuccess(Person result) {
-                            callbackSuccessCalled[0] = true;
-                        }
-                    });
+            requestor.request(uri).contentType("anything/json").accept("anything/json").payload(person)
+                    .post(Person.class).done(new DoneCallback<Person>() {
+                @Override
+                public void onDone(Person person) {
+                    callbackSuccessCalled[0] = true;
+                }
+            });
+            ServerStub.triggerPendingRequest();
         } catch (SerializationException e) {
             // This piece of code should not be called
             assertNull(e);
@@ -106,24 +99,21 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("application/*");
 
         prepareStub("application/json");
-        final Requestor requestory = getRequestory();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
         try {
-            requestory.request(Person.class, Person.class).path(uri)
+            requestor.request(uri)
                     .contentType("application/anything")
                     .accept("application/anything")
-                    .post(person, new AsyncCallback<Person>() {
-                        @Override
-                        public void onFailure(Throwable caught) {
-                        }
-
-                        @Override
-                        public void onSuccess(Person result) {
-                            callbackSuccessCalled[0] = true;
-                        }
-                    });
+                    .payload(person).post(Person.class).done(new DoneCallback<Person>() {
+                @Override
+                public void onDone(Person person) {
+                    callbackSuccessCalled[0] = true;
+                }
+            });
+            ServerStub.triggerPendingRequest();
         } catch (SerializationException e) {
             // This piece of code should not be called
             assertNull(e);
@@ -137,51 +127,52 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("application/json");
 
         prepareStub("application/json");
-        Requestor requestory = getRequestory();
+        Requestor requestor = getRequestor();
 
         final boolean[] callbackCalled = new boolean[2];
-
-        requestory.request(Person.class, Person.class).path(uri)
-                .accept("application/json")
-                .contentType("application/json")
-                .post(person, new AsyncCallback<Person>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        callbackCalled[1] = true;
-                    }
-
-                    @Override
-                    public void onSuccess(Person result) {
-                        callbackCalled[0] = true;
-                    }
-                });
+        try {
+            requestor.request(uri)
+                    .contentType("application/json")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNotNull(e);
+        }
 
         assertFalse(callbackCalled[0]);
-        assertTrue(callbackCalled[1]);
 
         callbackCalled[1] = false;
         personSerdes.setAcceptPatterns("application/json");
 
         prepareStub("anything/json");
-        requestory = getRequestory();
+        requestor = getRequestor();
 
-        requestory.request(Person.class, Person.class).path(uri)
-                .accept("anything/json")
-                .contentType("application/json")
-                .post(person, new AsyncCallback<Person>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        callbackCalled[1] = true;
-                    }
-
-                    @Override
-                    public void onSuccess(Person result) {
-                        callbackCalled[0] = true;
-                    }
-                });
+        try {
+            requestor.request(uri)
+                    .contentType("anything/json")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNotNull(e);
+        }
 
         assertFalse(callbackCalled[0]);
-        assertTrue(callbackCalled[1]);
     }
 
     public void testAcceptInvalidLastPart() {
@@ -189,51 +180,53 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("application/json");
 
         prepareStub("application/json");
-        Requestor requestory = getRequestory();
+        Requestor requestor = getRequestor();
 
         final boolean[] callbackCalled = new boolean[2];
 
-        requestory.request(Person.class, Person.class).path(uri)
-                .accept("application/json")
-                .contentType("application/json")
-                .post(person, new AsyncCallback<Person>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        callbackCalled[1] = true;
-                    }
-
-                    @Override
-                    public void onSuccess(Person result) {
-                        callbackCalled[0] = true;
-                    }
-                });
+        try {
+            requestor.request(uri)
+                    .contentType("application/json")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNotNull(e);
+        }
 
         assertFalse(callbackCalled[0]);
-        assertTrue(callbackCalled[1]);
 
         callbackCalled[1] = false;
         personSerdes.setAcceptPatterns("application/json");
 
         prepareStub("application/xml");
-        requestory = getRequestory();
+        requestor = getRequestor();
 
-        requestory.request(Person.class, Person.class).path(uri)
-                .accept("application/xml")
-                .contentType("application/json")
-                .post(person, new AsyncCallback<Person>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                        callbackCalled[1] = true;
-                    }
-
-                    @Override
-                    public void onSuccess(Person result) {
-                        callbackCalled[0] = true;
-                    }
-                });
+        try {
+            requestor.request(uri)
+                    .contentType("application/xml")
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
+                        @Override
+                        public void onDone(Person person) {
+                            callbackCalled[0] = true;
+                        }
+                    });
+            ServerStub.triggerPendingRequest();
+        } catch (SerializationException e) {
+            // This piece of code should not be called
+            assertNotNull(e);
+        }
 
         assertFalse(callbackCalled[0]);
-        assertTrue(callbackCalled[1]);
     }
 
     public void testContentTypeInvalidBothParts() {
@@ -241,24 +234,22 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("app/js");
 
         prepareStub("application/json");
-        Requestor requestory = getRequestory();
+        Requestor requestor = getRequestor();
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
         try {
-            requestory.request(Person.class, Person.class).path(uri)
-                    .accept("application/json")
+            requestor.request(uri)
                     .contentType("application/json")
-                    .post(person, new AsyncCallback<Person>() {
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
                         @Override
-                        public void onFailure(Throwable caught) {
-                        }
-
-                        @Override
-                        public void onSuccess(Person result) {
+                        public void onDone(Person person) {
                             callbackSuccessCalled[0] = true;
                         }
                     });
+            ServerStub.triggerPendingRequest();
         } catch (SerializationException e) {
             assertNotNull(e);
         }
@@ -268,22 +259,20 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         personSerdes.setContentTypePatterns("application/json");
 
         prepareStub("application/json");
-        requestory = getRequestory();
+        requestor = getRequestor();
 
         try {
-            requestory.request(Person.class, Person.class).path(uri)
-                    .accept("application/json")
+            requestor.request(uri)
                     .contentType("app/js")
-                    .post(person, new AsyncCallback<Person>() {
+                    .accept("application/json")
+                    .payload(person).post(Person.class)
+                    .done(new DoneCallback<Person>() {
                         @Override
-                        public void onFailure(Throwable caught) {
-                        }
-
-                        @Override
-                        public void onSuccess(Person result) {
+                        public void onDone(Person person) {
                             callbackSuccessCalled[0] = true;
                         }
                     });
+            ServerStub.triggerPendingRequest();
         } catch (SerializationException e) {
             assertNotNull(e);
         }
@@ -291,10 +280,10 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
         assertFalse(callbackSuccessCalled[0]);
     }
 
-    private Requestor getRequestory() {
-        final Requestor requestory = new Requestor();
-        requestory.registerSerdes(Person.class, personSerdes);
-        return requestory;
+    private Requestor getRequestor() {
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Person.class, personSerdes);
+        return requestor;
     }
 
     private void prepareStub(String responseContentType) {

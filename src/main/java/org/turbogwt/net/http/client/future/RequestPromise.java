@@ -14,25 +14,14 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
+package org.turbogwt.net.http.client.future;
 
-import com.google.gwt.junit.client.GWTTestCase;
-
-import org.turbogwt.net.http.client.header.MultivaluedHeader;
+import org.turbogwt.core.future.shared.Promise;
 
 /**
- * @author Danilo Reinert
+ * A Promise for requests.
+ *
+ * @param <T> The type of successful result
  */
-public class MultipleHeaderTest extends GWTTestCase {
-
-    @Override
-    public String getModuleName() {
-        return "org.turbogwt.net.http.HttpTest";
-    }
-
-    public void testGetValue() {
-        final String expected = "a/b, x/y+z";
-        final MultivaluedHeader header = new MultivaluedHeader("name", "a/b", "x/y+z");
-        assertEquals(expected, header.getValue());
-    }
+public interface RequestPromise<T> extends Promise<T, Throwable, RequestProgress, ResponseContext> {
 }

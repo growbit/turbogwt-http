@@ -50,6 +50,10 @@ public class ServerStub implements Server {
         return requestData.get(uri);
     }
 
+    public static void triggerPendingRequest() {
+        ServerConnectionMock.triggerPendingRequest();
+    }
+
     public static void clearStub() {
         responseData.clear();
         requestData.clear();

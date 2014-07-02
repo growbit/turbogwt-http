@@ -14,23 +14,35 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
+package org.turbogwt.net.http.client.header;
 
 import com.google.gwt.http.client.Header;
 
 /**
- * Simple HTTP header with name and value.
+ * HTTP Header with multiple values.
  *
  * @author Danilo Reinert
  */
-public class SimpleHeader extends Header {
+public class MultivaluedHeader extends Header {
 
     private final String name;
     private final String value;
+    private final String[] values;
 
-    public SimpleHeader(String name, String value) {
+    protected MultivaluedHeader(String name, Object... values) {
         this.name = name;
-        this.value = value;
+        this.values = new String[values.length];
+        for (int i = 0; i < values.length; i++) {
+            Object v = values[i];
+            this.values[i] = v.toString();
+        }
+        this.value = mountValue(this.values);
+    }
+
+    public MultivaluedHeader(String name, String... values) {
+        this.name = name;
+        this.values = values;
+        this.value = mountValue(values);
     }
 
     /**
@@ -51,5 +63,24 @@ public class SimpleHeader extends Header {
     @Override
     public String getValue() {
         return value;
+    }
+
+    /**
+     * Returns the values of the HTTP header.
+     *
+     * @return values of the HTTP header
+     */
+    public String[] getValues() {
+        return values;
+    }
+
+    protected String mountValue(String[] values) {
+        String mountedValue = "";
+        String separator = "";
+        for (String v : values) {
+            mountedValue += separator + v;
+            separator = ", ";
+        }
+        return mountedValue;
     }
 }

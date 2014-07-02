@@ -17,16 +17,17 @@
 package org.turbogwt.net.http.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.turbogwt.core.future.shared.DoneCallback;
+import org.turbogwt.core.future.shared.FailCallback;
 import org.turbogwt.net.http.client.books.Book;
 import org.turbogwt.net.http.client.books.BookJsonSerdes;
 import org.turbogwt.net.http.client.books.BookXmlSerdes;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 import org.turbogwt.net.http.client.serialization.Serdes;
@@ -82,22 +83,23 @@ public class MultipleSerdesByClassTest extends GWTTestCase {
 
     public void testXmlDeserializingMatching() {
         prepareStub("application/xml", firstBookSerializedAsXml);
-        final Requestor requestory = getRequestor();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackCalled = new boolean[3];
 
-        requestory.request(Void.class, Book.class).path(uri).get(new AsyncCallback<Book>() {
+        requestor.request(uri).get(Book.class).fail(new FailCallback<Throwable>() {
             @Override
-            public void onFailure(Throwable caught) {
+            public void onFail(Throwable throwable) {
                 callbackCalled[0] = true;
             }
-
+        }).done(new DoneCallback<Book>() {
             @Override
-            public void onSuccess(Book result) {
+            public void onDone(Book book) {
                 callbackCalled[1] = true;
-                assertEquals(firstBook, result);
+                assertEquals(firstBook, book);
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertFalse(callbackCalled[0]);
         assertTrue(callbackCalled[1]);
@@ -105,22 +107,23 @@ public class MultipleSerdesByClassTest extends GWTTestCase {
 
     public void testJsonDeserializingMatching() {
         prepareStub("application/json", firstBookSerializedAsJson);
-        final Requestor requestory = getRequestor();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackCalled = new boolean[3];
 
-        requestory.request(Void.class, Book.class).path(uri).get(new AsyncCallback<Book>() {
+        requestor.request(uri).get(Book.class).fail(new FailCallback<Throwable>() {
             @Override
-            public void onFailure(Throwable caught) {
+            public void onFail(Throwable throwable) {
                 callbackCalled[0] = true;
             }
-
+        }).done(new DoneCallback<Book>() {
             @Override
-            public void onSuccess(Book result) {
+            public void onDone(Book book) {
                 callbackCalled[1] = true;
-                assertEquals(firstBook, result);
+                assertEquals(firstBook, book);
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertFalse(callbackCalled[0]);
         assertTrue(callbackCalled[1]);
@@ -128,22 +131,23 @@ public class MultipleSerdesByClassTest extends GWTTestCase {
 
     public void testXmlArrayDeserializingMatching() {
         prepareStub("application/xml", bookArraySerializedAsXml);
-        final Requestor requestory = getRequestor();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackCalled = new boolean[3];
 
-            requestory.request(Void.class, Book.class).path(uri).get(new ListAsyncCallback<Book>() {
-                @Override
-                public void onFailure(Throwable caught) {
-                    callbackCalled[0] = true;
-                }
-
-                @Override
-                public void onSuccess(List<Book> result) {
-                    callbackCalled[1] = true;
-                    assertEquals(bookList, result);
-                }
-            });
+        requestor.request(uri).get(Book.class, List.class).fail(new FailCallback<Throwable>() {
+            @Override
+            public void onFail(Throwable throwable) {
+                callbackCalled[0] = true;
+            }
+        }).done(new DoneCallback<Collection<Book>>() {
+            @Override
+            public void onDone(Collection<Book> books) {
+                callbackCalled[1] = true;
+                assertEquals(bookList, books);
+            }
+        });
+        ServerStub.triggerPendingRequest();
 
         assertFalse(callbackCalled[0]);
         assertTrue(callbackCalled[1]);
@@ -151,22 +155,23 @@ public class MultipleSerdesByClassTest extends GWTTestCase {
 
     public void testJsonArrayDeserializingMatching() {
         prepareStub("application/json", bookArraySerializedAsJson);
-        final Requestor requestory = getRequestor();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackCalled = new boolean[3];
 
-        requestory.request(Void.class, Book.class).path(uri).get(new ListAsyncCallback<Book>() {
+        requestor.request(uri).get(Book.class, List.class).fail(new FailCallback<Throwable>() {
             @Override
-            public void onFailure(Throwable caught) {
+            public void onFail(Throwable throwable) {
                 callbackCalled[0] = true;
             }
-
+        }).done(new DoneCallback<Collection<Book>>() {
             @Override
-            public void onSuccess(List<Book> result) {
+            public void onDone(Collection<Book> books) {
                 callbackCalled[1] = true;
-                assertEquals(bookList, result);
+                assertEquals(bookList, books);
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertFalse(callbackCalled[0]);
         assertTrue(callbackCalled[1]);
@@ -174,42 +179,42 @@ public class MultipleSerdesByClassTest extends GWTTestCase {
 
     public void testXmlSerializingMatching() {
         prepareStub("text/plain", "response ignored");
-        final Requestor requestory = getRequestor();
+        final Requestor requestor = getRequestor();
 
-        requestory.request(Book.class, Void.class).path(uri)
-                .contentType("application/xml").post(firstBook);
+        requestor.request(uri).contentType("application/xml").payload(firstBook).post();
+        ServerStub.triggerPendingRequest();
 
-        Assert.assertEquals(firstBookSerializedAsXml, ServerStub.getRequestData(uri).getData());
+        assertEquals(firstBookSerializedAsXml, ServerStub.getRequestData(uri).getData());
     }
 
     public void testXmlArraySerializingMatching() {
         prepareStub("text/plain", "response ignored");
-        final Requestor requestory = getRequestor();
+        final Requestor requestor = getRequestor();
 
-        requestory.request(Book.class, Void.class).path(uri)
-                .contentType("application/xml").post(bookList);
+        requestor.request(uri).contentType("application/xml").payload(bookList).post();
+        ServerStub.triggerPendingRequest();
 
-        Assert.assertEquals(bookArraySerializedAsXml, ServerStub.getRequestData(uri).getData());
+        assertEquals(bookArraySerializedAsXml, ServerStub.getRequestData(uri).getData());
     }
 
     public void testJsonSerializingMatching() {
         prepareStub("text/plain", "response ignored");
-        final Requestor requestory = getRequestor();
+        final Requestor requestor = getRequestor();
 
-        requestory.request(Book.class, Void.class).path(uri)
-                .contentType("application/json").post(firstBook);
+        requestor.request(uri).contentType("application/json").payload(firstBook).post();
+        ServerStub.triggerPendingRequest();
 
-        Assert.assertEquals(firstBookSerializedAsJson, ServerStub.getRequestData(uri).getData());
+        assertEquals(firstBookSerializedAsJson, ServerStub.getRequestData(uri).getData());
     }
 
     public void testJsonArraySerializingMatching() {
         prepareStub("text/plain", "response ignored");
-        final Requestor requestory = getRequestor();
+        final Requestor requestor = getRequestor();
 
-        requestory.request(Book.class, Void.class).path(uri)
-                .contentType("application/json").post(bookList);
+        requestor.request(uri).contentType("application/json").payload(bookList).post();
+        ServerStub.triggerPendingRequest();
 
-        Assert.assertEquals(bookArraySerializedAsJson, ServerStub.getRequestData(uri).getData());
+        assertEquals(bookArraySerializedAsJson, ServerStub.getRequestData(uri).getData());
     }
 
     private Requestor getRequestor() {

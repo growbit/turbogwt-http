@@ -131,12 +131,7 @@ public class BookXmlSerdes implements Serdes<Book> {
     @Override
     public <C extends Collection<Book>> C deserializeAsCollection(Class<C> collectionType, String response,
                                                                   DeserializationContext context) {
-        C col;
-        try {
-            col = context.getContainerFactoryManager().getFactory(collectionType).get();
-        } catch (Exception e) {
-            throw new UnableToDeserializeException("There's not factory registered for type *" + collectionType + "*.");
-        }
+        C col = context.getContainerInstance(collectionType);
 
         Document xml;
         try {

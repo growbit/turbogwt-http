@@ -13,26 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.google.gwt.http.client;
 
-package org.turbogwt.net.http.client;
+import com.google.gwt.xhr.client.XhrRequestProgress;
 
-import com.google.gwt.junit.client.GWTTestCase;
+class RequestProgressImpl implements RequestProgress {
 
-import org.turbogwt.net.http.client.header.MultivaluedHeader;
+    private final XhrRequestProgress xhrRequestProgress;
 
-/**
- * @author Danilo Reinert
- */
-public class MultipleHeaderTest extends GWTTestCase {
-
-    @Override
-    public String getModuleName() {
-        return "org.turbogwt.net.http.HttpTest";
+    public RequestProgressImpl(XhrRequestProgress xhrRequestProgress) {
+        this.xhrRequestProgress = xhrRequestProgress;
     }
 
-    public void testGetValue() {
-        final String expected = "a/b, x/y+z";
-        final MultivaluedHeader header = new MultivaluedHeader("name", "a/b", "x/y+z");
-        assertEquals(expected, header.getValue());
+    @Override
+    public boolean isLengthComputable() {
+        return xhrRequestProgress.lengthComputable();
+    }
+
+    @Override
+    public Number loaded() {
+        return xhrRequestProgress.loaded();
+    }
+
+    @Override
+    public Number total() {
+        return xhrRequestProgress.total();
     }
 }

@@ -13,22 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.google.gwt.xhr.client;
 
-package org.turbogwt.net.http.client;
+import com.google.gwt.core.client.JavaScriptObject;
 
-import java.util.Set;
+public final class XhrRequestProgress extends JavaScriptObject {
 
-/**
- * {@link ContainerAsyncCallback} for the {@link Set} type.
- *
- * @param <T> The parametrized type of the Set
- *
- * @author Danilo Reinert
- */
-public abstract class SetAsyncCallback<T> extends ContainerAsyncCallback<Set<T>, T> {
-
-    @Override
-    public Class<Set> getContainerClass() {
-        return Set.class;
+    protected XhrRequestProgress() {
     }
+
+    public native boolean lengthComputable() /*-{
+        return lengthComputable;
+    }-*/;
+
+    public native double loaded() /*-{
+        return loaded;
+    }-*/;
+
+    public native double total() /*-{
+        return total;
+    }-*/;
 }

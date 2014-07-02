@@ -17,8 +17,9 @@
 package org.turbogwt.net.http.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import org.turbogwt.core.future.shared.DoneCallback;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 
@@ -39,22 +40,17 @@ public class SerializerAndDeserializerPrecedenceTest extends GWTTestCase {
 
     public void testJsonDeserializing() {
         prepareStub("application/json", serializedResponseAsJson);
-        final Requestor requestory = getRequestory();
+        final Requestor requestor = getRequestory();
 
         final boolean[] callbackCalled = new boolean[2];
 
-        requestory.request(Void.class, String.class).path(uri).get(new AsyncCallback<String>() {
-            @Override
-            public void onFailure(Throwable caught) {
-                callbackCalled[0] = true;
-            }
-
-            @Override
-            public void onSuccess(String result) {
+        requestor.request(uri).get(String.class).done(new DoneCallback<String>() {
+            public void onDone(String result) {
                 callbackCalled[1] = true;
                 assertEquals(string, result);
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertFalse(callbackCalled[0]);
         assertTrue(callbackCalled[1]);
@@ -62,22 +58,17 @@ public class SerializerAndDeserializerPrecedenceTest extends GWTTestCase {
 
     public void testTextPlainDeserializing() {
         prepareStub("text/plain", serializedResponseAsText);
-        final Requestor requestory = getRequestory();
+        final Requestor requestor = getRequestory();
 
         final boolean[] callbackCalled = new boolean[2];
 
-        requestory.request(Void.class, String.class).path(uri).get(new AsyncCallback<String>() {
-            @Override
-            public void onFailure(Throwable caught) {
-                callbackCalled[0] = true;
-            }
-
-            @Override
-            public void onSuccess(String result) {
+        requestor.request(uri).get(String.class).done(new DoneCallback<String>() {
+            public void onDone(String result) {
                 callbackCalled[1] = true;
                 assertEquals(string, result);
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertFalse(callbackCalled[0]);
         assertTrue(callbackCalled[1]);
@@ -86,22 +77,17 @@ public class SerializerAndDeserializerPrecedenceTest extends GWTTestCase {
     public void testNotMappedDeserializing() {
         // As TextDeserializer matches */*, this response should be deserialized by it.
         prepareStub("content-type/not-mapped", serializedResponseAsText);
-        final Requestor requestory = getRequestory();
+        final Requestor requestor = getRequestory();
 
         final boolean[] callbackCalled = new boolean[2];
 
-        requestory.request(Void.class, String.class).path(uri).get(new AsyncCallback<String>() {
-            @Override
-            public void onFailure(Throwable caught) {
-                callbackCalled[0] = true;
-            }
-
-            @Override
-            public void onSuccess(String result) {
+        requestor.request(uri).get(String.class).done(new DoneCallback<String>() {
+            public void onDone(String result) {
                 callbackCalled[1] = true;
                 assertEquals(string, result);
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertFalse(callbackCalled[0]);
         assertTrue(callbackCalled[1]);

@@ -16,6 +16,9 @@
 
 package org.turbogwt.net.http.client.serialization;
 
+import java.util.Collection;
+
+import org.turbogwt.core.util.shared.Factory;
 import org.turbogwt.net.http.client.ContainerFactoryManager;
 import org.turbogwt.net.http.client.Headers;
 
@@ -42,7 +45,11 @@ public class DeserializationContext {
         return headers;
     }
 
-    public ContainerFactoryManager getContainerFactoryManager() {
-        return containerFactoryManager;
+    public <C extends Collection> C getContainerInstance(Class<C> type) {
+        final Factory<C> factory = containerFactoryManager.getFactory(type);
+        if (factory == null)
+            throw new UnableToDeserializeException("Could not get container instance because there's no factory " +
+                    "registered in the requestor.");
+        return factory.get();
     }
 }

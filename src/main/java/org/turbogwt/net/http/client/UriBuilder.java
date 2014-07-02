@@ -16,10 +16,12 @@
 
 package org.turbogwt.net.http.client;
 
+import com.google.gwt.core.shared.GWT;
+
 /**
  * Utility class for building URIs from their components.
  * <p/>
- * It is NOT aware of templates.
+ * It is aware of templates.
  * <p/>
  * <p>Builder methods perform contextual encoding of characters not permitted in the corresponding URI component
  * following the rules of the
@@ -30,7 +32,17 @@ package org.turbogwt.net.http.client;
  * legal characters and will not be encoded. Percent encoded values are also recognized where allowed and will not be
  * double encoded.</p>
  */
-public interface UriBuilder extends HasUriParts {
+public abstract class UriBuilder {
+
+    public static UriBuilder fromPath(String path) {
+        final UriBuilder uriBuilder = GWT.create(UriBuilder.class);
+        uriBuilder.path(path);
+        return uriBuilder;
+    }
+
+    public static UriBuilder newInstance() {
+        return GWT.create(UriBuilder.class);
+    }
 
     /**
      * Set the strategy for appending parameters with multiple values.
@@ -41,16 +53,25 @@ public interface UriBuilder extends HasUriParts {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    UriBuilder multipleParamStrategy(MultipleParamStrategy strategy) throws IllegalArgumentException;
+    abstract UriBuilder multivaluedParamStrategy(MultivaluedParamStrategy strategy) throws IllegalArgumentException;
 
     /**
-     * Set the URI user-info.
+     * Set the URI user of user-info part.
      *
-     * @param ui the URI user-info. A null value will unset userInfo component of the URI.
+     * @param user the URI user. A null value will unset userInfo (both user and password) component of the URI.
      *
      * @return the updated UriBuilder
      */
-    UriBuilder userInfo(String ui);
+    abstract UriBuilder user(String user);
+
+    /**
+     * Set the URI password of user-info part.
+     *
+     * @param password the URI user's password. A null value will unset password component of the user-info.
+     *
+     * @return the updated UriBuilder
+     */
+    abstract UriBuilder password(String password);
 
     /**
      * Set the URI scheme.
@@ -61,7 +82,7 @@ public interface UriBuilder extends HasUriParts {
      *
      * @throws IllegalArgumentException if scheme is invalid
      */
-    UriBuilder scheme(String scheme) throws IllegalArgumentException;
+    abstract UriBuilder scheme(String scheme) throws IllegalArgumentException;
 
     /**
      * Set the URI host.
@@ -72,7 +93,7 @@ public interface UriBuilder extends HasUriParts {
      *
      * @throws IllegalArgumentException if host is invalid.
      */
-    UriBuilder host(String host) throws IllegalArgumentException;
+    abstract UriBuilder host(String host) throws IllegalArgumentException;
 
     /**
      * Set the URI port.
@@ -83,7 +104,7 @@ public interface UriBuilder extends HasUriParts {
      *
      * @throws IllegalArgumentException if port is invalid
      */
-    UriBuilder port(int port) throws IllegalArgumentException;
+    abstract UriBuilder port(int port) throws IllegalArgumentException;
 
     /**
      * Set the URI path. This method will overwrite any existing path and associated matrix parameters. Existing '/'
@@ -93,7 +114,7 @@ public interface UriBuilder extends HasUriParts {
      *
      * @return the updated UriBuilder
      */
-    UriBuilder path(String path);
+    abstract UriBuilder path(String path);
 
     /**
      * Append path segments to the existing path. When constructing the final path, a '/' separator will be inserted
@@ -107,7 +128,7 @@ public interface UriBuilder extends HasUriParts {
      *
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
-    UriBuilder segment(Object... segments) throws IllegalArgumentException;
+    abstract UriBuilder segment(Object... segments) throws IllegalArgumentException;
 
     /**
      * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.
@@ -124,7 +145,7 @@ public interface UriBuilder extends HasUriParts {
      * @throws IllegalArgumentException if name or values is null
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
-    UriBuilder matrixParam(String name, Object... values) throws IllegalArgumentException;
+    abstract UriBuilder matrixParam(String name, Object... values) throws IllegalArgumentException;
 
     /**
      * Append a query parameter to the existing set of query parameters. If multiple values are supplied the parameter
@@ -138,7 +159,7 @@ public interface UriBuilder extends HasUriParts {
      *
      * @throws IllegalArgumentException if name or values is null
      */
-    UriBuilder queryParam(String name, Object... values) throws IllegalArgumentException;
+    abstract UriBuilder queryParam(String name, Object... values) throws IllegalArgumentException;
 
     /**
      * Set the URI fragment.
@@ -147,12 +168,34 @@ public interface UriBuilder extends HasUriParts {
      *
      * @return the updated UriBuilder
      */
-    UriBuilder fragment(String fragment);
+    abstract UriBuilder fragment(String fragment);
 
     /**
-     * Build a URI.
+     * Build a URI, using the supplied values in order to replace any URI
+     * template parameters. Values are converted to <code>String</code> using
+     * their <code>toString</code> method and are then encoded to match the
+     * rules of the URI component to which they pertain. All '%' characters
+     * in the stringified values will be encoded.
+     * The state of the builder is unaffected; this method may be called
+     * multiple times on the same builder instance.
+     * <p/>
      *
-     * @return the URI built from the UriBuilder as String
+     * All instances of the same template parameter
+     * will be replaced by the same value that corresponds to the position of the
+     * first instance of the template parameter. e.g. the template "{a}/{b}/{a}"
+     * with values {"x", "y", "z"} will result in the the URI "x/y/x", <i>not</i>
+     * "x/y/z".
+     *
+     * @param values a list of URI template parameter values
+     *
+     * @return the URI built from the UriBuilder
+     *
+     * @throws IllegalArgumentException if there are any URI template parameters
+     * without a supplied value, or if a value is null.
+     *
+     * @throws UriBuilderException if a URI cannot be constructed based on the
+     * current state of the builder.
      */
-    String build();
+    public abstract Uri build(Object... values)
+            throws IllegalArgumentException, UriBuilderException;
 }

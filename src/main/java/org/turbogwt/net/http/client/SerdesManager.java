@@ -14,20 +14,24 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client.serialization;
+package org.turbogwt.net.http.client;
 
 import java.util.Collections;
 
 import org.turbogwt.core.collections.client.JsArrayList;
 import org.turbogwt.core.collections.client.JsMap;
 import org.turbogwt.core.util.shared.Registration;
+import org.turbogwt.net.http.client.serialization.Deserializer;
+import org.turbogwt.net.http.client.serialization.Serdes;
+import org.turbogwt.net.http.client.serialization.SerializationException;
+import org.turbogwt.net.http.client.serialization.Serializer;
 
 /**
  * Manager for registering and retrieving Serializers and Deserializers.
  *
  * @author Danilo Reinert
  */
-public class SerdesManager {
+class SerdesManager {
 
     private final JsMap<JsArrayList<DeserializerHolder>> deserializers = JsMap.create();
     private final JsMap<JsArrayList<SerializerHolder>> serializers = JsMap.create();
@@ -141,7 +145,9 @@ public class SerdesManager {
      * @param type The type class of the deserializer.
      * @param <T> The type of the deserializer.
      * @return The deserializer of the specified type.
-     * @throws SerializationException if no deserializer was registered for the class.
+     *
+     * @throws org.turbogwt.net.http.client.serialization.SerializationException if no deserializer was registered
+     * for the class.
      */
     @SuppressWarnings("unchecked")
     public <T> Deserializer<T> getDeserializer(Class<T> type, String contentType) throws SerializationException {

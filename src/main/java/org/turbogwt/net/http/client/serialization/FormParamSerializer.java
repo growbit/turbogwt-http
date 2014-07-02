@@ -20,7 +20,7 @@ import java.util.Collection;
 
 import org.turbogwt.net.http.client.FormData;
 import org.turbogwt.net.http.client.FormParam;
-import org.turbogwt.net.http.client.MultipleParamStrategy;
+import org.turbogwt.net.http.client.MultivaluedParamStrategy;
 
 /**
  * Serializer for FORM requests.
@@ -33,7 +33,7 @@ public class FormParamSerializer implements Serializer<FormParam> {
 
     private static final FormParamSerializer INSTANCE = new FormParamSerializer();
 
-    private MultipleParamStrategy multipleParamStrategy = MultipleParamStrategy.REPEATED_PARAM;
+    private MultivaluedParamStrategy multivaluedParamStrategy = MultivaluedParamStrategy.REPEATED_PARAM;
 
     public static FormParamSerializer getInstance() {
         return INSTANCE;
@@ -51,15 +51,15 @@ public class FormParamSerializer implements Serializer<FormParam> {
 
     @Override
     public String serialize(FormParam formParam, SerializationContext context) {
-        return multipleParamStrategy.asUriPart("&", formParam.getName(), formParam.getValues());
+        return multivaluedParamStrategy.asUriPart("&", formParam.getName(), formParam.getValues());
     }
 
     @Override
     public String serializeFromCollection(Collection<FormParam> c, SerializationContext context) {
-        MultipleParamStrategy strategy = multipleParamStrategy;
+        MultivaluedParamStrategy strategy = multivaluedParamStrategy;
         if (c instanceof FormData) {
             FormData data = (FormData) c;
-            if (data.getMultipleParamStrategy() != null) strategy = data.getMultipleParamStrategy();
+            if (data.getMultivaluedParamStrategy() != null) strategy = data.getMultivaluedParamStrategy();
         }
         String serialized = "";
         String sep = "";
@@ -70,11 +70,11 @@ public class FormParamSerializer implements Serializer<FormParam> {
         return serialized;
     }
 
-    public MultipleParamStrategy getMultipleParamStrategy() {
-        return multipleParamStrategy;
+    public MultivaluedParamStrategy getMultivaluedParamStrategy() {
+        return multivaluedParamStrategy;
     }
 
-    public void setMultipleParamStrategy(MultipleParamStrategy multipleParamStrategy) {
-        this.multipleParamStrategy = multipleParamStrategy;
+    public void setMultivaluedParamStrategy(MultivaluedParamStrategy multivaluedParamStrategy) {
+        this.multivaluedParamStrategy = multivaluedParamStrategy;
     }
 }

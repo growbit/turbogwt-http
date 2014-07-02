@@ -14,21 +14,10 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
-
-import java.util.List;
+package org.turbogwt.net.http.client.future;
 
 /**
- * {@link ContainerAsyncCallback} for the {@link List} type.
- *
- * @param <T> The parametrized type of the List
- *
- * @author Danilo Reinert
+ * Progress data of requests.
  */
-public abstract class ListAsyncCallback<T> extends ContainerAsyncCallback<List<T>, T> {
-
-    @Override
-    public Class<List> getContainerClass() {
-        return List.class;
-    }
+public interface RequestProgress extends com.google.gwt.http.client.RequestProgress {
 }

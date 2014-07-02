@@ -17,20 +17,20 @@
 package org.turbogwt.net.http.client;
 
 import com.google.gwt.http.client.Header;
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.Response;
 import com.google.gwt.junit.client.GWTTestCase;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.turbogwt.core.collections.client.JsArray;
 import org.turbogwt.core.collections.client.JsArrayList;
+import org.turbogwt.core.future.shared.AlwaysCallback;
+import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.core.util.client.Overlays;
+import org.turbogwt.net.http.client.future.ResponseContext;
+import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.RequestMock;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
@@ -46,7 +46,7 @@ import org.turbogwt.net.http.client.serialization.SerializationContext;
 /**
  * @author Danilo Reinert
  */
-public class FluentRequestImplTest extends GWTTestCase {
+public class RequestTest extends GWTTestCase {
 
     @Override
     public String getModuleName() {
@@ -93,20 +93,18 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.post(uri, Person.class, persons, Person.class, new ListAsyncCallback<Person>() {
-            @Override
-            public void onFailure(Throwable caught) {
-            }
-
-            @Override
-            public void onSuccess(List<Person> result) {
-                assertTrue(Arrays.equals(persons.toArray(), result.toArray()));
-                callbackSuccessCalled[0] = true;
-            }
-        });
+        requestory.request(uri).payload(persons).post(Person.class, List.class)
+                .done(new DoneCallback<Collection<Person>>() {
+                    @Override
+                    public void onDone(Collection<Person> result) {
+                        assertTrue(Arrays.equals(persons.toArray(), result.toArray()));
+                        callbackSuccessCalled[0] = true;
+                    }
+                });
+        ServerStub.triggerPendingRequest();
 
         assertTrue(callbackSuccessCalled[0]);
-        Assert.assertEquals(serializedArray, ServerStub.getRequestData(uri).getData());
+        assertEquals(serializedArray, ServerStub.getRequestData(uri).getData());
     }
 
     public void testCustomObjectRequest() {
@@ -141,17 +139,14 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.get(uri, Person.class, new AsyncCallback<Person>() {
+        requestory.request(uri).get(Person.class).done(new DoneCallback<Person>() {
             @Override
-            public void onFailure(Throwable caught) {
-            }
-
-            @Override
-            public void onSuccess(Person result) {
+            public void onDone(Person result) {
                 assertEquals(person, result);
                 callbackSuccessCalled[0] = true;
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertTrue(callbackSuccessCalled[0]);
     }
@@ -171,19 +166,16 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.post(uri, Person.class, person, Person.class, new AsyncCallback<Person>() {
+        requestory.request(uri).payload(person).post(Person.class).done(new DoneCallback<Person>() {
             @Override
-            public void onFailure(Throwable caught) {
-            }
-
-            @Override
-            public void onSuccess(Person result) {
+            public void onDone(Person result) {
                 callbackSuccessCalled[0] = true;
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertTrue(callbackSuccessCalled[0]);
-        Assert.assertEquals(serializedRequest, ServerStub.getRequestData(uri).getData());
+        assertEquals(serializedRequest, ServerStub.getRequestData(uri).getData());
     }
 
     public void testAwaysCallbackExecutionOnFailure() {
@@ -198,12 +190,14 @@ public class FluentRequestImplTest extends GWTTestCase {
         ServerStub.setReturnSuccess(false);
         final boolean[] executed = new boolean[1];
 
-        requestory.request().path("/notValid").always(new SingleCallback() {
+        requestory.request("/notValid").get().always(new AlwaysCallback<Void, Throwable, ResponseContext>() {
             @Override
-            public void onResponseReceived(Request request, Response response) {
+            public void onAlways(ResponseContext context, Void resolved, Throwable rejected) {
                 executed[0] = true;
             }
-        }).get();
+        });
+        ServerStub.triggerPendingRequest();
+
         assertTrue(executed[0]);
     }
 
@@ -218,55 +212,15 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] executed = new boolean[1];
 
-        requestory.request().path(uri).always(new SingleCallback() {
+        requestory.request(uri).get().always(new AlwaysCallback<Void, Throwable, ResponseContext>() {
             @Override
-            public void onResponseReceived(Request request, Response response) {
+            public void onAlways(ResponseContext context, Void resolved, Throwable rejected) {
                 executed[0] = true;
             }
-        }).get();
+        });
+        ServerStub.triggerPendingRequest();
 
         assertTrue(executed[0]);
-    }
-
-    public void testOnHttpCodeCallbackExecution() {
-        ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
-
-        final String uri = "/on";
-
-        ServerStub.responseFor(uri, ResponseMock.of(null, 204, "Empty",
-                new ContentTypeHeader("application/json")));
-
-        final boolean[] callbacksCalled = new boolean[3];
-
-        requestory.request().path(uri)
-                .on(20, new SingleCallback() {
-                    @Override
-                    public void onResponseReceived(Request request, Response response) {
-                        callbacksCalled[0] = true;
-                    }
-                })
-                .on(2, new SingleCallback() {
-                    @Override
-                    public void onResponseReceived(Request request, Response response) {
-                        callbacksCalled[1] = true;
-                    }
-                })
-                .get(new AsyncCallback<Void>() {
-                    @Override
-                    public void onFailure(Throwable caught) {
-                    }
-
-                    @Override
-                    public void onSuccess(Void result) {
-                        callbacksCalled[2] = true;
-                    }
-                });
-
-        // Most specific mapped code callback should be called
-        assertTrue(callbacksCalled[0]);
-        assertFalse(callbacksCalled[1]);
-        assertFalse(callbacksCalled[2]);
     }
 
     public void testOverlayArrayRequest() {
@@ -290,18 +244,28 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.get(uri, PersonJso.class, new ListAsyncCallback<PersonJso>() {
-            @Override
-            public void onFailure(Throwable caught) {
-            }
+//        requestory.get(uri, PersonJso.class, new ListAsyncCallback<PersonJso>() {
+//            @Override
+//            public void onFailure(Throwable caught) {
+//            }
+//
+//            @Override
+//            public void onSuccess(List<PersonJso> result) {
+//                JsArray<PersonJso> resultArray = ((JsArrayList<PersonJso>) result).asJsArray();
+//                assertEquals(Overlays.stringify(persons), Overlays.stringify(resultArray));
+//                callbackSuccessCalled[0] = true;
+//            }
+//        });
 
+        requestory.request(uri).get(PersonJso.class, List.class).done(new DoneCallback<Collection<PersonJso>>() {
             @Override
-            public void onSuccess(List<PersonJso> result) {
+            public void onDone(Collection<PersonJso> result) {
                 JsArray<PersonJso> resultArray = ((JsArrayList<PersonJso>) result).asJsArray();
                 assertEquals(Overlays.stringify(persons), Overlays.stringify(resultArray));
                 callbackSuccessCalled[0] = true;
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertTrue(callbackSuccessCalled[0]);
     }
@@ -320,17 +284,14 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.get(uri, PersonJso.class, new AsyncCallback<PersonJso>() {
+        requestory.request(uri).get(PersonJso.class).done(new DoneCallback<PersonJso>() {
             @Override
-            public void onFailure(Throwable caught) {
-            }
-
-            @Override
-            public void onSuccess(PersonJso result) {
+            public void onDone(PersonJso result) {
                 assertEquals(Overlays.stringify(person), Overlays.stringify(result));
                 callbackSuccessCalled[0] = true;
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertTrue(callbackSuccessCalled[0]);
     }
@@ -347,7 +308,8 @@ public class FluentRequestImplTest extends GWTTestCase {
         ServerStub.responseFor(uri, ResponseMock.of(serializedResp, 200, "OK",
                 new ContentTypeHeader("application/json")));
 
-        requestory.request(PersonJso.class, PersonJso.class).path(uri).post(person);
+        requestory.request(uri).payload(person).post(PersonJso.class);
+        ServerStub.triggerPendingRequest();
 
         // On #post execution, request mock should be set from Requestory
         final RequestMock requestMock = ServerStub.getRequestData(uri);
@@ -379,18 +341,14 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.get(uri, String.class, new ListAsyncCallback<String>() {
-
+        requestory.request(uri).get(String.class, List.class).done(new DoneCallback<Collection<String>>() {
             @Override
-            public void onFailure(Throwable caught) {
-            }
-
-            @Override
-            public void onSuccess(List<String> result) {
+            public void onDone(Collection<String> result) {
                 assertTrue(Arrays.equals(result.toArray(), response));
                 callbackSuccessCalled[0] = true;
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertTrue(callbackSuccessCalled[0]);
     }
@@ -407,17 +365,14 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.get(uri, String.class, new AsyncCallback<String>() {
+        requestory.request(uri).get(String.class).done(new DoneCallback<String>() {
             @Override
-            public void onFailure(Throwable caught) {
-            }
-
-            @Override
-            public void onSuccess(String result) {
+            public void onDone(String result) {
                 assertEquals(response, result);
                 callbackSuccessCalled[0] = true;
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertTrue(callbackSuccessCalled[0]);
     }
@@ -431,17 +386,14 @@ public class FluentRequestImplTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.get(uri, Void.class, new AsyncCallback<Void>() {
+        requestory.request(uri).get().done(new DoneCallback<Void>() {
             @Override
-            public void onFailure(Throwable caught) {
-            }
-
-            @Override
-            public void onSuccess(Void result) {
+            public void onDone(Void result) {
                 assertNull(result);
                 callbackSuccessCalled[0] = true;
             }
         });
+        ServerStub.triggerPendingRequest();
 
         assertTrue(callbackSuccessCalled[0]);
     }
@@ -456,25 +408,9 @@ public class FluentRequestImplTest extends GWTTestCase {
         final FormData formData = FormData.builder().put("name", "John Doe").put("age", 1, 2, 3.5).build();
         final String serialized = "name=John+Doe&age=1&age=2&age=3.5";
 
-        requestory.request(FormParam.class, Void.class).path(uri).contentType(FormParam.CONTENT_TYPE).post(formData);
+        requestory.request(uri).contentType(FormParam.CONTENT_TYPE).payload(formData).post();
 
         final RequestMock requestMock = ServerStub.getRequestData(uri);
         assertEquals(serialized, requestMock.getData());
-    }
-
-    class MutableBoolean {
-        private boolean value;
-
-        public void setValue(boolean value) {
-            this.value = value;
-        }
-
-        public boolean isTrue() {
-            return value;
-        }
-
-        public boolean isFalse() {
-            return !value;
-        }
     }
 }

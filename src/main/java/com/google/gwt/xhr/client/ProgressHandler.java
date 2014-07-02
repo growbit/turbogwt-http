@@ -13,26 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package org.turbogwt.net.http.client;
-
-import com.google.gwt.junit.client.GWTTestCase;
-
-import org.turbogwt.net.http.client.header.MultivaluedHeader;
+package com.google.gwt.xhr.client;
 
 /**
- * @author Danilo Reinert
+ * A progress callback for an {@link XMLHttpRequest} object.
  */
-public class MultipleHeaderTest extends GWTTestCase {
+public interface ProgressHandler {
 
-    @Override
-    public String getModuleName() {
-        return "org.turbogwt.net.http.HttpTest";
-    }
-
-    public void testGetValue() {
-        final String expected = "a/b, x/y+z";
-        final MultivaluedHeader header = new MultivaluedHeader("name", "a/b", "x/y+z");
-        assertEquals(expected, header.getValue());
-    }
+    /**
+     * This is called whenever the progress event of XMLHttpRequest is triggered.
+     *
+     * @param progress the progress data.
+     */
+    void onProgress(XhrRequestProgress progress);
 }

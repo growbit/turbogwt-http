@@ -16,23 +16,17 @@
 
 package org.turbogwt.net.http.client;
 
-import com.google.gwt.junit.client.GWTTestCase;
+import com.google.gwt.http.client.Response;
 
-import org.turbogwt.net.http.client.header.MultivaluedHeader;
+import org.turbogwt.net.http.client.future.RequestProgress;
 
-/**
- * @author Danilo Reinert
- */
-public class MultipleHeaderTest extends GWTTestCase {
+interface DeferredRequestDecorator {
 
-    @Override
-    public String getModuleName() {
-        return "org.turbogwt.net.http.HttpTest";
-    }
+    void resolve(Response response);
 
-    public void testGetValue() {
-        final String expected = "a/b, x/y+z";
-        final MultivaluedHeader header = new MultivaluedHeader("name", "a/b", "x/y+z");
-        assertEquals(expected, header.getValue());
-    }
+    void notify(RequestProgress progress);
+
+    void reject(Response response);
+
+    void reject(Throwable throwable);
 }

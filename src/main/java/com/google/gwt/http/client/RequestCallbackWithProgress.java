@@ -13,21 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package org.turbogwt.net.http.client;
+package com.google.gwt.http.client;
 
 /**
- * An extension interface implemented by request filters.
- * Request filters are intended to manipulate the request before it is sent to the server.
+ * The primary interface a caller must implement to receive a response to a
+ * {@link com.google.gwt.http.client.Request}.
  *
- * @author Danilo Reinert
+ * <h3>Required Module</h3>
+ * Modules that use this interface should inherit
+ * <code>com.google.gwt.http.HTTP</code>.
+ *
+ * {@gwt.include com/google/gwt/examples/http/InheritsExample.gwt.xml}
  */
-public interface RequestFilter {
+public interface RequestCallbackWithProgress extends RequestCallback {
 
     /**
-     * Filter method called before a request has been dispatched to a client transport layer.
+     * Called when a pending {@link com.google.gwt.http.client.Request} triggers a progress event.
      *
-     * @param request   The request to be dispatched.
+     * @param requestProgress the progress data
      */
-    void filter(Request request);
+    void onProgress(RequestProgress requestProgress);
 }
