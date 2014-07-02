@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2014</copyright>
     <item>
-      <title>File: 73,
+      <title>File: 92,
              Errors: 0,
-             Warnings: 0,
+             Warnings: 1,
              Infos: 0
       </title>
             <link>http://turbogwt.org//checkstyle.html</link>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.FormParamSerializer.java">org/turbogwt/net/http/serialization/FormParamSerializer.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.MultipleHeaderTest.java">org/turbogwt/net/http/client/MultipleHeaderTest.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.ServerImpl.java">org/turbogwt/net/http/ServerImpl.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.mock.ResponseMock.java">org/turbogwt/net/http/client/mock/ResponseMock.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.SerializationContext.java">org/turbogwt/net/http/serialization/SerializationContext.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.DeferredSingleDecorator.java">org/turbogwt/net/http/client/DeferredSingleDecorator.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.SimpleHeaderWithParameterTest.java">org/turbogwt/net/http/SimpleHeaderWithParameterTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.SerializerAndDeserializerMatchTest.java">org/turbogwt/net/http/client/SerializerAndDeserializerMatchTest.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.mock.ResponseMock.java">org/turbogwt/net/http/mock/ResponseMock.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.RequestFilter.java">org/turbogwt/net/http/client/RequestFilter.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.JsonRecordReader.java">org/turbogwt/net/http/serialization/JsonRecordReader.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.TextDeserializer.java">org/turbogwt/net/http/client/serialization/TextDeserializer.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.JsonNumberSerdes.java">org/turbogwt/net/http/serialization/JsonNumberSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.header.ContentTypeHeader.java">org/turbogwt/net/http/client/header/ContentTypeHeader.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.model.PersonJso.java">org/turbogwt/net/http/model/PersonJso.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.FormParam.java">org/turbogwt/net/http/client/FormParam.java</a>
                 </td>
                 <td>
                   0
@@ -158,7 +158,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.AcceptHeader.java">org/turbogwt/net/http/AcceptHeader.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.UnableToSerializeException.java">org/turbogwt/net/http/client/serialization/UnableToSerializeException.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +172,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.JsonObjectSerdes.java">org/turbogwt/net/http/serialization/JsonObjectSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.RequestDispatcher.java">org/turbogwt/net/http/client/RequestDispatcher.java</a>
                 </td>
                 <td>
                   0
@@ -186,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.books.BookJsonSerdes.java">org/turbogwt/net/http/books/BookJsonSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonDeserialize.java">org/turbogwt/net/http/client/serialization/JsonDeserialize.java</a>
                 </td>
                 <td>
                   0
@@ -200,7 +200,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.RequestFilter.java">org/turbogwt/net/http/RequestFilter.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.UnsuccessfulResponseException.java">org/turbogwt/net/http/client/UnsuccessfulResponseException.java</a>
                 </td>
                 <td>
                   0
@@ -214,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.ServerConnection.java">org/turbogwt/net/http/ServerConnection.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.FilterManager.java">org/turbogwt/net/http/client/FilterManager.java</a>
                 </td>
                 <td>
                   0
@@ -228,7 +228,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.Serdes.java">org/turbogwt/net/http/serialization/Serdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.header.MultivaluedHeader.java">org/turbogwt/net/http/client/header/MultivaluedHeader.java</a>
                 </td>
                 <td>
                   0
@@ -242,7 +242,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.OverlaySerdes.java">org/turbogwt/net/http/serialization/OverlaySerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.header.QualityFactorHeader.java">org/turbogwt/net/http/client/header/QualityFactorHeader.java</a>
                 </td>
                 <td>
                   0
@@ -256,7 +256,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.JsonRecordWriter.java">org/turbogwt/net/http/serialization/JsonRecordWriter.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#com.google.gwt.xhr.client.ProgressHandler.java">com/google/gwt/xhr/client/ProgressHandler.java</a>
                 </td>
                 <td>
                   0
@@ -270,7 +270,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.UriBuilder.java">org/turbogwt/net/http/UriBuilder.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.UriBuilderTest.java">org/turbogwt/net/http/client/UriBuilderTest.java</a>
                 </td>
                 <td>
                   0
@@ -284,7 +284,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.JsonValueSerdes.java">org/turbogwt/net/http/serialization/JsonValueSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.VoidSerdes.java">org/turbogwt/net/http/client/serialization/VoidSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -298,7 +298,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.UnsuccessfulResponseException.java">org/turbogwt/net/http/UnsuccessfulResponseException.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#com.google.gwt.http.client.RequestBuilder.java">com/google/gwt/http/client/RequestBuilder.java</a>
                 </td>
                 <td>
                   0
@@ -312,7 +312,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.ContainerFactoryManager.java">org/turbogwt/net/http/ContainerFactoryManager.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.Uri.java">org/turbogwt/net/http/client/Uri.java</a>
                 </td>
                 <td>
                   0
@@ -326,7 +326,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.TextDeserializer.java">org/turbogwt/net/http/serialization/TextDeserializer.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.Headers.java">org/turbogwt/net/http/client/Headers.java</a>
                 </td>
                 <td>
                   0
@@ -340,7 +340,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.QualityFactorHeaderTest.java">org/turbogwt/net/http/QualityFactorHeaderTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.SerializationException.java">org/turbogwt/net/http/client/serialization/SerializationException.java</a>
                 </td>
                 <td>
                   0
@@ -354,7 +354,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.HasUriParts.java">org/turbogwt/net/http/HasUriParts.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.DeferredCollectionDecorator.java">org/turbogwt/net/http/client/DeferredCollectionDecorator.java</a>
                 </td>
                 <td>
                   0
@@ -368,7 +368,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.Deserializer.java">org/turbogwt/net/http/serialization/Deserializer.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#com.google.gwt.http.client.RequestCallbackWithProgress.java">com/google/gwt/http/client/RequestCallbackWithProgress.java</a>
                 </td>
                 <td>
                   0
@@ -382,7 +382,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.ContentTypeHeader.java">org/turbogwt/net/http/ContentTypeHeader.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonBooleanSerdes.java">org/turbogwt/net/http/client/serialization/JsonBooleanSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -396,7 +396,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.ResponseFilter.java">org/turbogwt/net/http/ResponseFilter.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.DeferredRequestDecorator.java">org/turbogwt/net/http/client/DeferredRequestDecorator.java</a>
                 </td>
                 <td>
                   0
@@ -410,7 +410,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.SimpleHeader.java">org/turbogwt/net/http/SimpleHeader.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.ResponseFilter.java">org/turbogwt/net/http/client/ResponseFilter.java</a>
                 </td>
                 <td>
                   0
@@ -424,7 +424,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.books.BookXmlSerdes.java">org/turbogwt/net/http/books/BookXmlSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonValueSerdes.java">org/turbogwt/net/http/client/serialization/JsonValueSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -438,7 +438,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.MultipleHeader.java">org/turbogwt/net/http/MultipleHeader.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonObjectSerdes.java">org/turbogwt/net/http/client/serialization/JsonObjectSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -452,7 +452,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.mock.RequestMock.java">org/turbogwt/net/http/mock/RequestMock.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.ServerConnection.java">org/turbogwt/net/http/client/ServerConnection.java</a>
                 </td>
                 <td>
                   0
@@ -466,7 +466,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.FilterManager.java">org/turbogwt/net/http/FilterManager.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.RequestorTest.java">org/turbogwt/net/http/client/RequestorTest.java</a>
                 </td>
                 <td>
                   0
@@ -480,7 +480,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.UriBuilderImpl.java">org/turbogwt/net/http/UriBuilderImpl.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.SerdesManager.java">org/turbogwt/net/http/client/SerdesManager.java</a>
                 </td>
                 <td>
                   0
@@ -494,7 +494,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.FluentRequestSender.java">org/turbogwt/net/http/FluentRequestSender.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.DeserializationContext.java">org/turbogwt/net/http/client/serialization/DeserializationContext.java</a>
                 </td>
                 <td>
                   0
@@ -508,7 +508,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.ServerConnectionImpl.java">org/turbogwt/net/http/ServerConnectionImpl.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.Request.java">org/turbogwt/net/http/client/Request.java</a>
                 </td>
                 <td>
                   0
@@ -522,7 +522,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.Server.java">org/turbogwt/net/http/Server.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.MultivaluedParamStrategy.java">org/turbogwt/net/http/client/MultivaluedParamStrategy.java</a>
                 </td>
                 <td>
                   0
@@ -536,7 +536,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.SerializerAndDeserializerPrecedenceTest.java">org/turbogwt/net/http/SerializerAndDeserializerPrecedenceTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.ServerImpl.java">org/turbogwt/net/http/client/ServerImpl.java</a>
                 </td>
                 <td>
                   0
@@ -550,7 +550,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.mock.ServerStub.java">org/turbogwt/net/http/mock/ServerStub.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.header.SimpleHeaderWithParameter.java">org/turbogwt/net/http/client/header/SimpleHeaderWithParameter.java</a>
                 </td>
                 <td>
                   0
@@ -564,7 +564,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.Serializer.java">org/turbogwt/net/http/serialization/Serializer.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#com.google.gwt.xhr.client.XhrRequestProgress.java">com/google/gwt/xhr/client/XhrRequestProgress.java</a>
                 </td>
                 <td>
                   0
@@ -578,7 +578,189 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.model.Person.java">org/turbogwt/net/http/model/Person.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.UnableToDeserializeException.java">org/turbogwt/net/http/client/serialization/UnableToDeserializeException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.SerializationContext.java">org/turbogwt/net/http/client/serialization/SerializationContext.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.Deserializer.java">org/turbogwt/net/http/client/serialization/Deserializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.UriBuilderImpl.java">org/turbogwt/net/http/client/UriBuilderImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.future.ResponseContextImpl.java">org/turbogwt/net/http/client/future/ResponseContextImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.future.RequestProgress.java">org/turbogwt/net/http/client/future/RequestProgress.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.RequestImpl.java">org/turbogwt/net/http/client/RequestImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.ContainerFactoryManager.java">org/turbogwt/net/http/client/ContainerFactoryManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.RequestDispatchException.java">org/turbogwt/net/http/client/RequestDispatchException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.mock.RequestMock.java">org/turbogwt/net/http/client/mock/RequestMock.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.QualityFactorHeaderTest.java">org/turbogwt/net/http/client/QualityFactorHeaderTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.mock.ServerStub.java">org/turbogwt/net/http/client/mock/ServerStub.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.RequestTest.java">org/turbogwt/net/http/client/RequestTest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.Server.java">org/turbogwt/net/http/client/Server.java</a>
                 </td>
                 <td>
                   0
@@ -606,7 +788,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.QualityFactorHeader.java">org/turbogwt/net/http/QualityFactorHeader.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.books.BookXmlSerdes.java">org/turbogwt/net/http/client/books/BookXmlSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -620,7 +802,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.ListAsyncCallback.java">org/turbogwt/net/http/ListAsyncCallback.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.books.RestTest.java">org/turbogwt/net/http/client/books/RestTest.java</a>
                 </td>
                 <td>
                   0
@@ -634,7 +816,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.UriBuilderImplTest.java">org/turbogwt/net/http/UriBuilderImplTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#com.google.gwt.http.client.RequestProgressImpl.java">com/google/gwt/http/client/RequestProgressImpl.java</a>
                 </td>
                 <td>
                   0
@@ -648,7 +830,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.Headers.java">org/turbogwt/net/http/Headers.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonSerialize.java">org/turbogwt/net/http/client/serialization/JsonSerialize.java</a>
                 </td>
                 <td>
                   0
@@ -662,7 +844,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.MultipleParamStrategy.java">org/turbogwt/net/http/MultipleParamStrategy.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.future.RequestPromise.java">org/turbogwt/net/http/client/future/RequestPromise.java</a>
                 </td>
                 <td>
                   0
@@ -676,7 +858,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.ContainerAsyncCallback.java">org/turbogwt/net/http/ContainerAsyncCallback.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.Requestor.java">org/turbogwt/net/http/client/Requestor.java</a>
                 </td>
                 <td>
                   0
@@ -690,7 +872,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.FormParam.java">org/turbogwt/net/http/FormParam.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.books.Book.java">org/turbogwt/net/http/client/books/Book.java</a>
                 </td>
                 <td>
                   0
@@ -704,7 +886,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.books.Book.java">org/turbogwt/net/http/books/Book.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.DeferredSingleResult.java">org/turbogwt/net/http/client/DeferredSingleResult.java</a>
                 </td>
                 <td>
                   0
@@ -718,7 +900,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.mock.ServerConnectionMock.java">org/turbogwt/net/http/mock/ServerConnectionMock.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonNumberSerdes.java">org/turbogwt/net/http/client/serialization/JsonNumberSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -732,7 +914,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.JsonSerdes.java">org/turbogwt/net/http/serialization/JsonSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.model.PersonJso.java">org/turbogwt/net/http/client/model/PersonJso.java</a>
                 </td>
                 <td>
                   0
@@ -746,7 +928,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.JsonStringSerdes.java">org/turbogwt/net/http/serialization/JsonStringSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.ContentTypeAcceptPatternsTest.java">org/turbogwt/net/http/client/ContentTypeAcceptPatternsTest.java</a>
                 </td>
                 <td>
                   0
@@ -760,7 +942,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.FormData.java">org/turbogwt/net/http/FormData.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#com.google.gwt.http.client.Request.java">com/google/gwt/http/client/Request.java</a>
                 </td>
                 <td>
                   0
@@ -774,7 +956,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.MultipleSerdesByClassTest.java">org/turbogwt/net/http/MultipleSerdesByClassTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonRecordWriter.java">org/turbogwt/net/http/client/serialization/JsonRecordWriter.java</a>
                 </td>
                 <td>
                   0
@@ -788,7 +970,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.FluentRequest.java">org/turbogwt/net/http/FluentRequest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonStringSerdes.java">org/turbogwt/net/http/client/serialization/JsonStringSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -802,7 +984,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.SingleCallback.java">org/turbogwt/net/http/SingleCallback.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#com.google.gwt.http.client.RequestProgress.java">com/google/gwt/http/client/RequestProgress.java</a>
                 </td>
                 <td>
                   0
@@ -816,7 +998,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.MultipleHeaderTest.java">org/turbogwt/net/http/MultipleHeaderTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#com.google.gwt.xhr.client.XMLHttpRequest.java">com/google/gwt/xhr/client/XMLHttpRequest.java</a>
                 </td>
                 <td>
                   0
@@ -830,7 +1012,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.VoidSerdes.java">org/turbogwt/net/http/serialization/VoidSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonSerdes.java">org/turbogwt/net/http/client/serialization/JsonSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -844,7 +1026,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.FluentRequestImpl.java">org/turbogwt/net/http/FluentRequestImpl.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.MultipleSerdesByClassTest.java">org/turbogwt/net/http/client/MultipleSerdesByClassTest.java</a>
                 </td>
                 <td>
                   0
@@ -858,7 +1040,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.ContentTypeAcceptPatternsTest.java">org/turbogwt/net/http/ContentTypeAcceptPatternsTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.UriBuilderException.java">org/turbogwt/net/http/client/UriBuilderException.java</a>
                 </td>
                 <td>
                   0
@@ -872,7 +1054,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.UnableToSerializeException.java">org/turbogwt/net/http/serialization/UnableToSerializeException.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.SerializerAndDeserializerPrecedenceTest.java">org/turbogwt/net/http/client/SerializerAndDeserializerPrecedenceTest.java</a>
                 </td>
                 <td>
                   0
@@ -886,7 +1068,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.FluentRequestImplTest.java">org/turbogwt/net/http/FluentRequestImplTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.Serdes.java">org/turbogwt/net/http/client/serialization/Serdes.java</a>
                 </td>
                 <td>
                   0
@@ -900,7 +1082,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.SerializationException.java">org/turbogwt/net/http/serialization/SerializationException.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.OverlaySerdes.java">org/turbogwt/net/http/client/serialization/OverlaySerdes.java</a>
                 </td>
                 <td>
                   0
@@ -914,7 +1096,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.RequestSender.java">org/turbogwt/net/http/RequestSender.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.future.RequestProgressImpl.java">org/turbogwt/net/http/client/future/RequestProgressImpl.java</a>
                 </td>
                 <td>
                   0
@@ -928,7 +1110,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.DeserializationContext.java">org/turbogwt/net/http/serialization/DeserializationContext.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.FormParamSerializer.java">org/turbogwt/net/http/client/serialization/FormParamSerializer.java</a>
                 </td>
                 <td>
                   0
@@ -942,7 +1124,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.SetAsyncCallback.java">org/turbogwt/net/http/SetAsyncCallback.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.header.AcceptHeader.java">org/turbogwt/net/http/client/header/AcceptHeader.java</a>
                 </td>
                 <td>
                   0
@@ -956,7 +1138,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.model.PersonSerdes.java">org/turbogwt/net/http/model/PersonSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.model.Person.java">org/turbogwt/net/http/client/model/Person.java</a>
                 </td>
                 <td>
                   0
@@ -970,7 +1152,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.UnableToDeserializeException.java">org/turbogwt/net/http/serialization/UnableToDeserializeException.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.books.BookJsonSerdes.java">org/turbogwt/net/http/client/books/BookJsonSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -984,7 +1166,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.SimpleHeaderWithParameter.java">org/turbogwt/net/http/SimpleHeaderWithParameter.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.model.PersonSerdes.java">org/turbogwt/net/http/client/model/PersonSerdes.java</a>
                 </td>
                 <td>
                   0
@@ -998,7 +1180,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.SerializerAndDeserializerMatchTest.java">org/turbogwt/net/http/SerializerAndDeserializerMatchTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.SimpleHeaderWithParameterTest.java">org/turbogwt/net/http/client/SimpleHeaderWithParameterTest.java</a>
                 </td>
                 <td>
                   0
@@ -1012,7 +1194,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.JsonBooleanSerdes.java">org/turbogwt/net/http/serialization/JsonBooleanSerdes.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.header.SimpleHeader.java">org/turbogwt/net/http/client/header/SimpleHeader.java</a>
                 </td>
                 <td>
                   0
@@ -1026,7 +1208,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.serialization.SerdesManager.java">org/turbogwt/net/http/serialization/SerdesManager.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.DeferredCollectionResult.java">org/turbogwt/net/http/client/DeferredCollectionResult.java</a>
                 </td>
                 <td>
                   0
@@ -1040,7 +1222,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.books.RestTest.java">org/turbogwt/net/http/books/RestTest.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.UriBuilder.java">org/turbogwt/net/http/client/UriBuilder.java</a>
                 </td>
                 <td>
                   0
@@ -1054,7 +1236,91 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.Requestor.java">org/turbogwt/net/http/Requestor.java</a>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.mock.ServerConnectionMock.java">org/turbogwt/net/http/client/mock/ServerConnectionMock.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.ServerConnectionImpl.java">org/turbogwt/net/http/client/ServerConnectionImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.future.ResponseContext.java">org/turbogwt/net/http/client/future/ResponseContext.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.future.DeferredRequest.java">org/turbogwt/net/http/client/future/DeferredRequest.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.Serializer.java">org/turbogwt/net/http/client/serialization/Serializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.FormData.java">org/turbogwt/net/http/client/FormData.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://turbogwt.org//checkstyle.html#org.turbogwt.net.http.client.serialization.JsonRecordReader.java">org/turbogwt/net/http/client/serialization/JsonRecordReader.java</a>
                 </td>
                 <td>
                   0
