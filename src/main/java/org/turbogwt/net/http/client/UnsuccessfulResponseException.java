@@ -16,8 +16,6 @@
 
 package org.turbogwt.net.http.client;
 
-import com.google.gwt.http.client.Response;
-
 /**
  * Thrown to indicate that an HTTP request received a response with other status code then 2xx.
  * It provides access to the response in order to better handle the return.
@@ -54,14 +52,5 @@ public class UnsuccessfulResponseException extends RuntimeException {
      */
     public int getStatusCode() {
         return response.getStatusCode();
-    }
-
-    /**
-     * Response's HTTP body.
-     *
-     * @return The response's body text.
-     */
-    public String getReponseBody() {
-        return response.getText();
     }
 }

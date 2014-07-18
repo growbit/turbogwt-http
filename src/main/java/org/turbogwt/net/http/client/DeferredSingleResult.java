@@ -38,6 +38,14 @@ class DeferredSingleResult<T> extends DeferredObject<T, Throwable, RequestProgre
 
     @Override
     public DeferredRequest<T> resolve(Response response) {
+        // Check if access to Response was requested
+        if (responseType == org.turbogwt.net.http.client.Response.class) {
+            @SuppressWarnings("unchecked")
+            final T result = (T) new ResponseImpl(response);
+            super.resolve(result);
+            return this;
+        }
+
         final Headers headers = new Headers(response.getHeaders());
         final String responseContentType = headers.getValue("Content-Type");
 
@@ -51,7 +59,7 @@ class DeferredSingleResult<T> extends DeferredObject<T, Throwable, RequestProgre
 
     @Override
     public DeferredRequest<T> reject(Response response) {
-        super.reject(new UnsuccessfulResponseException(response));
+        super.reject(new UnsuccessfulResponseException(new ResponseImpl(response)));
         return this;
     }
 }

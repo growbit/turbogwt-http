@@ -57,7 +57,7 @@ class DeferredCollectionResult<T> extends DeferredObject<Collection<T>, Throwabl
 
     @Override
     public DeferredRequest<Collection<T>> reject(Response response) {
-        super.reject(new UnsuccessfulResponseException(response));
+        super.reject(new UnsuccessfulResponseException(new ResponseImpl(response)));
         return this;
     }
 }
