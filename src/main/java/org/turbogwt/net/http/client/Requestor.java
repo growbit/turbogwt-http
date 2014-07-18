@@ -61,19 +61,11 @@ public class Requestor {
     private final SerdesManager serdesManager = new SerdesManager();
     private final FilterManager filterManager = new FilterManager();
     private final ContainerFactoryManager collectionFactoryManager = new ContainerFactoryManager();
-    private String defaultContentType;
-    private String defaultAccept;
+    private String defaultContentType = "application/json";
+    private String defaultAccept = "application/json";
 
     public Requestor() {
-        defaultContentType = "application/json";
-        defaultAccept = "application/json";
-        serdesManager.registerSerdes(String.class, JsonStringSerdes.getInstance());
-        serdesManager.registerSerdes(Number.class, JsonNumberSerdes.getInstance());
-        serdesManager.registerSerdes(Boolean.class, JsonBooleanSerdes.getInstance());
-        serdesManager.registerSerdes(Void.class, VoidSerdes.getInstance());
-        serdesManager.registerSerdes(JavaScriptObject.class, OverlaySerdes.getInstance());
-        serdesManager.registerDeserializer(String.class, TextDeserializer.getInstance());
-        serdesManager.registerSerializer(FormParam.class, FormParamSerializer.getInstance());
+        initSerdesManager();
     }
 
     //===================================================================
@@ -99,6 +91,14 @@ public class Requestor {
 
     public String getDefaultAccept() {
         return defaultAccept;
+    }
+
+    public <T> Deserializer<T> getDeserializer(Class<T> type, String contentType) {
+        return serdesManager.getDeserializer(type, contentType);
+    }
+
+    public <T> Serializer<T> getSerializer(Class<T> type, String contentType) {
+        return serdesManager.getSerializer(type, contentType);
     }
 
     /**
@@ -176,5 +176,15 @@ public class Requestor {
         request.contentType(defaultContentType);
         request.accept(defaultAccept);
         return request;
+    }
+
+    private void initSerdesManager() {
+        serdesManager.registerSerdes(String.class, JsonStringSerdes.getInstance());
+        serdesManager.registerSerdes(Number.class, JsonNumberSerdes.getInstance());
+        serdesManager.registerSerdes(Boolean.class, JsonBooleanSerdes.getInstance());
+        serdesManager.registerSerdes(Void.class, VoidSerdes.getInstance());
+        serdesManager.registerSerdes(JavaScriptObject.class, OverlaySerdes.getInstance());
+        serdesManager.registerDeserializer(String.class, TextDeserializer.getInstance());
+        serdesManager.registerSerializer(FormParam.class, FormParamSerializer.getInstance());
     }
 }
