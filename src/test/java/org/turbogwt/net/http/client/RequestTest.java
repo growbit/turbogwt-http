@@ -55,8 +55,8 @@ public class RequestTest extends GWTTestCase {
 
     public void testCustomObjectArraySerializationDeserialization() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
-        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override
             public Person readJson(JsonRecordReader reader, DeserializationContext context) {
@@ -93,7 +93,7 @@ public class RequestTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.request(uri).payload(persons).post(Person.class, List.class)
+        requestor.request(uri).payload(persons).post(Person.class, List.class)
                 .done(new DoneCallback<Collection<Person>>() {
                     @Override
                     public void onDone(Collection<Person> result) {
@@ -109,8 +109,8 @@ public class RequestTest extends GWTTestCase {
 
     public void testCustomObjectRequest() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
-        requestory.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override
             public Person readJson(JsonRecordReader reader, DeserializationContext context) {
@@ -139,7 +139,7 @@ public class RequestTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.request(uri).get(Person.class).done(new DoneCallback<Person>() {
+        requestor.request(uri).get(Person.class).done(new DoneCallback<Person>() {
             @Override
             public void onDone(Person result) {
                 assertEquals(person, result);
@@ -153,8 +153,8 @@ public class RequestTest extends GWTTestCase {
 
     public void testCustomObjectSerialization() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
-        requestory.registerSerdes(Person.class, new PersonSerdes());
+        final Requestor requestor = new Requestor();
+        requestor.registerSerdes(Person.class, new PersonSerdes());
 
         final String uri = "/person";
 
@@ -166,7 +166,7 @@ public class RequestTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.request(uri).payload(person).post(Person.class).done(new DoneCallback<Person>() {
+        requestor.request(uri).payload(person).post(Person.class).done(new DoneCallback<Person>() {
             @Override
             public void onDone(Person result) {
                 callbackSuccessCalled[0] = true;
@@ -181,7 +181,7 @@ public class RequestTest extends GWTTestCase {
     public void testAwaysCallbackExecutionOnFailure() {
         ServerStub.clearStub();
 
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/failure";
 
@@ -190,7 +190,7 @@ public class RequestTest extends GWTTestCase {
         ServerStub.setReturnSuccess(false);
         final boolean[] executed = new boolean[1];
 
-        requestory.request("/notValid").get().always(new AlwaysCallback<Void, Throwable>() {
+        requestor.request("/notValid").get().always(new AlwaysCallback<Void, Throwable>() {
             @Override
             public void onAlways(Promise.State state, Void resolved, Throwable rejected) {
                 executed[0] = true;
@@ -204,7 +204,7 @@ public class RequestTest extends GWTTestCase {
     public void testAwaysCallbackExecutionOnSuccess() {
 
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/success";
 
@@ -212,7 +212,7 @@ public class RequestTest extends GWTTestCase {
 
         final boolean[] executed = new boolean[1];
 
-        requestory.request(uri).get().always(new AlwaysCallback<Void, Throwable>() {
+        requestor.request(uri).get().always(new AlwaysCallback<Void, Throwable>() {
             @Override
             public void onAlways(Promise.State state, Void resolved, Throwable rejected) {
                 executed[0] = true;
@@ -225,7 +225,7 @@ public class RequestTest extends GWTTestCase {
 
     public void testOverlayArrayRequest() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/person-jso-array";
 
@@ -244,7 +244,7 @@ public class RequestTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-//        requestory.get(uri, PersonJso.class, new ListAsyncCallback<PersonJso>() {
+//        requestor.get(uri, PersonJso.class, new ListAsyncCallback<PersonJso>() {
 //            @Override
 //            public void onFailure(Throwable caught) {
 //            }
@@ -257,7 +257,7 @@ public class RequestTest extends GWTTestCase {
 //            }
 //        });
 
-        requestory.request(uri).get(PersonJso.class, List.class).done(new DoneCallback<Collection<PersonJso>>() {
+        requestor.request(uri).get(PersonJso.class, List.class).done(new DoneCallback<Collection<PersonJso>>() {
             @Override
             public void onDone(Collection<PersonJso> result) {
                 JsArray<PersonJso> resultArray = ((JsArrayList<PersonJso>) result).asJsArray();
@@ -272,7 +272,7 @@ public class RequestTest extends GWTTestCase {
 
     public void testOverlayRequest() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/person-jso";
 
@@ -284,7 +284,7 @@ public class RequestTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.request(uri).get(PersonJso.class).done(new DoneCallback<PersonJso>() {
+        requestor.request(uri).get(PersonJso.class).done(new DoneCallback<PersonJso>() {
             @Override
             public void onDone(PersonJso result) {
                 assertEquals(Overlays.stringify(person), Overlays.stringify(result));
@@ -298,7 +298,7 @@ public class RequestTest extends GWTTestCase {
 
     public void testRequestHeaders() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/person-jso";
 
@@ -308,10 +308,10 @@ public class RequestTest extends GWTTestCase {
         ServerStub.responseFor(uri, ResponseMock.of(serializedResp, 200, "OK",
                 new ContentTypeHeader("application/json")));
 
-        requestory.request(uri).payload(person).post(PersonJso.class);
+        requestor.request(uri).payload(person).post(PersonJso.class);
         ServerStub.triggerPendingRequest();
 
-        // On #post execution, request mock should be set from Requestory
+        // On #post execution, request mock should be set from requestor
         final RequestMock requestMock = ServerStub.getRequestData(uri);
         assertNotNull(requestMock);
         assertNotNull(requestMock.getHeaders());
@@ -331,7 +331,7 @@ public class RequestTest extends GWTTestCase {
 
     public void testStringArrayRequest() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/string-array";
         final String[] response = {"Some", "string", "array", "response"};
@@ -341,7 +341,7 @@ public class RequestTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.request(uri).get(String.class, List.class).done(new DoneCallback<Collection<String>>() {
+        requestor.request(uri).get(String.class, List.class).done(new DoneCallback<Collection<String>>() {
             @Override
             public void onDone(Collection<String> result) {
                 assertTrue(Arrays.equals(result.toArray(), response));
@@ -355,7 +355,7 @@ public class RequestTest extends GWTTestCase {
 
     public void testStringRequest() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/string";
         final String response = "Some string response";
@@ -365,7 +365,7 @@ public class RequestTest extends GWTTestCase {
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.request(uri).get(String.class).done(new DoneCallback<String>() {
+        requestor.request(uri).get(String.class).done(new DoneCallback<String>() {
             @Override
             public void onDone(String result) {
                 assertEquals(response, result);
@@ -379,14 +379,14 @@ public class RequestTest extends GWTTestCase {
 
     public void testVoidRequest() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/void";
         ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
 
         final boolean[] callbackSuccessCalled = new boolean[1];
 
-        requestory.request(uri).get().done(new DoneCallback<Void>() {
+        requestor.request(uri).get().done(new DoneCallback<Void>() {
             @Override
             public void onDone(Void result) {
                 assertNull(result);
@@ -400,7 +400,7 @@ public class RequestTest extends GWTTestCase {
 
     public void testFormDataRequest() {
         ServerStub.clearStub();
-        final Requestor requestory = new Requestor();
+        final Requestor requestor = new Requestor();
 
         final String uri = "/form";
         ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("text/plain")));
@@ -408,9 +408,32 @@ public class RequestTest extends GWTTestCase {
         final FormData formData = FormData.builder().put("name", "John Doe").put("age", 1, 2, 3.5).build();
         final String serialized = "name=John+Doe&age=1&age=2&age=3.5";
 
-        requestory.request(uri).contentType(FormParam.CONTENT_TYPE).payload(formData).post();
+        requestor.request(uri).contentType(FormParam.CONTENT_TYPE).payload(formData).post();
 
         final RequestMock requestMock = ServerStub.getRequestData(uri);
         assertEquals(serialized, requestMock.getData());
+    }
+
+    public void testResponseResult() {
+        ServerStub.clearStub();
+        final Requestor requestor = new Requestor();
+
+        final String uri = "/response";
+        final String responseText = "response text";
+        ServerStub.responseFor(uri, ResponseMock.of(responseText, 200, "OK", new ContentTypeHeader("text/plain")));
+
+        final boolean[] callbackSuccessCalled = new boolean[1];
+
+        requestor.request(uri).get(Response.class).done(new DoneCallback<Response>() {
+            @Override
+            public void onDone(Response result) {
+                assertEquals(responseText, result.getText());
+                assertEquals(200, result.getStatusCode());
+                callbackSuccessCalled[0] = true;
+            }
+        });
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbackSuccessCalled[0]);
     }
 }
