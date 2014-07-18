@@ -219,7 +219,7 @@ public class RequestImpl implements RequestDispatcher {
         return deferred;
     }
 
-    private RequestCallback createRequestCallback(final DeferredRequestDecorator deferred) {
+    private <D> RequestCallback createRequestCallback(final DeferredRequest<D> deferred) {
         return new RequestCallbackWithProgress() {
                 @Override
                 public void onResponseReceived(Request request, Response response) {

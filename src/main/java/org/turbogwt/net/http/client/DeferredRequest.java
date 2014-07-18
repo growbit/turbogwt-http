@@ -18,15 +18,13 @@ package org.turbogwt.net.http.client;
 
 import com.google.gwt.http.client.Response;
 
+import org.turbogwt.core.future.shared.Deferred;
 import org.turbogwt.net.http.client.future.RequestProgress;
+import org.turbogwt.net.http.client.future.RequestPromise;
 
-interface DeferredRequestDecorator {
+interface DeferredRequest<T> extends RequestPromise<T> , Deferred<T, Throwable, RequestProgress> {
 
-    void resolve(Response response);
+    DeferredRequest<T> resolve(Response response);
 
-    void notify(RequestProgress progress);
-
-    void reject(Response response);
-
-    void reject(Throwable throwable);
+    DeferredRequest<T> reject(Response response);
 }

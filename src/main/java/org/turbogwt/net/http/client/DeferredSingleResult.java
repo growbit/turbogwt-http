@@ -18,11 +18,12 @@ package org.turbogwt.net.http.client;
 
 import com.google.gwt.http.client.Response;
 
+import org.turbogwt.core.future.shared.impl.DeferredObject;
 import org.turbogwt.net.http.client.future.RequestProgress;
 import org.turbogwt.net.http.client.serialization.DeserializationContext;
 import org.turbogwt.net.http.client.serialization.Deserializer;
 
-class DeferredSingleResult<T> extends DeferredSingleDecorator<T> implements DeferredRequestDecorator {
+class DeferredSingleResult<T> extends DeferredObject<T, Throwable, RequestProgress> implements DeferredRequest<T> {
 
     private final Class<T> responseType;
     private final SerdesManager serdesManager;
@@ -36,7 +37,7 @@ class DeferredSingleResult<T> extends DeferredSingleDecorator<T> implements Defe
     }
 
     @Override
-    public void resolve(Response response) {
+    public DeferredRequest<T> resolve(Response response) {
         final Headers headers = new Headers(response.getHeaders());
         final String responseContentType = headers.getValue("Content-Type");
 
@@ -44,25 +45,13 @@ class DeferredSingleResult<T> extends DeferredSingleDecorator<T> implements Defe
         final DeserializationContext context = DeserializationContext.of(headers, containerFactoryManager);
         T result = deserializer.deserialize(response.getText(), context);
 
-        // Set response before in order to correctly create the response context
-        getDeferredDelegate().setResponse(response);
-        getDeferredDelegate().resolve(result);
+        super.resolve(result);
+        return this;
     }
 
     @Override
-    public void notify(RequestProgress progress) {
-        getDeferredDelegate().notify(progress);
-    }
-
-    @Override
-    public void reject(Response response) {
-        // Set response before in order to correctly create the response context
-        getDeferredDelegate().setResponse(response);
-        getDeferredDelegate().reject(new UnsuccessfulResponseException(response));
-    }
-
-    @Override
-    public void reject(Throwable throwable) {
-        getDeferredDelegate().reject(throwable);
+    public DeferredRequest<T> reject(Response response) {
+        super.reject(new UnsuccessfulResponseException(response));
+        return this;
     }
 }

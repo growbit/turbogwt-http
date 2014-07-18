@@ -28,8 +28,8 @@ import org.turbogwt.core.collections.client.JsArray;
 import org.turbogwt.core.collections.client.JsArrayList;
 import org.turbogwt.core.future.shared.AlwaysCallback;
 import org.turbogwt.core.future.shared.DoneCallback;
+import org.turbogwt.core.future.shared.Promise;
 import org.turbogwt.core.util.client.Overlays;
-import org.turbogwt.net.http.client.future.ResponseContext;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.RequestMock;
 import org.turbogwt.net.http.client.mock.ResponseMock;
@@ -190,9 +190,9 @@ public class RequestTest extends GWTTestCase {
         ServerStub.setReturnSuccess(false);
         final boolean[] executed = new boolean[1];
 
-        requestory.request("/notValid").get().always(new AlwaysCallback<Void, Throwable, ResponseContext>() {
+        requestory.request("/notValid").get().always(new AlwaysCallback<Void, Throwable>() {
             @Override
-            public void onAlways(ResponseContext context, Void resolved, Throwable rejected) {
+            public void onAlways(Promise.State state, Void resolved, Throwable rejected) {
                 executed[0] = true;
             }
         });
@@ -212,9 +212,9 @@ public class RequestTest extends GWTTestCase {
 
         final boolean[] executed = new boolean[1];
 
-        requestory.request(uri).get().always(new AlwaysCallback<Void, Throwable, ResponseContext>() {
+        requestory.request(uri).get().always(new AlwaysCallback<Void, Throwable>() {
             @Override
-            public void onAlways(ResponseContext context, Void resolved, Throwable rejected) {
+            public void onAlways(Promise.State state, Void resolved, Throwable rejected) {
                 executed[0] = true;
             }
         });

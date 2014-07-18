@@ -23,5 +23,5 @@ import org.turbogwt.core.future.shared.Promise;
  *
  * @param <T> The type of successful result
  */
-public interface RequestPromise<T> extends Promise<T, Throwable, RequestProgress, ResponseContext> {
+public interface RequestPromise<T> extends Promise<T, Throwable, RequestProgress> {
 }

@@ -27,8 +27,8 @@ import org.turbogwt.core.future.shared.AlwaysCallback;
 import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.core.future.shared.FailCallback;
 import org.turbogwt.core.future.shared.ProgressCallback;
+import org.turbogwt.core.future.shared.Promise;
 import org.turbogwt.net.http.client.future.RequestProgress;
-import org.turbogwt.net.http.client.future.ResponseContext;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
@@ -109,9 +109,9 @@ public class RequestorTest extends GWTTestCase {
                     public void onFail(Throwable result) {
                         callbackFailCalled[0] = true;
                     }
-                }).always(new AlwaysCallback<Collection<Person>, Throwable, ResponseContext>() {
+                }).always(new AlwaysCallback<Collection<Person>, Throwable>() {
                     @Override
-                    public void onAlways(ResponseContext context, Collection<Person> resolved,  Throwable rejected) {
+                    public void onAlways(Promise.State state, Collection<Person> resolved,  Throwable rejected) {
                         callbackAlwaysCalled[0] = true;
                     }
                 });
