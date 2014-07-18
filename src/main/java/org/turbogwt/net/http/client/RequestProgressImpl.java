@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client.future;
+package org.turbogwt.net.http.client;
 
 /**
  * Default implementation of {@link RequestProgress}.

@@ -30,8 +30,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.turbogwt.net.http.client.future.RequestProgressImpl;
-import org.turbogwt.net.http.client.future.RequestPromise;
 import org.turbogwt.net.http.client.header.AcceptHeader;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.header.SimpleHeader;

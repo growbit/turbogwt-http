@@ -28,7 +28,6 @@ import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.core.future.shared.FailCallback;
 import org.turbogwt.core.future.shared.ProgressCallback;
 import org.turbogwt.core.future.shared.Promise;
-import org.turbogwt.net.http.client.future.RequestProgress;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;

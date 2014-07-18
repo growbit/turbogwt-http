@@ -19,8 +19,6 @@ package org.turbogwt.net.http.client;
 import com.google.gwt.http.client.Response;
 
 import org.turbogwt.core.future.shared.Deferred;
-import org.turbogwt.net.http.client.future.RequestProgress;
-import org.turbogwt.net.http.client.future.RequestPromise;
 
 interface DeferredRequest<T> extends RequestPromise<T> , Deferred<T, Throwable, RequestProgress> {
 

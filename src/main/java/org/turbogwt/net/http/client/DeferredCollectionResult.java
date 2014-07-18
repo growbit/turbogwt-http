@@ -21,7 +21,6 @@ import com.google.gwt.http.client.Response;
 import java.util.Collection;
 
 import org.turbogwt.core.future.shared.impl.DeferredObject;
-import org.turbogwt.net.http.client.future.RequestProgress;
 import org.turbogwt.net.http.client.serialization.DeserializationContext;
 import org.turbogwt.net.http.client.serialization.Deserializer;
 
