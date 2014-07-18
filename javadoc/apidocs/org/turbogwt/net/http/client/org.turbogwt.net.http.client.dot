@@ -11,68 +11,95 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.UriBuilderImpl
-	c148 [label=<<table title="org.turbogwt.net.http.client.UriBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilderImpl.html">
+	c144 [label=<<table title="org.turbogwt.net.http.client.UriBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilderImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UriBuilderImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UriBuilderImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.UriBuilderException
-	c149 [label=<<table title="org.turbogwt.net.http.client.UriBuilderException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilderException.html">
+	c145 [label=<<table title="org.turbogwt.net.http.client.UriBuilderException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilderException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UriBuilderException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UriBuilderException.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.UriBuilder
-	c150 [label=<<table title="org.turbogwt.net.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilder.html">
+	c146 [label=<<table title="org.turbogwt.net.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> UriBuilder </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./UriBuilder.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.Uri
-	c151 [label=<<table title="org.turbogwt.net.http.client.Uri" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Uri.html">
+	c147 [label=<<table title="org.turbogwt.net.http.client.Uri" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Uri.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Uri </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Uri.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.UnsuccessfulResponseException
-	c152 [label=<<table title="org.turbogwt.net.http.client.UnsuccessfulResponseException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnsuccessfulResponseException.html">
+	c148 [label=<<table title="org.turbogwt.net.http.client.UnsuccessfulResponseException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnsuccessfulResponseException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnsuccessfulResponseException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UnsuccessfulResponseException.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.ServerImpl
-	c153 [label=<<table title="org.turbogwt.net.http.client.ServerImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerImpl.html">
+	c149 [label=<<table title="org.turbogwt.net.http.client.ServerImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ServerImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ServerImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.ServerConnectionImpl
-	c154 [label=<<table title="org.turbogwt.net.http.client.ServerConnectionImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerConnectionImpl.html">
+	c150 [label=<<table title="org.turbogwt.net.http.client.ServerConnectionImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerConnectionImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ServerConnectionImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ServerConnectionImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.ServerConnection
-	c155 [label=<<table title="org.turbogwt.net.http.client.ServerConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerConnection.html">
+	c151 [label=<<table title="org.turbogwt.net.http.client.ServerConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ServerConnection.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ServerConnection </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ServerConnection.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.Server
-	c156 [label=<<table title="org.turbogwt.net.http.client.Server" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Server.html">
+	c152 [label=<<table title="org.turbogwt.net.http.client.Server" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Server.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Server </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Server.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.ResponseFilter
-	c157 [label=<<table title="org.turbogwt.net.http.client.ResponseFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ResponseFilter.html">
+	c153 [label=<<table title="org.turbogwt.net.http.client.ResponseFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ResponseFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ResponseFilter </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ResponseFilter.html", fontname="arial", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.net.http.client.Response
+	c154 [label=<<table title="org.turbogwt.net.http.client.Response" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Response.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Response </td></tr>
+		</table></td></tr>
+		</table>>, URL="./Response.html", fontname="arial", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.net.http.client.RequestPromise<T>
+	c155 [label=<<table title="org.turbogwt.net.http.client.RequestPromise" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestPromise.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> RequestPromise&lt;T&gt; </td></tr>
+		</table></td></tr>
+		</table>>, URL="./RequestPromise.html", fontname="arial", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.net.http.client.RequestProgressImpl
+	c156 [label=<<table title="org.turbogwt.net.http.client.RequestProgressImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestProgressImpl.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RequestProgressImpl </td></tr>
+		</table></td></tr>
+		</table>>, URL="./RequestProgressImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.net.http.client.RequestProgress
+	c157 [label=<<table title="org.turbogwt.net.http.client.RequestProgress" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestProgress.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> RequestProgress </td></tr>
+		</table></td></tr>
+		</table>>, URL="./RequestProgress.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.Requestor
 	c158 [label=<<table title="org.turbogwt.net.http.client.Requestor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Requestor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
@@ -161,11 +188,13 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="./ContainerFactoryManager.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.UriBuilderImpl extends org.turbogwt.net.http.client.UriBuilder
-	c150:p -> c148:p [dir=back,arrowtail=empty];
+	c146:p -> c144:p [dir=back,arrowtail=empty];
 	//org.turbogwt.net.http.client.ServerImpl implements org.turbogwt.net.http.client.Server
-	c156:p -> c153:p [dir=back,arrowtail=empty,style=dashed];
+	c152:p -> c149:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.net.http.client.ServerConnectionImpl implements org.turbogwt.net.http.client.ServerConnection
-	c155:p -> c154:p [dir=back,arrowtail=empty,style=dashed];
+	c151:p -> c150:p [dir=back,arrowtail=empty,style=dashed];
+	//org.turbogwt.net.http.client.RequestProgressImpl implements org.turbogwt.net.http.client.RequestProgress
+	c157:p -> c156:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.net.http.client.RequestImpl implements org.turbogwt.net.http.client.RequestDispatcher
 	c162:p -> c159:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.net.http.client.RequestDispatcher implements org.turbogwt.net.http.client.Request

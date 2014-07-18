@@ -11,15 +11,15 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.UnsuccessfulResponseException
-	c4531 [label=<<table title="org.turbogwt.net.http.client.UnsuccessfulResponseException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UnsuccessfulResponseException.html">
+	c4192 [label=<<table title="org.turbogwt.net.http.client.UnsuccessfulResponseException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UnsuccessfulResponseException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnsuccessfulResponseException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UnsuccessfulResponseException.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.UnsuccessfulResponseException extends java.lang.RuntimeException
-	c4587:p -> c4531:p [dir=back,arrowtail=empty];
+	c4246:p -> c4192:p [dir=back,arrowtail=empty];
 	// java.lang.RuntimeException
-	c4587 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
+	c4246 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RuntimeException </td></tr>
 		</table></td></tr>

@@ -11,35 +11,35 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.serialization.Serdes<T>
-	c1731 [label=<<table title="org.turbogwt.net.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
+	c1541 [label=<<table title="org.turbogwt.net.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serdes&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Serdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.serialization.JsonValueSerdes<T>
-	c1733 [label=<<table title="org.turbogwt.net.http.client.serialization.JsonValueSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonValueSerdes.html">
+	c1543 [label=<<table title="org.turbogwt.net.http.client.serialization.JsonValueSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonValueSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> JsonValueSerdes&lt;T&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsonValueSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.serialization.JsonSerdes<T>
-	c1736 [label=<<table title="org.turbogwt.net.http.client.serialization.JsonSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsonSerdes.html">
+	c1546 [label=<<table title="org.turbogwt.net.http.client.serialization.JsonSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JsonSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> JsonSerdes&lt;T&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsonSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.serialization.JsonObjectSerdes<T>
-	c1739 [label=<<table title="org.turbogwt.net.http.client.serialization.JsonObjectSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonObjectSerdes.html">
+	c1549 [label=<<table title="org.turbogwt.net.http.client.serialization.JsonObjectSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JsonObjectSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> JsonObjectSerdes&lt;T&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./JsonObjectSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.serialization.JsonValueSerdes<T> extends org.turbogwt.net.http.client.serialization.JsonSerdes<T>
-	c1736:p -> c1733:p [dir=back,arrowtail=empty];
+	c1546:p -> c1543:p [dir=back,arrowtail=empty];
 	//org.turbogwt.net.http.client.serialization.JsonSerdes<T> implements org.turbogwt.net.http.client.serialization.Serdes<T>
-	c1731:p -> c1736:p [dir=back,arrowtail=empty,style=dashed];
+	c1541:p -> c1546:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.net.http.client.serialization.JsonObjectSerdes<T> extends org.turbogwt.net.http.client.serialization.JsonSerdes<T>
-	c1736:p -> c1739:p [dir=back,arrowtail=empty];
+	c1546:p -> c1549:p [dir=back,arrowtail=empty];
 }
 

@@ -11,19 +11,19 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.serialization.Serdes<T>
-	c2285 [label=<<table title="org.turbogwt.net.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
+	c2079 [label=<<table title="org.turbogwt.net.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serdes&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Serdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.serialization.OverlaySerdes<T extends com.google.gwt.core.client.JavaScriptObject>
-	c2286 [label=<<table title="org.turbogwt.net.http.client.serialization.OverlaySerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OverlaySerdes.html">
+	c2080 [label=<<table title="org.turbogwt.net.http.client.serialization.OverlaySerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OverlaySerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OverlaySerdes&lt;T extends JavaScriptObject&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./OverlaySerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.serialization.OverlaySerdes<T extends com.google.gwt.core.client.JavaScriptObject> implements org.turbogwt.net.http.client.serialization.Serdes<T>
-	c2285:p -> c2286:p [dir=back,arrowtail=empty,style=dashed];
+	c2079:p -> c2080:p [dir=back,arrowtail=empty,style=dashed];
 }
 

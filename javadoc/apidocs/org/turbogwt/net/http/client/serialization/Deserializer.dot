@@ -11,28 +11,28 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.serialization.TextDeserializer
-	c894 [label=<<table title="org.turbogwt.net.http.client.serialization.TextDeserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TextDeserializer.html">
+	c728 [label=<<table title="org.turbogwt.net.http.client.serialization.TextDeserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TextDeserializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TextDeserializer </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TextDeserializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.serialization.Serdes<T>
-	c898 [label=<<table title="org.turbogwt.net.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
+	c732 [label=<<table title="org.turbogwt.net.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serdes&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Serdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.serialization.Deserializer<T>
-	c911 [label=<<table title="org.turbogwt.net.http.client.serialization.Deserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Deserializer.html">
+	c745 [label=<<table title="org.turbogwt.net.http.client.serialization.Deserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Deserializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Deserializer&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Deserializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.serialization.TextDeserializer implements org.turbogwt.net.http.client.serialization.Deserializer<T>
-	c911:p -> c894:p [dir=back,arrowtail=empty,style=dashed];
+	c745:p -> c728:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.net.http.client.serialization.Serdes<T> implements org.turbogwt.net.http.client.serialization.Deserializer<T>
-	c911:p -> c898:p [dir=back,arrowtail=empty,style=dashed];
+	c745:p -> c732:p [dir=back,arrowtail=empty,style=dashed];
 }
 

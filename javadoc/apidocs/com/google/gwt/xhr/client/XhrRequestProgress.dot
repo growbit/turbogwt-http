@@ -11,15 +11,15 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// com.google.gwt.xhr.client.XhrRequestProgress
-	c5081 [label=<<table title="com.google.gwt.xhr.client.XhrRequestProgress" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./XhrRequestProgress.html">
+	c4726 [label=<<table title="com.google.gwt.xhr.client.XhrRequestProgress" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./XhrRequestProgress.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> XhrRequestProgress </td></tr>
 		</table></td></tr>
 		</table>>, URL="./XhrRequestProgress.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//com.google.gwt.xhr.client.XhrRequestProgress extends com.google.gwt.core.client.JavaScriptObject
-	c5143:p -> c5081:p [dir=back,arrowtail=empty];
+	c4786:p -> c4726:p [dir=back,arrowtail=empty];
 	// com.google.gwt.core.client.JavaScriptObject
-	c5143 [label=<<table title="com.google.gwt.core.client.JavaScriptObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html">
+	c4786 [label=<<table title="com.google.gwt.core.client.JavaScriptObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/core/client/JavaScriptObject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JavaScriptObject </td></tr>
 		</table></td></tr>

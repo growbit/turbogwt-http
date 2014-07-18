@@ -11,19 +11,19 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.serialization.TextDeserializer
-	c4361 [label=<<table title="org.turbogwt.net.http.client.serialization.TextDeserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TextDeserializer.html">
+	c4026 [label=<<table title="org.turbogwt.net.http.client.serialization.TextDeserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TextDeserializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TextDeserializer </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TextDeserializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.serialization.Deserializer<T>
-	c4378 [label=<<table title="org.turbogwt.net.http.client.serialization.Deserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Deserializer.html">
+	c4043 [label=<<table title="org.turbogwt.net.http.client.serialization.Deserializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Deserializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Deserializer&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Deserializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.serialization.TextDeserializer implements org.turbogwt.net.http.client.serialization.Deserializer<T>
-	c4378:p -> c4361:p [dir=back,arrowtail=empty,style=dashed];
+	c4043:p -> c4026:p [dir=back,arrowtail=empty,style=dashed];
 }
 

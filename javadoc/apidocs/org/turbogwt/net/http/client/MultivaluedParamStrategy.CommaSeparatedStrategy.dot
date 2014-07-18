@@ -11,18 +11,18 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.MultivaluedParamStrategy
-	c2118 [label=<<table title="org.turbogwt.net.http.client.MultivaluedParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultivaluedParamStrategy.html">
+	c1922 [label=<<table title="org.turbogwt.net.http.client.MultivaluedParamStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultivaluedParamStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> MultivaluedParamStrategy </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./MultivaluedParamStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.MultivaluedParamStrategy.CommaSeparatedStrategy
-	c2120 [label=<<table title="org.turbogwt.net.http.client.MultivaluedParamStrategy.CommaSeparatedStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultivaluedParamStrategy.CommaSeparatedStrategy.html">
+	c1924 [label=<<table title="org.turbogwt.net.http.client.MultivaluedParamStrategy.CommaSeparatedStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultivaluedParamStrategy.CommaSeparatedStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CommaSeparatedStrategy </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MultivaluedParamStrategy.CommaSeparatedStrategy.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.MultivaluedParamStrategy.CommaSeparatedStrategy extends org.turbogwt.net.http.client.MultivaluedParamStrategy
-	c2118:p -> c2120:p [dir=back,arrowtail=empty];
+	c1922:p -> c1924:p [dir=back,arrowtail=empty];
 }
 

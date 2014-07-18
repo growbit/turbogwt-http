@@ -11,19 +11,19 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.RequestImpl
-	c3015 [label=<<table title="org.turbogwt.net.http.client.RequestImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestImpl.html">
+	c2793 [label=<<table title="org.turbogwt.net.http.client.RequestImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RequestImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./RequestImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.RequestDispatcher
-	c3018 [label=<<table title="org.turbogwt.net.http.client.RequestDispatcher" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestDispatcher.html">
+	c2796 [label=<<table title="org.turbogwt.net.http.client.RequestDispatcher" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestDispatcher.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> RequestDispatcher </td></tr>
 		</table></td></tr>
 		</table>>, URL="./RequestDispatcher.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.RequestImpl implements org.turbogwt.net.http.client.RequestDispatcher
-	c3018:p -> c3015:p [dir=back,arrowtail=empty,style=dashed];
+	c2796:p -> c2793:p [dir=back,arrowtail=empty,style=dashed];
 }
 

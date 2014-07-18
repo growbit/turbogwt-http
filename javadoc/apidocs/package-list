@@ -1,6 +1,5 @@
 com.google.gwt.http.client
 com.google.gwt.xhr.client
 org.turbogwt.net.http.client
-org.turbogwt.net.http.client.future
 org.turbogwt.net.http.client.header
 org.turbogwt.net.http.client.serialization

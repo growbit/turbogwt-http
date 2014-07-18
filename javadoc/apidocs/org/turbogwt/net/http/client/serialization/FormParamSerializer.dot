@@ -11,19 +11,19 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.serialization.Serializer<T>
-	c1172 [label=<<table title="org.turbogwt.net.http.client.serialization.Serializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serializer.html">
+	c998 [label=<<table title="org.turbogwt.net.http.client.serialization.Serializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serializer&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Serializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.serialization.FormParamSerializer
-	c1187 [label=<<table title="org.turbogwt.net.http.client.serialization.FormParamSerializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FormParamSerializer.html">
+	c1013 [label=<<table title="org.turbogwt.net.http.client.serialization.FormParamSerializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FormParamSerializer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FormParamSerializer </td></tr>
 		</table></td></tr>
 		</table>>, URL="./FormParamSerializer.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.serialization.FormParamSerializer implements org.turbogwt.net.http.client.serialization.Serializer<T>
-	c1172:p -> c1187:p [dir=back,arrowtail=empty,style=dashed];
+	c998:p -> c1013:p [dir=back,arrowtail=empty,style=dashed];
 }
 

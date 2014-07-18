@@ -11,18 +11,18 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.UriBuilderImpl
-	c4806 [label=<<table title="org.turbogwt.net.http.client.UriBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UriBuilderImpl.html">
+	c4459 [label=<<table title="org.turbogwt.net.http.client.UriBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UriBuilderImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UriBuilderImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UriBuilderImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.UriBuilder
-	c4808 [label=<<table title="org.turbogwt.net.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilder.html">
+	c4461 [label=<<table title="org.turbogwt.net.http.client.UriBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UriBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="arial italic"> UriBuilder </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./UriBuilder.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.UriBuilderImpl extends org.turbogwt.net.http.client.UriBuilder
-	c4808:p -> c4806:p [dir=back,arrowtail=empty];
+	c4461:p -> c4459:p [dir=back,arrowtail=empty];
 }
 

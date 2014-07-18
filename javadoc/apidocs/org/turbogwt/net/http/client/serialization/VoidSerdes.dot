@@ -11,19 +11,19 @@ digraph G {
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.serialization.VoidSerdes
-	c4913 [label=<<table title="org.turbogwt.net.http.client.serialization.VoidSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./VoidSerdes.html">
+	c4562 [label=<<table title="org.turbogwt.net.http.client.serialization.VoidSerdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./VoidSerdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> VoidSerdes </td></tr>
 		</table></td></tr>
 		</table>>, URL="./VoidSerdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.serialization.Serdes<T>
-	c4920 [label=<<table title="org.turbogwt.net.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
+	c4569 [label=<<table title="org.turbogwt.net.http.client.serialization.Serdes" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Serdes.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serdes&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Serdes.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.serialization.VoidSerdes implements org.turbogwt.net.http.client.serialization.Serdes<T>
-	c4920:p -> c4913:p [dir=back,arrowtail=empty,style=dashed];
+	c4569:p -> c4562:p [dir=back,arrowtail=empty,style=dashed];
 }
 
