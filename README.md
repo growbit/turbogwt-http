@@ -93,14 +93,14 @@ requestor.request("/books").get(Book.class, List.class).done(new DoneCallback<Co
 
 When deserializing, the Deserializer retrieves an instance of the collection (container) from the ContainerFactoryManager, managed by the Requestor.
 
-You can create custom Factories of Coontainers and register them in the Requestor.
+You can create custom Factories of Containers and register them in the Requestor.
 
 ### Always executed callbacks
 Add callbacks to be called when request has either succeeded or failed.
 ```java 
 requestor.request(uri).get(Book.class).always(new AlwaysCallback<Book, Throwable, ResponseContext>() {
-    public void onAlways(ResponseContext responseContext, Book book, Throwable throwable) {
-        if (responseContext.getState() == Promise.State.RESOLVED) {
+    public void onAlways(Promise.State state, Book book, Throwable throwable) {
+        if (state == Promise.State.RESOLVED) {
             // Do something with book
         } else {
             // Do something with throwable
