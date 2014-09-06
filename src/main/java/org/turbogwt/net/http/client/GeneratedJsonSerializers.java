@@ -16,12 +16,12 @@
 
 package org.turbogwt.net.http.client;
 
-import org.turbogwt.net.http.client.serialization.Deserializer;
+import org.turbogwt.net.http.client.serialization.Serializer;
 
 /**
- * Generated Deserializers from {@link org.turbogwt.net.http.shared.serialization.JsonDeserialize}.
+ * Generated Serializers from {@link org.turbogwt.net.http.shared.serialization.JsonSerialize}.
  *
  * @author Danilo Reinert
  */
-interface GeneratedJsonDeserializers extends Iterable<Deserializer<?>> {
+interface GeneratedJsonSerializers extends Iterable<Serializer<?>> {
 }

@@ -72,7 +72,7 @@ public class GeneratedJsonSerializeTest extends GWTTestCase {
     }
 
     /**
-     * @author Danilo Reinert
+     * Class to auto-generate serializer.
      */
     @JsonSerialize
     public class Animal {

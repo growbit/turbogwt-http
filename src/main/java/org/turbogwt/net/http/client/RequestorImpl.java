@@ -34,6 +34,11 @@ import org.turbogwt.net.http.client.serialization.Serializer;
 import org.turbogwt.net.http.client.serialization.TextDeserializer;
 import org.turbogwt.net.http.client.serialization.VoidSerdes;
 
+/**
+ * Default implementation for {@link Requestor}.
+ *
+ * @author Danilo Reinert
+ */
 public class RequestorImpl implements Requestor {
 
     private final SerdesManager serdesManager = new SerdesManager();
@@ -124,7 +129,7 @@ public class RequestorImpl implements Requestor {
         serdesManager.registerDeserializer(String.class, TextDeserializer.getInstance());
         serdesManager.registerSerializer(FormParam.class, FormParamSerializer.getInstance());
 
-        GeneratedJsonSerializers generatedJsonSerializers = GWT.create(GeneratedJsonSerializers.class);
+        final GeneratedJsonSerializers generatedJsonSerializers = GWT.create(GeneratedJsonSerializers.class);
         for (Serializer<?> generatedJsonSerializer : generatedJsonSerializers) {
             final Class clazz = generatedJsonSerializer.handledType();
             serdesManager.registerSerializer(clazz, generatedJsonSerializer);
