@@ -31,6 +31,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface JsonDeserialize {
+
     /**
      * A list of content-type patterns.
      * The patterns accept wildcards like "&#42;&#47;json".

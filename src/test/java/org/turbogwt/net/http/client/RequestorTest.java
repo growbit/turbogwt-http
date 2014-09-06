@@ -16,6 +16,7 @@
 
 package org.turbogwt.net.http.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import java.util.Arrays;
@@ -50,7 +51,7 @@ public class RequestorTest extends GWTTestCase {
 
     public void testCustomObjectArraySerializationDeserialization() {
         ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = GWT.create(Requestor.class);
         requestor.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override

@@ -16,6 +16,7 @@
 
 package org.turbogwt.net.http.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import java.util.ArrayList;
@@ -218,7 +219,7 @@ public class MultipleSerdesByClassTest extends GWTTestCase {
     }
 
     private Requestor getRequestor() {
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = GWT.create(Requestor.class);
         requestor.registerSerdes(Book.class, jsonSerdes);
         requestor.registerSerdes(Book.class, xmlSerdes);
         return requestor;

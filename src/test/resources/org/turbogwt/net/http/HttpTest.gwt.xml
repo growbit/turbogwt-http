@@ -32,6 +32,10 @@
         <when-type-is class="org.turbogwt.net.http.client.UriBuilder"/>
     </replace-with>
 
+    <replace-with class="org.turbogwt.net.http.client.RequestorImpl">
+        <when-type-is class="org.turbogwt.net.http.client.Requestor"/>
+    </replace-with>
+
     <replace-with class="org.turbogwt.net.http.client.mock.ServerStub">
         <when-type-is class="org.turbogwt.net.http.client.Server"/>
     </replace-with>

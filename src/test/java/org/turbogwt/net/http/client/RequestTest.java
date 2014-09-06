@@ -16,6 +16,7 @@
 
 package org.turbogwt.net.http.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.http.client.Header;
 import com.google.gwt.junit.client.GWTTestCase;
 
@@ -54,8 +55,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testCustomObjectArraySerializationDeserialization() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
         requestor.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override
@@ -108,8 +108,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testCustomObjectRequest() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
         requestor.registerSerdes(Person.class, new JsonObjectSerdes<Person>(Person.class) {
 
             @Override
@@ -152,8 +151,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testCustomObjectSerialization() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
         requestor.registerSerdes(Person.class, new PersonSerdes());
 
         final String uri = "/person";
@@ -179,9 +177,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testAwaysCallbackExecutionOnFailure() {
-        ServerStub.clearStub();
-
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/failure";
 
@@ -203,8 +199,7 @@ public class RequestTest extends GWTTestCase {
 
     public void testAwaysCallbackExecutionOnSuccess() {
 
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/success";
 
@@ -224,8 +219,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testOverlayArrayRequest() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/person-jso-array";
 
@@ -271,8 +265,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testOverlayRequest() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/person-jso";
 
@@ -297,8 +290,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testRequestHeaders() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/person-jso";
 
@@ -330,8 +322,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testStringArrayRequest() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/string-array";
         final String[] response = {"Some", "string", "array", "response"};
@@ -354,8 +345,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testStringRequest() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/string";
         final String response = "Some string response";
@@ -378,8 +368,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testVoidRequest() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/void";
         ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("application/json")));
@@ -399,8 +388,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testFormDataRequest() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/form";
         ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK", new ContentTypeHeader("text/plain")));
@@ -415,8 +403,7 @@ public class RequestTest extends GWTTestCase {
     }
 
     public void testResponseResult() {
-        ServerStub.clearStub();
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = getRequestor();
 
         final String uri = "/response";
         final String responseText = "response text";
@@ -435,5 +422,10 @@ public class RequestTest extends GWTTestCase {
         ServerStub.triggerPendingRequest();
 
         assertTrue(callbackSuccessCalled[0]);
+    }
+
+    private Requestor getRequestor() {
+        ServerStub.clearStub();
+        return GWT.create(Requestor.class);
     }
 }

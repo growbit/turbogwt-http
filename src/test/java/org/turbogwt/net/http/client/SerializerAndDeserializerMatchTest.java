@@ -16,6 +16,7 @@
 
 package org.turbogwt.net.http.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import java.util.Date;
@@ -290,8 +291,8 @@ public class SerializerAndDeserializerMatchTest extends GWTTestCase {
 //        assertFalse(callbackSuccessCalled[0]);
 //    }
 
-    private Requestor getRequestory() {
-        final Requestor requestory = new Requestor();
+    private Requestor getRequestor() {
+        final Requestor requestory = GWT.create(Requestor.class);
         requestory.registerSerdes(Person.class, personSerdes);
         return requestory;
     }

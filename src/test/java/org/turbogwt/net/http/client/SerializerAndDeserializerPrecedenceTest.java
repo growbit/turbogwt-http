@@ -16,6 +16,7 @@
 
 package org.turbogwt.net.http.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import org.turbogwt.core.future.shared.DoneCallback;
@@ -40,7 +41,7 @@ public class SerializerAndDeserializerPrecedenceTest extends GWTTestCase {
 
     public void testJsonDeserializing() {
         prepareStub("application/json", serializedResponseAsJson);
-        final Requestor requestor = getRequestory();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackCalled = new boolean[2];
 
@@ -58,7 +59,7 @@ public class SerializerAndDeserializerPrecedenceTest extends GWTTestCase {
 
     public void testTextPlainDeserializing() {
         prepareStub("text/plain", serializedResponseAsText);
-        final Requestor requestor = getRequestory();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackCalled = new boolean[2];
 
@@ -77,7 +78,7 @@ public class SerializerAndDeserializerPrecedenceTest extends GWTTestCase {
     public void testNotMappedDeserializing() {
         // As TextDeserializer matches */*, this response should be deserialized by it.
         prepareStub("content-type/not-mapped", serializedResponseAsText);
-        final Requestor requestor = getRequestory();
+        final Requestor requestor = getRequestor();
 
         final boolean[] callbackCalled = new boolean[2];
 
@@ -93,8 +94,8 @@ public class SerializerAndDeserializerPrecedenceTest extends GWTTestCase {
         assertTrue(callbackCalled[1]);
     }
 
-    private Requestor getRequestory() {
-        return new Requestor();
+    private Requestor getRequestor() {
+        return GWT.create(Requestor.class);
     }
 
     private void prepareStub(String responseContentType, String serializedResponse) {

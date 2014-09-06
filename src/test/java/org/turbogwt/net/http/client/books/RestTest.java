@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.net.http.client.Requestor;
+import org.turbogwt.net.http.client.RequestorImpl;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
@@ -42,7 +43,7 @@ public class RestTest extends GWTTestCase {
     public void testCreate() {
         ServerStub.clearStub();
 
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = new RequestorImpl();
         requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
 
         final String uri = "/server/books";
@@ -70,7 +71,7 @@ public class RestTest extends GWTTestCase {
     public void testDelete() {
         ServerStub.clearStub();
 
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = new RequestorImpl();
 
         final String uri = "/server/books/1";
 
@@ -85,7 +86,7 @@ public class RestTest extends GWTTestCase {
     public void testGetAll() {
         ServerStub.clearStub();
 
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = new RequestorImpl();
         requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
 
         final String uri = "/server/books";
@@ -119,7 +120,7 @@ public class RestTest extends GWTTestCase {
     public void testGetOne() {
         ServerStub.clearStub();
 
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = new RequestorImpl();
         requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
 
         final String uri = "/server/books/1";
@@ -148,7 +149,7 @@ public class RestTest extends GWTTestCase {
     public void testUpdate() {
         ServerStub.clearStub();
 
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = new RequestorImpl();
         requestor.registerSerdes(Book.class, BookJsonSerdes.getInstance());
 
         final String uri = "/server/books/1";

@@ -16,6 +16,7 @@
 
 package org.turbogwt.net.http.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import java.util.Date;
@@ -281,7 +282,7 @@ public class ContentTypeAcceptPatternsTest extends GWTTestCase {
     }
 
     private Requestor getRequestor() {
-        final Requestor requestor = new Requestor();
+        final Requestor requestor = GWT.create(Requestor.class);
         requestor.registerSerdes(Person.class, personSerdes);
         return requestor;
     }
