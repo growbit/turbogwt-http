@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client.serialization;
+package org.turbogwt.net.http.shared.serialization;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -23,17 +23,20 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Defines that the type must have an auto-generated json serializer registered by default in any
- * {@link org.turbogwt.net.http.client.Requestor} instance. <br/>
+ * Defines that the type must have an auto-generated json serializer and deserializer
+ * registered by default in any {@link org.turbogwt.net.http.client.Requestor} instance.
+ * <br/>
+ *
  * The implementation of the serializer is let to third-part projects.
  */
 @Inherited
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface JsonSerialize {
+public @interface Json {
 
     /**
      * A list of content-type patterns.
+     * These patterns will be used to match content-types of incoming responses and outgoing requests.
      * The patterns accept wildcards like "&#42;&#47;json".
      */
     String[] value() default "application/json";
