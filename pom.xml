@@ -42,6 +42,10 @@
         <system>Github Issues</system>
     </issueManagement>
 
+    <properties>
+        <gwt-jackson.version>0.5.0</gwt-jackson.version>
+    </properties>
+
     <build>
         <resources>
             <!-- Bundle sources with the jar, so they are visible to GWT's compiler -->
@@ -145,8 +149,10 @@
                     <extraJvmArgs>-Xss16M -Xms512M -Xmx1024M</extraJvmArgs>
                     <includes>**/*GwtTestSuite.java</includes>
 
-                    <mode>htmlunit</mode>
-                    <testTimeOut>180</testTimeOut>
+                    <extra>${project.build.directory}/gwt/extra</extra>
+                    <gen>${project.build.directory}/gwt/gen</gen>
+                    <persistentunitcachedir>${project.build.directory}/gwt/cache</persistentunitcachedir>
+
                 </configuration>
                 <executions>
                     <execution>
@@ -188,6 +194,14 @@
     </build>
 
     <dependencies>
+        <!-- GWT-Jackson dependencies -->
+        <dependency>
+            <groupId>com.github.nmorel.gwtjackson</groupId>
+            <artifactId>gwt-jackson</artifactId>
+            <version>${gwt-jackson.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Turbo GWT dependencies -->
         <dependency>
             <groupId>org.turbogwt.core</groupId>

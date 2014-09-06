@@ -16,6 +16,7 @@
 
 package org.turbogwt.net.http.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 
 import java.util.Collection;
@@ -122,5 +123,11 @@ public class RequestorImpl implements Requestor {
         serdesManager.registerSerdes(JavaScriptObject.class, OverlaySerdes.getInstance());
         serdesManager.registerDeserializer(String.class, TextDeserializer.getInstance());
         serdesManager.registerSerializer(FormParam.class, FormParamSerializer.getInstance());
+
+        GeneratedJsonSerializers generatedJsonSerializers = GWT.create(GeneratedJsonSerializers.class);
+        for (Serializer<?> generatedJsonSerializer : generatedJsonSerializers) {
+            final Class clazz = generatedJsonSerializer.handledType();
+            serdesManager.registerSerializer(clazz, generatedJsonSerializer);
+        }
     }
 }

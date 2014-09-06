@@ -21,6 +21,7 @@ import com.google.gwt.junit.tools.GWTTestSuite;
 import junit.framework.Test;
 
 import org.turbogwt.net.http.client.ContentTypeAcceptPatternsTest;
+import org.turbogwt.net.http.client.GeneratedJsonSerializeTest;
 import org.turbogwt.net.http.client.MultipleHeaderTest;
 import org.turbogwt.net.http.client.MultipleSerdesByClassTest;
 import org.turbogwt.net.http.client.QualityFactorHeaderTest;
@@ -50,6 +51,8 @@ public class HttpGwtTestSuite {
         suite.addTestSuite(MultipleSerdesByClassTest.class);
 
         suite.addTestSuite(RestTest.class);
+
+        suite.addTestSuite(GeneratedJsonSerializeTest.class);
 
         return suite;
     }

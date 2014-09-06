@@ -61,7 +61,7 @@ public interface Deserializer<T> {
      * 
      * The collection instance can be retrieved from its {@link org.turbogwt.core.util.shared.Factory},
      * obtained in {@link org.turbogwt.net.http.client.ContainerFactoryManager#getFactory}.<br>
-     * The ContainerFactoryManager can be retrieved from {@link DeserializationContext#getContainerFactoryManager}.
+     * The ContainerFactoryManager can be retrieved from {@link DeserializationContext#getContainerInstance(Class)}.
      *
      * @param collectionType    The class of the collection
      * @param response          Http response body content

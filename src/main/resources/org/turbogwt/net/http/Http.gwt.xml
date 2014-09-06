@@ -23,6 +23,8 @@
     <!-- Inherit the core Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.Core"/>
 
+    <inherits name="com.github.nmorel.gwtjackson.GwtJackson" />
+
     <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*,books/*.*"/>
     <source path="shared" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*,books/*.*"/>
 
@@ -41,4 +43,8 @@
     <replace-with class="org.turbogwt.net.http.client.RequestorImpl">
         <when-type-is class="org.turbogwt.net.http.client.Requestor"/>
     </replace-with>
+
+    <generate-with class="org.turbogwt.net.http.rebind.JsonSerializersGenerator">
+        <when-type-is class="org.turbogwt.net.http.client.GeneratedJsonSerializers" />
+    </generate-with>
 </module>
