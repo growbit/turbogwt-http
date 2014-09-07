@@ -16,12 +16,14 @@
   -->
 
 <module>
-    <!-- Inherit the core Web Toolkit stuff. -->
+    <!-- Inherit Google Web Toolkit stuff. -->
     <inherits name="com.google.gwt.user.User"/>
     <inherits name="com.google.gwt.http.HTTP"/>
 
-    <!-- Inherit the core Turbo GWT stuff. -->
+    <!-- Inherit Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.Core"/>
+
+    <!-- Inherit GWT-Jackson stuff. -->
     <inherits name="com.github.nmorel.gwtjackson.GwtJackson" />
 
     <inherits name="com.google.gwt.junit.JUnit"/>

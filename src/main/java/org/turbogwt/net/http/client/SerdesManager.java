@@ -266,6 +266,8 @@ class SerdesManager {
         final double factor;
 
         private Key(Class<?> type, String contentType) {
+            checkSeparatorPresence(contentType);
+
             this.type = type;
             this.contentType = contentType;
             this.factor = 1.0;
@@ -354,10 +356,13 @@ class SerdesManager {
         public int compareTo(Key key) {
             int result = this.type.getSimpleName().compareTo(key.type.getSimpleName());
 
+            // TODO: Improve pattern matching to handle patterns without separators.
             if (result == 0) {
                 final int thisSep = this.contentType.indexOf("/");
                 final int otherSep = key.contentType.indexOf("/");
 
+                // !!! CAUTION !!!
+                // When contentType does not have a '/' separator, than StringArrayIndexOutOfBounds is thrown.
                 String thisInitialPart = this.contentType.substring(0, thisSep);
                 String otherInitialPart = key.contentType.substring(0, otherSep);
                 result = thisInitialPart.compareTo(otherInitialPart);
@@ -383,6 +388,12 @@ class SerdesManager {
             }
 
             return result;
+        }
+
+        private void checkSeparatorPresence(String contentType) {
+            if (contentType.indexOf("/") < 1)
+                throw new RuntimeException("Cannot perform matching. Content-Type *" +
+                        this.contentType + "* does not have a '/' separator.");
         }
 
         private boolean matchPartsSafely(String left, String right) {

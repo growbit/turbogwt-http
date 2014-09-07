@@ -16,8 +16,6 @@
 
 package org.turbogwt.net.http.client;
 
-import java.util.List;
-
 import org.turbogwt.net.http.client.serialization.Serdes;
 
 /**
@@ -25,7 +23,5 @@ import org.turbogwt.net.http.client.serialization.Serdes;
  *
  * @author Danilo Reinert
  */
-interface GeneratedJsonSerdes {
-
-    List<Serdes<?>> getSerdesList();
+interface GeneratedJsonSerdes extends Iterable<Serdes<?>> {
 }

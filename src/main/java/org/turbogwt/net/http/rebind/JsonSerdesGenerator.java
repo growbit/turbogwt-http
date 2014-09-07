@@ -34,6 +34,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -92,7 +93,7 @@ public class JsonSerdesGenerator extends Generator {
 
             generateFields(sourceWriter);
             generateConstructor(sourceWriter, serdes);
-            generateGetSerdesListMethod(sourceWriter);
+            generateIteratorMethod(sourceWriter);
 
             sourceWriter.commit(typeLogger);
         }
@@ -115,19 +116,20 @@ public class JsonSerdesGenerator extends Generator {
         ClassSourceFileComposerFactory composerFactory =
                 new ClassSourceFileComposerFactory(packageName, getTypeSimpleName());
 
-        String[] imports =
-                new String[] {
-                        GWT.class.getCanonicalName(), ObjectMapper.class.getCanonicalName(),
-                        ObjectWriter.class.getCanonicalName(), ObjectReader.class.getCanonicalName(),
-                        List.class.getCanonicalName(), LinkedList.class.getCanonicalName(),
-                        ArrayList.class.getCanonicalName(), Collection.class.getCanonicalName(),
-                        Set.class.getCanonicalName(), LinkedHashSet.class.getCanonicalName(),
-                        HashSet.class.getCanonicalName(), TreeSet.class.getCanonicalName(),
-                        DeserializationContext.class.getCanonicalName(), SerializationContext.class.getCanonicalName(),
-                        Deserializer.class.getCanonicalName(), Serializer.class.getCanonicalName(),
-                        Serdes.class.getCanonicalName(), JsonObjectSerdes.class.getCanonicalName(),
-                        JsonRecordReader.class.getCanonicalName(), JsonRecordWriter.class.getCanonicalName(),
-                        Overlays.class.getCanonicalName()};
+        String[] imports = new String[] {
+                GWT.class.getCanonicalName(), ObjectMapper.class.getCanonicalName(),
+                ObjectWriter.class.getCanonicalName(), ObjectReader.class.getCanonicalName(),
+                List.class.getCanonicalName(), LinkedList.class.getCanonicalName(),
+                ArrayList.class.getCanonicalName(), Collection.class.getCanonicalName(),
+                Set.class.getCanonicalName(), LinkedHashSet.class.getCanonicalName(),
+                HashSet.class.getCanonicalName(), TreeSet.class.getCanonicalName(),
+                DeserializationContext.class.getCanonicalName(), SerializationContext.class.getCanonicalName(),
+                Deserializer.class.getCanonicalName(), Serializer.class.getCanonicalName(),
+                Serdes.class.getCanonicalName(), JsonObjectSerdes.class.getCanonicalName(),
+                JsonRecordReader.class.getCanonicalName(), JsonRecordWriter.class.getCanonicalName(),
+                Overlays.class.getCanonicalName(), Iterator.class.getCanonicalName()
+        };
+
         for (String imp : imports) {
             composerFactory.addImport(imp);
         }
@@ -223,14 +225,14 @@ public class JsonSerdesGenerator extends Generator {
         srcWriter.println("    }");
         srcWriter.println();
 
-        // serialize
+        // deserialize
         srcWriter.println("    @Override");
-        srcWriter.println("    public %s deserialize(String s, DeserializationContext context) {", qualifiedSourceName);
+        srcWriter.println("    public %s deserialize(String s, DeserializationContext ctx) {", qualifiedSourceName);
         srcWriter.println("        return %s.read(s);", singleMapperField);
         srcWriter.println("    }");
         srcWriter.println();
 
-        // serializeFromCollection
+        // deserializeAsCollection
         srcWriter.println("    @Override");
         srcWriter.println("    public <C extends Collection<%s>> C deserializeAsCollection(Class<C> c, " +
                 "String s, DeserializationContext ctx) {", qualifiedSourceName);
@@ -246,6 +248,31 @@ public class JsonSerdesGenerator extends Generator {
         srcWriter.println("            return (C) %s.read(s);", linkedHashSetMapperField);
         srcWriter.println("        else");
         srcWriter.println("            return super.deserializeAsCollection(c, s, ctx);");
+        srcWriter.println("    }");
+
+        // serialize
+        srcWriter.println("    @Override");
+        srcWriter.println("    public String serialize(%s o, SerializationContext ctx) {", qualifiedSourceName);
+        srcWriter.println("        return %s.write(o);", singleMapperField);
+        srcWriter.println("    }");
+        srcWriter.println();
+
+        // serializeFromCollection
+        srcWriter.println("    @Override");
+        srcWriter.println("    public String serializeFromCollection(Collection<%s> c, SerializationContext ctx) {",
+                qualifiedSourceName);
+        srcWriter.println("        if (c.getClass() == ArrayList.class)");
+        srcWriter.println("            return %s.write((ArrayList) c);", arrayListMapperField);
+        srcWriter.println("        else if (c.getClass() == LinkedList.class)");
+        srcWriter.println("            return %s.write((LinkedList) c);", linkedListMapperField);
+        srcWriter.println("        else if (c.getClass() == HashSet.class)");
+        srcWriter.println("            return %s.write((HashSet) c);", hashSetMapperField);
+        srcWriter.println("        else if (c.getClass() == TreeSet.class)");
+        srcWriter.println("            return %s.write((TreeSet) c);", treeSetMapperField);
+        srcWriter.println("        else if (c.getClass() == LinkedHashSet.class)");
+        srcWriter.println("            return %s.write((LinkedHashSet) c);", linkedHashSetMapperField);
+        srcWriter.println("        else");
+        srcWriter.println("            return super.serializeFromCollection(c, ctx);");
         srcWriter.println("    }");
 
         // end anonymous class
@@ -294,10 +321,10 @@ public class JsonSerdesGenerator extends Generator {
         srcWriter.println();
     }
 
-    private void generateGetSerdesListMethod(SourceWriter srcWriter) {
+    private void generateIteratorMethod(SourceWriter srcWriter) {
         srcWriter.println("@Override");
-        srcWriter.println("public List<Serdes<?>> getSerdesList() {");
-        srcWriter.println("    return serdesList;");
+        srcWriter.println("public Iterator<Serdes<?>> iterator() {");
+        srcWriter.println("    return serdesList.iterator();");
         srcWriter.println("}");
         srcWriter.println();
     }

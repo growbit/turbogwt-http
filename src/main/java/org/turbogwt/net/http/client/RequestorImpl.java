@@ -130,7 +130,7 @@ public class RequestorImpl implements Requestor {
         serdesManager.registerSerializer(FormParam.class, FormParamSerializer.getInstance());
 
         final GeneratedJsonSerdes generatedJsonSerdes = GWT.create(GeneratedJsonSerdes.class);
-        for (Serdes<?> serdes : generatedJsonSerdes.getSerdesList()) {
+        for (Serdes<?> serdes : generatedJsonSerdes) {
             final Class handledType = serdes.handledType();
             serdesManager.registerSerdes(handledType, serdes);
         }

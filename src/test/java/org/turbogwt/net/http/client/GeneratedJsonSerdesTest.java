@@ -19,6 +19,9 @@ package org.turbogwt.net.http.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.turbogwt.core.collections.client.JsArrayList;
@@ -26,8 +29,6 @@ import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
-import org.turbogwt.net.http.client.serialization.DeserializationContext;
-import org.turbogwt.net.http.client.serialization.Serdes;
 import org.turbogwt.net.http.shared.serialization.Json;
 
 /**
@@ -40,28 +41,8 @@ public class GeneratedJsonSerdesTest extends GWTTestCase {
         return "org.turbogwt.net.http.HttpTest";
     }
 
-    public void testSerdes() {
-        GeneratedJsonSerdes g = GWT.create(GeneratedJsonSerdes.class);
-        final List<Serdes<?>> serdesList = g.getSerdesList();
-        for (Serdes<?> serdes : serdesList) {
-            final Class<?> aClass = serdes.handledType();
-            System.out.println(aClass);
-
-            final DeserializationContext ctx = DeserializationContext.of(null, new ContainerFactoryManager());
-            final String response = "[{\"name\":\"paul\",\"age\":2},{\"name\":\"john\",\"age\":3}]";
-
-            final List list = serdes.deserializeAsCollection(List.class, response, ctx);
-            System.out.println(list);
-
-            final JsArrayList jsList = serdes.deserializeAsCollection(JsArrayList.class, response, ctx);
-            System.out.println(jsList);
-        }
-    }
-
-    public void testGeneratedSerialization() {
-        final Animal animal = new Animal();
-        animal.setName("Stuart");
-        animal.setAge(3);
+    public void testGeneratedSingleDeserialization() {
+        final Animal stuart = new Animal("Stuart", 3);
 
         final Requestor requestor = getRequestor();
 
@@ -74,7 +55,99 @@ public class GeneratedJsonSerdesTest extends GWTTestCase {
 
         final boolean[] callbackDoneCalled = new boolean[1];
 
-        requestor.request(uri).payload(animal).post()
+        requestor.request(uri).get(Animal.class)
+                .done(new DoneCallback<Animal>() {
+                    @Override
+                    public void onDone(Animal animal) {
+                        callbackDoneCalled[0] = true;
+                        assertEquals(stuart, animal);
+                    }
+                });
+
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbackDoneCalled[0]);
+    }
+
+    public void testGeneratedArrayListDeserialization() {
+        final Animal stuart = new Animal("Stuart", 3);
+        final Animal march = new Animal("March", 5);
+        final List<Animal> list = new ArrayList<Animal>();
+        list.add(stuart); list.add(march);
+
+        final Requestor requestor = getRequestor();
+
+        final String uri = "/animals";
+
+        final String serialized = "[{\"name\":\"Stuart\",\"age\":3},{\"name\":\"March\",\"age\":5}]";
+
+        ServerStub.responseFor(uri, ResponseMock.of(serialized, 200, "OK",
+                new ContentTypeHeader("application/json")));
+
+        final boolean[] callbackDoneCalled = new boolean[1];
+
+        requestor.request(uri).get(Animal.class, ArrayList.class)
+                .done(new DoneCallback<Collection<Animal>>() {
+                    @Override
+                    public void onDone(Collection<Animal> animals) {
+                        callbackDoneCalled[0] = true;
+                        ArrayList<Animal> arrayList = (ArrayList<Animal>) animals;
+                        assertTrue(Arrays.equals(list.toArray(), arrayList.toArray()));
+                    }
+                });
+
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbackDoneCalled[0]);
+    }
+
+    public void testGeneratedCustomListDeserialization() {
+        final Animal stuart = new Animal("Stuart", 3);
+        final Animal march = new Animal("March", 5);
+        final List<Animal> list = new ArrayList<Animal>();
+        list.add(stuart); list.add(march);
+
+        final Requestor requestor = getRequestor();
+
+        final String uri = "/animals";
+
+        final String serialized = "[{\"name\":\"Stuart\",\"age\":3},{\"name\":\"March\",\"age\":5}]";
+
+        ServerStub.responseFor(uri, ResponseMock.of(serialized, 200, "OK",
+                new ContentTypeHeader("application/json")));
+
+        final boolean[] callbackDoneCalled = new boolean[1];
+
+        requestor.request(uri).get(Animal.class, JsArrayList.class)
+                .done(new DoneCallback<Collection<Animal>>() {
+                    @Override
+                    public void onDone(Collection<Animal> animals) {
+                        callbackDoneCalled[0] = true;
+                        JsArrayList<Animal> arrayList = (JsArrayList<Animal>) animals;
+                        assertTrue(Arrays.equals(list.toArray(), arrayList.toArray()));
+                    }
+                });
+
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbackDoneCalled[0]);
+    }
+
+    public void testGeneratedSingleSerialization() {
+        final Animal stuart = new Animal("Stuart", 3);
+
+        final Requestor requestor = getRequestor();
+
+        final String uri = "/animal";
+
+        final String serialized = "{\"name\":\"Stuart\",\"age\":3}";
+
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK",
+                new ContentTypeHeader("application/json")));
+
+        final boolean[] callbackDoneCalled = new boolean[1];
+
+        requestor.request(uri).payload(stuart).post()
                 .done(new DoneCallback<Void>() {
                     @Override
                     public void onDone(Void ignored) {
@@ -85,7 +158,68 @@ public class GeneratedJsonSerdesTest extends GWTTestCase {
         ServerStub.triggerPendingRequest();
 
         assertTrue(callbackDoneCalled[0]);
+        assertEquals(serialized, ServerStub.getRequestData(uri).getData());
+    }
 
+    public void testGeneratedArrayListSerialization() {
+        final Animal stuart = new Animal("Stuart", 3);
+        final Animal march = new Animal("March", 5);
+        final List<Animal> list = new ArrayList<Animal>();
+        list.add(stuart); list.add(march);
+
+        final Requestor requestor = getRequestor();
+
+        final String uri = "/animals";
+
+        final String serialized = "[{\"name\":\"Stuart\",\"age\":3},{\"name\":\"March\",\"age\":5}]";
+
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK",
+                new ContentTypeHeader("application/json")));
+
+        final boolean[] callbackDoneCalled = new boolean[1];
+
+        requestor.request(uri).payload(list).post()
+                .done(new DoneCallback<Void>() {
+                    @Override
+                    public void onDone(Void ignored) {
+                        callbackDoneCalled[0] = true;
+                    }
+                });
+
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbackDoneCalled[0]);
+        assertEquals(serialized, ServerStub.getRequestData(uri).getData());
+    }
+
+    public void testGeneratedCustomListSerialization() {
+        final Animal stuart = new Animal("Stuart", 3);
+        final Animal march = new Animal("March", 5);
+        final List<Animal> list = new JsArrayList<Animal>();
+        list.add(stuart); list.add(march);
+
+        final Requestor requestor = getRequestor();
+
+        final String uri = "/animals";
+
+        final String serialized = "[{\"name\":\"Stuart\",\"age\":3},{\"name\":\"March\",\"age\":5}]";
+
+        ServerStub.responseFor(uri, ResponseMock.of(null, 200, "OK",
+                new ContentTypeHeader("application/json")));
+
+        final boolean[] callbackDoneCalled = new boolean[1];
+
+        requestor.request(uri).payload(list).post()
+                .done(new DoneCallback<Void>() {
+                    @Override
+                    public void onDone(Void ignored) {
+                        callbackDoneCalled[0] = true;
+                    }
+                });
+
+        ServerStub.triggerPendingRequest();
+
+        assertTrue(callbackDoneCalled[0]);
         assertEquals(serialized, ServerStub.getRequestData(uri).getData());
     }
 
@@ -97,17 +231,17 @@ public class GeneratedJsonSerdesTest extends GWTTestCase {
     /**
      * Class to auto-generate serializer.
      */
-    @Json({"app*/json*", "*javascript*" })
+    @Json({"app*/json*", "*/javascript*" })
     public static class Animal {
 
-        private Integer age;
         private String name;
+        private Integer age;
 
-        public Integer getAge() {
-            return age;
+        public Animal() {
         }
 
-        public void setAge(Integer age) {
+        public Animal(String name, Integer age) {
+            this.name = name;
             this.age = age;
         }
 
@@ -117,6 +251,42 @@ public class GeneratedJsonSerdesTest extends GWTTestCase {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public Integer getAge() {
+            return age;
+        }
+
+        public void setAge(Integer age) {
+            this.age = age;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Animal)) {
+                return false;
+            }
+
+            final Animal animal = (Animal) o;
+
+            if (age != null ? !age.equals(animal.age) : animal.age != null) {
+                return false;
+            }
+            if (name != null ? !name.equals(animal.name) : animal.name != null) {
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = name != null ? name.hashCode() : 0;
+            result = 31 * result + (age != null ? age.hashCode() : 0);
+            return result;
         }
     }
 }
