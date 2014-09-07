@@ -44,10 +44,6 @@
         <when-type-is class="org.turbogwt.net.http.client.Requestor"/>
     </replace-with>
 
-    <generate-with class="org.turbogwt.net.http.rebind.JsonSerializersGenerator">
-        <when-type-is class="org.turbogwt.net.http.client.GeneratedJsonSerializers" />
-    </generate-with>
-
     <generate-with class="org.turbogwt.net.http.rebind.JsonSerdesGenerator">
         <when-type-is class="org.turbogwt.net.http.client.GeneratedJsonSerdes" />
     </generate-with>

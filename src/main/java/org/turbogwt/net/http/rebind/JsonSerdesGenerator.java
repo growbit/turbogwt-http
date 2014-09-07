@@ -52,7 +52,7 @@ import org.turbogwt.net.http.client.serialization.Serializer;
 import org.turbogwt.net.http.shared.serialization.Json;
 
 /**
- * Generator for {@link org.turbogwt.net.http.shared.serialization.JsonSerialize} annotated types.
+ * Generator for {@link org.turbogwt.net.http.shared.serialization.Json} annotated types.
  *
  * @author Danilo Reinert
  */
@@ -202,7 +202,8 @@ public class JsonSerdesGenerator extends Generator {
 
         // readJson
         srcWriter.println("    @Override");
-        srcWriter.println("    public %s readJson(JsonRecordReader r, DeserializationContext ctx) {", qualifiedSourceName);
+        srcWriter.println("    public %s readJson(JsonRecordReader r, DeserializationContext ctx) {",
+                qualifiedSourceName);
         srcWriter.println("        return %s.read(Overlays.stringify(r));", singleMapperField);
         srcWriter.println("    }");
         srcWriter.println();

@@ -19,20 +19,43 @@ package org.turbogwt.net.http.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.junit.client.GWTTestCase;
 
+import java.util.List;
+
+import org.turbogwt.core.collections.client.JsArrayList;
 import org.turbogwt.core.future.shared.DoneCallback;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
-import org.turbogwt.net.http.shared.serialization.JsonSerialize;
+import org.turbogwt.net.http.client.serialization.DeserializationContext;
+import org.turbogwt.net.http.client.serialization.Serdes;
+import org.turbogwt.net.http.shared.serialization.Json;
 
 /**
  * @author Danilo Reinert
  */
-public class GeneratedJsonSerializeTest extends GWTTestCase {
+public class GeneratedJsonSerdesTest extends GWTTestCase {
 
     @Override
     public String getModuleName() {
         return "org.turbogwt.net.http.HttpTest";
+    }
+
+    public void testSerdes() {
+        GeneratedJsonSerdes g = GWT.create(GeneratedJsonSerdes.class);
+        final List<Serdes<?>> serdesList = g.getSerdesList();
+        for (Serdes<?> serdes : serdesList) {
+            final Class<?> aClass = serdes.handledType();
+            System.out.println(aClass);
+
+            final DeserializationContext ctx = DeserializationContext.of(null, new ContainerFactoryManager());
+            final String response = "[{\"name\":\"paul\",\"age\":2},{\"name\":\"john\",\"age\":3}]";
+
+            final List list = serdes.deserializeAsCollection(List.class, response, ctx);
+            System.out.println(list);
+
+            final JsArrayList jsList = serdes.deserializeAsCollection(JsArrayList.class, response, ctx);
+            System.out.println(jsList);
+        }
     }
 
     public void testGeneratedSerialization() {
@@ -74,19 +97,11 @@ public class GeneratedJsonSerializeTest extends GWTTestCase {
     /**
      * Class to auto-generate serializer.
      */
-    @JsonSerialize
-    public class Animal {
+    @Json({"app*/json*", "*javascript*" })
+    public static class Animal {
 
-        private String name;
         private Integer age;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
+        private String name;
 
         public Integer getAge() {
             return age;
@@ -94,6 +109,14 @@ public class GeneratedJsonSerializeTest extends GWTTestCase {
 
         public void setAge(Integer age) {
             this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
     }
 }
