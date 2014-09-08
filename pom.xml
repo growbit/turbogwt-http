@@ -146,31 +146,57 @@
                 <artifactId>gwt-maven-plugin</artifactId>
                 <version>${gwt-maven-plugin.version}</version>
                 <configuration>
-                    <extraJvmArgs>-Xss32M -Xms1024M -Xmx2048M</extraJvmArgs>
+                    <extraJvmArgs>-Xss24M -Xms1024M -Xmx2048M</extraJvmArgs>
                     <includes>**/*GwtTestSuite.java</includes>
 
                     <mode>htmlunit</mode>
                     <testTimeOut>180</testTimeOut>
 
-                    <extra>${project.build.directory}/gwt/extra</extra>
-                    <gen>${project.build.directory}/gwt/gen</gen>
-                    <persistentunitcachedir>${project.build.directory}/gwt/cache</persistentunitcachedir>
-
+                    <!--<extra>${project.build.directory}/gwt/extra</extra>-->
+                    <!--<gen>${project.build.directory}/gwt/gen</gen>-->
+                    <!--<persistentunitcachedir>${project.build.directory}/gwt/cache</persistentunitcachedir>-->
                 </configuration>
                 <executions>
                     <execution>
-                        <id>1</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>2</id>
+                        <id>gwt-clean</id>
                         <phase>clean</phase>
                         <goals>
                             <goal>clean</goal>
                         </goals>
+                        <configuration>
+                            <module>org.turbogwt.net.Net</module>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gwt-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <module>org.turbogwt.net.Net</module>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gwt-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <module>org.turbogwt.net.NetTest</module>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gwt-package</id>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                        <configuration>
+                            <modules>
+                                <module>org.turbogwt.net.Net</module>
+                            </modules>
+                        </configuration>
                     </execution>
                 </executions>
 

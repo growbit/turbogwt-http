@@ -18,12 +18,12 @@
 <module>
     <!-- Inherit Google Web Toolkit stuff. -->
     <inherits name="com.google.gwt.user.User"/>
+    <inherits name="com.google.gwt.http.HTTP"/>
 
     <!-- Inherit Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.collections.Collections"/>
     <inherits name="org.turbogwt.core.util.Util"/>
-    <inherits name="org.turbogwt.net.core.Core"/>
-
-    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*"/>
-    <source path="shared" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*"/>
+    <inherits name="org.turbogwt.core.future.Future"/>
+    <inherits name="org.turbogwt.net.core.CoreTest"/>
+    <inherits name="org.turbogwt.net.http.HttpTest"/>
 </module>

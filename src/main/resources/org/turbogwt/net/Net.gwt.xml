@@ -26,26 +26,5 @@
     <inherits name="org.turbogwt.core.future.Future"/>
     <inherits name="org.turbogwt.net.core.Core"/>
     <inherits name="org.turbogwt.net.serialization.Serialization"/>
-
-    <!-- Inherit GWT-Jackson stuff. -->
-    <inherits name="com.github.nmorel.gwtjackson.GwtJackson" />
-
-    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*,books/*.*"/>
-    <source path="shared" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*,books/*.*"/>
-
-    <replace-with class="org.turbogwt.net.http.client.ServerConnectionImpl">
-        <when-type-is class="org.turbogwt.net.http.client.ServerConnection"/>
-    </replace-with>
-
-    <replace-with class="org.turbogwt.net.http.client.ServerImpl">
-        <when-type-is class="org.turbogwt.net.http.client.Server"/>
-    </replace-with>
-
-    <replace-with class="org.turbogwt.net.http.client.RequestorImpl">
-        <when-type-is class="org.turbogwt.net.http.client.Requestor"/>
-    </replace-with>
-
-    <generate-with class="org.turbogwt.net.http.rebind.JsonSerdesGenerator">
-        <when-type-is class="org.turbogwt.net.http.client.GeneratedJsonSerdes" />
-    </generate-with>
+    <inherits name="org.turbogwt.net.http.Http"/>
 </module>
