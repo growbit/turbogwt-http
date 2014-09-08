@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
-
-import org.turbogwt.net.serialization.client.Serdes;
+package org.turbogwt.net.serialization.client;
 
 /**
- * Generated Serdes from {@link org.turbogwt.net.serialization.shared.Json}.
- *
  * @author Danilo Reinert
  */
-interface GeneratedJsonSerdes extends Iterable<Serdes<?>> {
+public class UnableToDeserializeException extends SerializationException {
+
+    public UnableToDeserializeException() {
+    }
+
+    public UnableToDeserializeException(String s) {
+        super(s);
+    }
+
+    public UnableToDeserializeException(String s, Throwable throwable) {
+        super(s, throwable);
+    }
 }

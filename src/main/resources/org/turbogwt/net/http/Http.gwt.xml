@@ -22,16 +22,14 @@
 
     <!-- Inherit Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.Core"/>
+    <inherits name="org.turbogwt.net.core.Core"/>
+    <inherits name="org.turbogwt.net.serialization.Serialization"/>
 
     <!-- Inherit GWT-Jackson stuff. -->
     <inherits name="com.github.nmorel.gwtjackson.GwtJackson" />
 
     <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*,books/*.*"/>
     <source path="shared" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*,books/*.*"/>
-
-    <replace-with class="org.turbogwt.net.http.client.UriBuilderImpl">
-        <when-type-is class="org.turbogwt.net.http.client.UriBuilder"/>
-    </replace-with>
 
     <replace-with class="org.turbogwt.net.http.client.ServerConnectionImpl">
         <when-type-is class="org.turbogwt.net.http.client.ServerConnection"/>

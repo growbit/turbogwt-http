@@ -42,18 +42,18 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.turbogwt.core.util.client.Overlays;
-import org.turbogwt.net.http.client.serialization.DeserializationContext;
-import org.turbogwt.net.http.client.serialization.Deserializer;
-import org.turbogwt.net.http.client.serialization.JsonObjectSerdes;
-import org.turbogwt.net.http.client.serialization.JsonRecordReader;
-import org.turbogwt.net.http.client.serialization.JsonRecordWriter;
-import org.turbogwt.net.http.client.serialization.Serdes;
-import org.turbogwt.net.http.client.serialization.SerializationContext;
-import org.turbogwt.net.http.client.serialization.Serializer;
-import org.turbogwt.net.http.shared.serialization.Json;
+import org.turbogwt.net.serialization.client.DeserializationContext;
+import org.turbogwt.net.serialization.client.Deserializer;
+import org.turbogwt.net.serialization.client.Serdes;
+import org.turbogwt.net.serialization.client.SerializationContext;
+import org.turbogwt.net.serialization.client.Serializer;
+import org.turbogwt.net.serialization.client.json.JsonObjectSerdes;
+import org.turbogwt.net.serialization.client.json.JsonRecordReader;
+import org.turbogwt.net.serialization.client.json.JsonRecordWriter;
+import org.turbogwt.net.serialization.shared.Json;
 
 /**
- * Generator for {@link org.turbogwt.net.http.shared.serialization.Json} annotated types.
+ * Generator for {@link org.turbogwt.net.serialization.shared.Json} annotated types.
  *
  * @author Danilo Reinert
  */
@@ -117,17 +117,32 @@ public class JsonSerdesGenerator extends Generator {
                 new ClassSourceFileComposerFactory(packageName, getTypeSimpleName());
 
         String[] imports = new String[] {
-                GWT.class.getCanonicalName(), ObjectMapper.class.getCanonicalName(),
-                ObjectWriter.class.getCanonicalName(), ObjectReader.class.getCanonicalName(),
-                List.class.getCanonicalName(), LinkedList.class.getCanonicalName(),
-                ArrayList.class.getCanonicalName(), Collection.class.getCanonicalName(),
-                Set.class.getCanonicalName(), LinkedHashSet.class.getCanonicalName(),
-                HashSet.class.getCanonicalName(), TreeSet.class.getCanonicalName(),
-                DeserializationContext.class.getCanonicalName(), SerializationContext.class.getCanonicalName(),
-                Deserializer.class.getCanonicalName(), Serializer.class.getCanonicalName(),
-                Serdes.class.getCanonicalName(), JsonObjectSerdes.class.getCanonicalName(),
-                JsonRecordReader.class.getCanonicalName(), JsonRecordWriter.class.getCanonicalName(),
-                Overlays.class.getCanonicalName(), Iterator.class.getCanonicalName()
+                // java
+                ArrayList.class.getCanonicalName(),
+                Collection.class.getCanonicalName(),
+                HashSet.class.getCanonicalName(),
+                Iterator.class.getCanonicalName(),
+                LinkedHashSet.class.getCanonicalName(),
+                LinkedList.class.getCanonicalName(),
+                List.class.getCanonicalName(),
+                Set.class.getCanonicalName(),
+                TreeSet.class.getCanonicalName(),
+                // com.github.nmorel.gwtjackson
+                ObjectMapper.class.getCanonicalName(),
+                ObjectReader.class.getCanonicalName(),
+                ObjectWriter.class.getCanonicalName(),
+                // com.google.gwt
+                GWT.class.getCanonicalName(),
+                // org.turbogwt
+                Overlays.class.getCanonicalName(),
+                DeserializationContext.class.getCanonicalName(),
+                Deserializer.class.getCanonicalName(),
+                JsonRecordReader.class.getCanonicalName(),
+                JsonObjectSerdes.class.getCanonicalName(),
+                JsonRecordWriter.class.getCanonicalName(),
+                Serdes.class.getCanonicalName(),
+                SerializationContext.class.getCanonicalName(),
+                Serializer.class.getCanonicalName()
         };
 
         for (String imp : imports) {

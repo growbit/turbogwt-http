@@ -25,10 +25,10 @@ import com.google.gwt.xml.client.impl.DOMParseException;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.turbogwt.net.http.client.serialization.DeserializationContext;
-import org.turbogwt.net.http.client.serialization.Serdes;
-import org.turbogwt.net.http.client.serialization.SerializationContext;
-import org.turbogwt.net.http.client.serialization.UnableToDeserializeException;
+import org.turbogwt.net.serialization.client.DeserializationContext;
+import org.turbogwt.net.serialization.client.Serdes;
+import org.turbogwt.net.serialization.client.SerializationContext;
+import org.turbogwt.net.serialization.client.UnableToDeserializeException;
 
 /**
  * @author Danilo Reinert

@@ -31,7 +31,7 @@ import org.turbogwt.net.http.client.books.BookXmlSerdes;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
-import org.turbogwt.net.http.client.serialization.Serdes;
+import org.turbogwt.net.serialization.client.Serdes;
 
 /**
  * @author Danilo Reinert

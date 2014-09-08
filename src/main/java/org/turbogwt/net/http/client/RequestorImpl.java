@@ -23,16 +23,18 @@ import java.util.Collection;
 
 import org.turbogwt.core.util.shared.Factory;
 import org.turbogwt.core.util.shared.Registration;
-import org.turbogwt.net.http.client.serialization.Deserializer;
 import org.turbogwt.net.http.client.serialization.FormParamSerializer;
-import org.turbogwt.net.http.client.serialization.JsonBooleanSerdes;
-import org.turbogwt.net.http.client.serialization.JsonNumberSerdes;
-import org.turbogwt.net.http.client.serialization.JsonStringSerdes;
-import org.turbogwt.net.http.client.serialization.OverlaySerdes;
-import org.turbogwt.net.http.client.serialization.Serdes;
-import org.turbogwt.net.http.client.serialization.Serializer;
-import org.turbogwt.net.http.client.serialization.TextDeserializer;
-import org.turbogwt.net.http.client.serialization.VoidSerdes;
+import org.turbogwt.net.serialization.client.ContainerFactoryManager;
+import org.turbogwt.net.serialization.client.Deserializer;
+import org.turbogwt.net.serialization.client.Serdes;
+import org.turbogwt.net.serialization.client.SerdesManager;
+import org.turbogwt.net.serialization.client.Serializer;
+import org.turbogwt.net.serialization.client.json.JsonBooleanSerdes;
+import org.turbogwt.net.serialization.client.json.JsonNumberSerdes;
+import org.turbogwt.net.serialization.client.json.JsonStringSerdes;
+import org.turbogwt.net.serialization.client.json.OverlaySerdes;
+import org.turbogwt.net.serialization.client.misc.TextDeserializer;
+import org.turbogwt.net.serialization.client.misc.VoidSerdes;
 
 /**
  * Default implementation for {@link Requestor}.

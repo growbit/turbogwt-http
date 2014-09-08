@@ -14,14 +14,24 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
+package org.turbogwt.net.core;
 
-import org.turbogwt.net.serialization.client.Serdes;
+import com.google.gwt.junit.tools.GWTTestSuite;
+
+import junit.framework.Test;
+
+import org.turbogwt.net.core.client.UriBuilderTest;
 
 /**
- * Generated Serdes from {@link org.turbogwt.net.serialization.shared.Json}.
- *
  * @author Danilo Reinert
  */
-interface GeneratedJsonSerdes extends Iterable<Serdes<?>> {
+public class CoreGwtTestSuite {
+
+    public static Test suite() {
+        GWTTestSuite suite = new GWTTestSuite("Net Core Test Suite");
+
+        suite.addTestSuite(UriBuilderTest.class);
+
+        return suite;
+    }
 }

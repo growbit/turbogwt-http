@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
-
-import org.turbogwt.net.serialization.client.Serdes;
+package org.turbogwt.net.core.client;
 
 /**
- * Generated Serdes from {@link org.turbogwt.net.serialization.shared.Json}.
- *
- * @author Danilo Reinert
+ * Exception for URI building.
  */
-interface GeneratedJsonSerdes extends Iterable<Serdes<?>> {
+public class UriBuilderException extends RuntimeException {
+
+    public UriBuilderException() {
+    }
+
+    public UriBuilderException(String s) {
+        super(s);
+    }
+
+    public UriBuilderException(String s, Throwable throwable) {
+        super(s, throwable);
+    }
 }

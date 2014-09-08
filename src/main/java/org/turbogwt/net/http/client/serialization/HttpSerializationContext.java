@@ -14,14 +14,25 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
+package org.turbogwt.net.http.client.serialization;
 
-import org.turbogwt.net.serialization.client.Serdes;
+import org.turbogwt.net.http.client.Headers;
+import org.turbogwt.net.serialization.client.SerializationContext;
 
 /**
- * Generated Serdes from {@link org.turbogwt.net.serialization.shared.Json}.
+ * Context of serialization.
  *
  * @author Danilo Reinert
  */
-interface GeneratedJsonSerdes extends Iterable<Serdes<?>> {
+public class HttpSerializationContext extends SerializationContext {
+
+    private final Headers headers;
+
+    public HttpSerializationContext(Headers headers) {
+        this.headers = headers;
+    }
+
+    public Headers getHeaders() {
+        return headers;
+    }
 }

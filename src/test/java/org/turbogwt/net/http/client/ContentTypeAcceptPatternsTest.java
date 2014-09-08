@@ -27,7 +27,7 @@ import org.turbogwt.net.http.client.mock.ResponseMock;
 import org.turbogwt.net.http.client.mock.ServerStub;
 import org.turbogwt.net.http.client.model.Person;
 import org.turbogwt.net.http.client.model.PersonSerdes;
-import org.turbogwt.net.http.client.serialization.SerializationException;
+import org.turbogwt.net.serialization.client.SerializationException;
 
 /**
  * @author Danilo Reinert

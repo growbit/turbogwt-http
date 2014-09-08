@@ -14,14 +14,22 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
-
-import org.turbogwt.net.serialization.client.Serdes;
+package org.turbogwt.net.serialization.client;
 
 /**
- * Generated Serdes from {@link org.turbogwt.net.serialization.shared.Json}.
+ * Performs serialization and deserialization of a type to/from plain text.
+ *
+ * @param <T> Type of serialization
  *
  * @author Danilo Reinert
  */
-interface GeneratedJsonSerdes extends Iterable<Serdes<?>> {
+public interface Serdes<T> extends Deserializer<T>, Serializer<T> {
+
+    /**
+     * Method for accessing type of the Object this de/serializer can handle.
+     *
+     * @return The class which this de/serializer can de/serialize
+     */
+    @Override
+    Class<T> handledType();
 }

@@ -14,14 +14,23 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.http.client;
-
-import org.turbogwt.net.serialization.client.Serdes;
+package org.turbogwt.net.serialization.client;
 
 /**
- * Generated Serdes from {@link org.turbogwt.net.serialization.shared.Json}.
+ * SerializationException is the superclass exception related to Serialization issues.
  *
  * @author Danilo Reinert
  */
-interface GeneratedJsonSerdes extends Iterable<Serdes<?>> {
+public class SerializationException extends RuntimeException {
+
+    public SerializationException() {
+    }
+
+    public SerializationException(String s) {
+        super(s);
+    }
+
+    public SerializationException(String s, Throwable throwable) {
+        super(s, throwable);
+    }
 }

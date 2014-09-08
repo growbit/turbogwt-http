@@ -18,36 +18,14 @@
 <module>
     <!-- Inherit Google Web Toolkit stuff. -->
     <inherits name="com.google.gwt.user.User"/>
-    <inherits name="com.google.gwt.http.HTTP"/>
 
     <!-- Inherit Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.Core"/>
-    <inherits name="org.turbogwt.net.core.Core"/>
-    <inherits name="org.turbogwt.net.serialization.Serialization"/>
 
-    <!-- Inherit GWT-Jackson stuff. -->
-    <inherits name="com.github.nmorel.gwtjackson.GwtJackson" />
-
-    <inherits name="com.google.gwt.junit.JUnit"/>
-    <inherits name="com.google.gwt.xml.XML"/>
-    <inherits name="org.turbogwt.net.serialization.Serialization"/>
-
-    <source path="client"/>
-    <source path="shared"/>
+    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*"/>
+    <source path="shared" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*"/>
 
     <replace-with class="org.turbogwt.net.core.client.UriBuilderImpl">
         <when-type-is class="org.turbogwt.net.core.client.UriBuilder"/>
     </replace-with>
-
-    <replace-with class="org.turbogwt.net.http.client.RequestorImpl">
-        <when-type-is class="org.turbogwt.net.http.client.Requestor"/>
-    </replace-with>
-
-    <replace-with class="org.turbogwt.net.http.client.mock.ServerStub">
-        <when-type-is class="org.turbogwt.net.http.client.Server"/>
-    </replace-with>
-
-    <generate-with class="org.turbogwt.net.http.rebind.JsonSerdesGenerator">
-        <when-type-is class="org.turbogwt.net.http.client.GeneratedJsonSerdes" />
-    </generate-with>
 </module>

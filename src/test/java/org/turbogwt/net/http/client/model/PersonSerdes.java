@@ -18,12 +18,12 @@ package org.turbogwt.net.http.client.model;
 
 import java.util.Date;
 
-import org.turbogwt.net.http.client.serialization.DeserializationContext;
-import org.turbogwt.net.http.client.serialization.JsonObjectSerdes;
-import org.turbogwt.net.http.client.serialization.JsonRecordReader;
-import org.turbogwt.net.http.client.serialization.JsonRecordWriter;
-import org.turbogwt.net.http.client.serialization.JsonSerdes;
-import org.turbogwt.net.http.client.serialization.SerializationContext;
+import org.turbogwt.net.serialization.client.DeserializationContext;
+import org.turbogwt.net.serialization.client.SerializationContext;
+import org.turbogwt.net.serialization.client.json.JsonObjectSerdes;
+import org.turbogwt.net.serialization.client.json.JsonRecordReader;
+import org.turbogwt.net.serialization.client.json.JsonRecordWriter;
+import org.turbogwt.net.serialization.client.json.JsonSerdes;
 
 /**
  * @author Danilo Reinert

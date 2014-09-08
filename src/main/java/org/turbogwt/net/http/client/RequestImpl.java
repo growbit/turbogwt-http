@@ -33,8 +33,10 @@ import java.util.List;
 import org.turbogwt.net.http.client.header.AcceptHeader;
 import org.turbogwt.net.http.client.header.ContentTypeHeader;
 import org.turbogwt.net.http.client.header.SimpleHeader;
-import org.turbogwt.net.http.client.serialization.SerializationContext;
-import org.turbogwt.net.http.client.serialization.Serializer;
+import org.turbogwt.net.http.client.serialization.HttpSerializationContext;
+import org.turbogwt.net.serialization.client.ContainerFactoryManager;
+import org.turbogwt.net.serialization.client.SerdesManager;
+import org.turbogwt.net.serialization.client.Serializer;
 
 /**
  * Default implementation for {@link Request}.
@@ -283,13 +285,13 @@ public class RequestImpl implements RequestDispatcher {
                     body = "[]";
                 } else {
                     Serializer<?> serializer = serdesManager.getSerializer(item.getClass(), contentType);
-                    body = serializer.serializeFromCollection(c, SerializationContext.of(ensureHeaders()));
+                    body = serializer.serializeFromCollection(c, new HttpSerializationContext(ensureHeaders()));
                 }
             } else {
                 @SuppressWarnings("unchecked")
                 Serializer<Object> serializer = (Serializer<Object>) serdesManager.getSerializer(payload.getClass(),
                         contentType);
-                body = serializer.serialize(payload, SerializationContext.of(ensureHeaders()));
+                body = serializer.serialize(payload, new HttpSerializationContext(ensureHeaders()));
             }
         }
         return body;

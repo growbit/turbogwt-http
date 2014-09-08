@@ -21,8 +21,11 @@ import com.google.gwt.http.client.Response;
 import java.util.Collection;
 
 import org.turbogwt.core.future.shared.impl.DeferredObject;
-import org.turbogwt.net.http.client.serialization.DeserializationContext;
-import org.turbogwt.net.http.client.serialization.Deserializer;
+import org.turbogwt.net.http.client.serialization.HttpDeserializationContext;
+import org.turbogwt.net.serialization.client.ContainerFactoryManager;
+import org.turbogwt.net.serialization.client.DeserializationContext;
+import org.turbogwt.net.serialization.client.Deserializer;
+import org.turbogwt.net.serialization.client.SerdesManager;
 
 class DeferredCollectionResult<T> extends DeferredObject<Collection<T>, Throwable, RequestProgress>
         implements DeferredRequest<Collection<T>> {
@@ -46,7 +49,7 @@ class DeferredCollectionResult<T> extends DeferredObject<Collection<T>, Throwabl
         final String responseContentType = headers.getValue("Content-Type");
 
         final Deserializer<T> deserializer = serdesManager.getDeserializer(responseType, responseContentType);
-        final DeserializationContext context = DeserializationContext.of(headers, containerFactoryManager);
+        final DeserializationContext context = new HttpDeserializationContext(headers, containerFactoryManager);
         @SuppressWarnings("unchecked")
         Collection<T> result = deserializer.deserializeAsCollection(containerType, response.getText(), context);
 

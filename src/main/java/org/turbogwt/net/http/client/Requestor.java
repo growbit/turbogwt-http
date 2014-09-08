@@ -20,9 +20,9 @@ import java.util.Collection;
 
 import org.turbogwt.core.util.shared.Factory;
 import org.turbogwt.core.util.shared.Registration;
-import org.turbogwt.net.http.client.serialization.Deserializer;
-import org.turbogwt.net.http.client.serialization.Serdes;
-import org.turbogwt.net.http.client.serialization.Serializer;
+import org.turbogwt.net.serialization.client.Deserializer;
+import org.turbogwt.net.serialization.client.Serdes;
+import org.turbogwt.net.serialization.client.Serializer;
 
 /**
  * This interface is a configurable {@link Request} factory.
@@ -36,10 +36,10 @@ import org.turbogwt.net.http.client.serialization.Serializer;
  * The same for {@link org.turbogwt.net.http.client.ResponseFilter}.
  * <p/>
  *
- * You can register custom {@link org.turbogwt.net.http.client.serialization.Serializer} with #registerSerializer.
- * The same for {@link org.turbogwt.net.http.client.serialization.Deserializer}.
+ * You can register custom {@link org.turbogwt.net.serialization.client.Serializer} with #registerSerializer.
+ * The same for {@link org.turbogwt.net.serialization.client.Deserializer}.
  * If you want to support both serialization and deserialization for your custom object,
- * register a {@link org.turbogwt.net.http.client.serialization.Serdes} with #registerSerdes.
+ * register a {@link org.turbogwt.net.serialization.client.Serdes} with #registerSerdes.
  * <p/>
  *
  * SerDes for {@link String}, {@link Number}, {@link Boolean}
