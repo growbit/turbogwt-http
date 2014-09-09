@@ -22,8 +22,11 @@
 
     <!-- Inherit Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.collections.Collections"/>
-    <inherits name="org.turbogwt.core.util.Util"/>
-    <inherits name="org.turbogwt.core.future.Future"/>
-    <inherits name="org.turbogwt.net.core.CoreTest"/>
-    <inherits name="org.turbogwt.net.http.HttpTest"/>
+
+    <source path="client"/>
+    <source path="shared"/>
+
+    <replace-with class="org.turbogwt.net.client.UriBuilderImpl">
+        <when-type-is class="org.turbogwt.net.client.UriBuilder"/>
+    </replace-with>
 </module>

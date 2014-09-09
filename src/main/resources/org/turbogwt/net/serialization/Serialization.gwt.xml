@@ -22,7 +22,7 @@
     <!-- Inherit Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.collections.Collections"/>
     <inherits name="org.turbogwt.core.util.Util"/>
-    <inherits name="org.turbogwt.net.core.Core"/>
+    <inherits name="org.turbogwt.net.Net"/>
 
     <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*"/>
     <source path="shared" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*"/>

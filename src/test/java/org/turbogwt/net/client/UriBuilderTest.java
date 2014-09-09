@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.core.client;
+package org.turbogwt.net.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
@@ -25,7 +25,7 @@ public class UriBuilderTest extends GWTTestCase {
 
     @Override
     public String getModuleName() {
-        return "org.turbogwt.net.core.CoreTest";
+        return "org.turbogwt.net.NetTest";
     }
 
     public void testBasicFlow() {

@@ -20,7 +20,7 @@ import com.google.gwt.junit.tools.GWTTestSuite;
 
 import junit.framework.Test;
 
-import org.turbogwt.net.core.client.UriBuilderTest;
+import org.turbogwt.net.client.UriBuilderTest;
 import org.turbogwt.net.http.client.ContentTypeAcceptPatternsTest;
 import org.turbogwt.net.http.client.GeneratedJsonSerdesTest;
 import org.turbogwt.net.http.client.MultipleHeaderTest;

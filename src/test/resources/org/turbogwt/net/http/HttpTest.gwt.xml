@@ -22,7 +22,7 @@
 
     <!-- Inherit Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.Core"/>
-    <inherits name="org.turbogwt.net.core.Core"/>
+    <inherits name="org.turbogwt.net.Net"/>
     <inherits name="org.turbogwt.net.serialization.Serialization"/>
 
     <!-- Inherit GWT-Jackson stuff. -->
@@ -35,8 +35,8 @@
     <source path="client"/>
     <source path="shared"/>
 
-    <replace-with class="org.turbogwt.net.core.client.UriBuilderImpl">
-        <when-type-is class="org.turbogwt.net.core.client.UriBuilder"/>
+    <replace-with class="org.turbogwt.net.client.UriBuilderImpl">
+        <when-type-is class="org.turbogwt.net.client.UriBuilder"/>
     </replace-with>
 
     <replace-with class="org.turbogwt.net.http.client.RequestorImpl">

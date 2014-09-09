@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.core.client;
+package org.turbogwt.net.client;
 
 /**
  * Exception for URI building.

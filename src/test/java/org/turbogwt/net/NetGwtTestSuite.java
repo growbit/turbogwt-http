@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.core;
+package org.turbogwt.net;
 
 import com.google.gwt.junit.tools.GWTTestSuite;
 
 import junit.framework.Test;
 
-import org.turbogwt.net.core.client.UriBuilderTest;
+import org.turbogwt.net.client.UriBuilderTest;
 
 /**
  * @author Danilo Reinert
  */
-public class CoreGwtTestSuite {
+public class NetGwtTestSuite {
 
     public static Test suite() {
         GWTTestSuite suite = new GWTTestSuite("Net Core Test Suite");

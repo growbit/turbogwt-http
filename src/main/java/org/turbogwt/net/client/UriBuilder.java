@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.core.client;
+package org.turbogwt.net.client;
 
 import com.google.gwt.core.shared.GWT;
 

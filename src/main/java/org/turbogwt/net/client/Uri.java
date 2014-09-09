@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.core.client;
+package org.turbogwt.net.client;
 
 /**
  * Represents a URI.
