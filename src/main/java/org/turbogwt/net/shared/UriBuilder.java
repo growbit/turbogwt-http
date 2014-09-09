@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.client;
+package org.turbogwt.net.shared;
 
 import com.google.gwt.core.shared.GWT;
 
@@ -53,7 +53,8 @@ public abstract class UriBuilder {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    abstract UriBuilder multivaluedParamStrategy(MultivaluedParamStrategy strategy) throws IllegalArgumentException;
+    public abstract UriBuilder multivaluedParamStrategy(MultivaluedParamStrategy strategy)
+            throws IllegalArgumentException;
 
     /**
      * Set the URI user of user-info part.
@@ -62,7 +63,7 @@ public abstract class UriBuilder {
      *
      * @return the updated UriBuilder
      */
-    abstract UriBuilder user(String user);
+    public abstract UriBuilder user(String user);
 
     /**
      * Set the URI password of user-info part.
@@ -71,7 +72,7 @@ public abstract class UriBuilder {
      *
      * @return the updated UriBuilder
      */
-    abstract UriBuilder password(String password);
+    public abstract UriBuilder password(String password);
 
     /**
      * Set the URI scheme.
@@ -82,7 +83,7 @@ public abstract class UriBuilder {
      *
      * @throws IllegalArgumentException if scheme is invalid
      */
-    abstract UriBuilder scheme(String scheme) throws IllegalArgumentException;
+    public abstract UriBuilder scheme(String scheme) throws IllegalArgumentException;
 
     /**
      * Set the URI host.
@@ -93,7 +94,7 @@ public abstract class UriBuilder {
      *
      * @throws IllegalArgumentException if host is invalid.
      */
-    abstract UriBuilder host(String host) throws IllegalArgumentException;
+    public abstract UriBuilder host(String host) throws IllegalArgumentException;
 
     /**
      * Set the URI port.
@@ -104,7 +105,7 @@ public abstract class UriBuilder {
      *
      * @throws IllegalArgumentException if port is invalid
      */
-    abstract UriBuilder port(int port) throws IllegalArgumentException;
+    public abstract UriBuilder port(int port) throws IllegalArgumentException;
 
     /**
      * Set the URI path. This method will overwrite any existing path and associated matrix parameters. Existing '/'
@@ -114,7 +115,7 @@ public abstract class UriBuilder {
      *
      * @return the updated UriBuilder
      */
-    abstract UriBuilder path(String path);
+    public abstract UriBuilder path(String path);
 
     /**
      * Append path segments to the existing path. When constructing the final path, a '/' separator will be inserted
@@ -128,7 +129,7 @@ public abstract class UriBuilder {
      *
      * @throws IllegalArgumentException if segments or any element of segments is null
      */
-    abstract UriBuilder segment(Object... segments) throws IllegalArgumentException;
+    public abstract UriBuilder segment(Object... segments) throws IllegalArgumentException;
 
     /**
      * Append a matrix parameter to the existing set of matrix parameters of the current final segment of the URI path.
@@ -145,7 +146,7 @@ public abstract class UriBuilder {
      * @throws IllegalArgumentException if name or values is null
      * @see <a href="http://www.w3.org/DesignIssues/MatrixURIs.html">Matrix URIs</a>
      */
-    abstract UriBuilder matrixParam(String name, Object... values) throws IllegalArgumentException;
+    public abstract UriBuilder matrixParam(String name, Object... values) throws IllegalArgumentException;
 
     /**
      * Append a query parameter to the existing set of query parameters. If multiple values are supplied the parameter
@@ -159,7 +160,7 @@ public abstract class UriBuilder {
      *
      * @throws IllegalArgumentException if name or values is null
      */
-    abstract UriBuilder queryParam(String name, Object... values) throws IllegalArgumentException;
+    public abstract UriBuilder queryParam(String name, Object... values) throws IllegalArgumentException;
 
     /**
      * Set the URI fragment.
@@ -168,7 +169,7 @@ public abstract class UriBuilder {
      *
      * @return the updated UriBuilder
      */
-    abstract UriBuilder fragment(String fragment);
+    public abstract UriBuilder fragment(String fragment);
 
     /**
      * Build a URI, using the supplied values in order to replace any URI

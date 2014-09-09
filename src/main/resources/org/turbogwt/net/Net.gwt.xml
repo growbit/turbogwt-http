@@ -27,6 +27,6 @@
     <source path="shared" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,mock/*.*,model/*.*"/>
 
     <replace-with class="org.turbogwt.net.client.UriBuilderImpl">
-        <when-type-is class="org.turbogwt.net.client.UriBuilder"/>
+        <when-type-is class="org.turbogwt.net.shared.UriBuilder"/>
     </replace-with>
 </module>

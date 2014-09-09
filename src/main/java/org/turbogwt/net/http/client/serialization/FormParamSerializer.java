@@ -18,11 +18,11 @@ package org.turbogwt.net.http.client.serialization;
 
 import java.util.Collection;
 
-import org.turbogwt.net.client.MultivaluedParamStrategy;
 import org.turbogwt.net.http.client.FormData;
 import org.turbogwt.net.http.client.FormParam;
 import org.turbogwt.net.serialization.client.SerializationContext;
 import org.turbogwt.net.serialization.client.Serializer;
+import org.turbogwt.net.shared.MultivaluedParamStrategy;
 
 /**
  * Serializer for FORM requests.

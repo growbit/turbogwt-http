@@ -36,7 +36,7 @@
     <source path="shared"/>
 
     <replace-with class="org.turbogwt.net.client.UriBuilderImpl">
-        <when-type-is class="org.turbogwt.net.client.UriBuilder"/>
+        <when-type-is class="org.turbogwt.net.shared.UriBuilder"/>
     </replace-with>
 
     <replace-with class="org.turbogwt.net.http.client.RequestorImpl">

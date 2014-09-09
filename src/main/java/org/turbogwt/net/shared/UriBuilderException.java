@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.turbogwt.net.client;
+package org.turbogwt.net.shared;
 
 /**
  * Exception for URI building.

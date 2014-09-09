@@ -26,9 +26,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.turbogwt.core.collections.client.LightMap;
+import org.turbogwt.net.shared.MultivaluedParamStrategy;
+import org.turbogwt.net.shared.Uri;
+import org.turbogwt.net.shared.UriBuilder;
+import org.turbogwt.net.shared.UriBuilderException;
 
 /**
- * Default implementation of {@link UriBuilder}.
+ * Default implementation of {@link org.turbogwt.net.shared.UriBuilder}.
  *
  * @author Danilo Reinert
  */
