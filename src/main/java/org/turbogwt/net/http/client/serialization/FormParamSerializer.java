@@ -16,13 +16,13 @@
 
 package org.turbogwt.net.http.client.serialization;
 
-import java.util.Collection;
-
 import org.turbogwt.net.http.client.FormData;
 import org.turbogwt.net.http.client.FormParam;
 import org.turbogwt.net.serialization.client.SerializationContext;
 import org.turbogwt.net.serialization.client.Serializer;
-import org.turbogwt.net.shared.MultivaluedParamStrategy;
+import org.turbogwt.net.shared.MultivaluedParamComposition;
+
+import java.util.Collection;
 
 /**
  * Serializer for FORM requests.
@@ -35,7 +35,7 @@ public class FormParamSerializer implements Serializer<FormParam> {
 
     private static final FormParamSerializer INSTANCE = new FormParamSerializer();
 
-    private MultivaluedParamStrategy multivaluedParamStrategy = MultivaluedParamStrategy.REPEATED_PARAM;
+    private MultivaluedParamComposition multivaluedParamComposition = MultivaluedParamComposition.REPEATED_PARAM;
 
     public static FormParamSerializer getInstance() {
         return INSTANCE;
@@ -53,15 +53,15 @@ public class FormParamSerializer implements Serializer<FormParam> {
 
     @Override
     public String serialize(FormParam formParam, SerializationContext context) {
-        return multivaluedParamStrategy.asUriPart("&", formParam.getName(), formParam.getValues());
+        return multivaluedParamComposition.asUriPart("&", formParam.getName(), formParam.getValues());
     }
 
     @Override
     public String serializeFromCollection(Collection<FormParam> c, SerializationContext context) {
-        MultivaluedParamStrategy strategy = multivaluedParamStrategy;
+        MultivaluedParamComposition strategy = multivaluedParamComposition;
         if (c instanceof FormData) {
             FormData data = (FormData) c;
-            if (data.getMultivaluedParamStrategy() != null) strategy = data.getMultivaluedParamStrategy();
+            if (data.getMultivaluedParamComposition() != null) strategy = data.getMultivaluedParamComposition();
         }
         String serialized = "";
         String sep = "";
@@ -72,11 +72,11 @@ public class FormParamSerializer implements Serializer<FormParam> {
         return serialized;
     }
 
-    public MultivaluedParamStrategy getMultivaluedParamStrategy() {
-        return multivaluedParamStrategy;
+    public MultivaluedParamComposition getMultivaluedParamComposition() {
+        return multivaluedParamComposition;
     }
 
-    public void setMultivaluedParamStrategy(MultivaluedParamStrategy multivaluedParamStrategy) {
-        this.multivaluedParamStrategy = multivaluedParamStrategy;
+    public void setMultivaluedParamComposition(MultivaluedParamComposition multivaluedParamComposition) {
+        this.multivaluedParamComposition = multivaluedParamComposition;
     }
 }

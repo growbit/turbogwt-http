@@ -17,8 +17,7 @@
 package org.turbogwt.net.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
-
-import org.turbogwt.net.shared.MultivaluedParamStrategy;
+import org.turbogwt.net.shared.MultivaluedParamComposition;
 import org.turbogwt.net.shared.UriBuilder;
 import org.turbogwt.net.shared.UriBuilderException;
 
@@ -61,7 +60,7 @@ public class UriBuilderTest extends GWTTestCase {
                 "/child;group=A;subGroup=A.1,A.2?age=12&name=Aa,Zz#first";
 
         String uri = UriBuilder.fromPath("server")
-                .multivaluedParamStrategy(MultivaluedParamStrategy.COMMA_SEPARATED)
+                .multivaluedParamComposition(MultivaluedParamComposition.COMMA_SEPARATED_VALUE)
                 .segment("root")
                 .matrixParam("class", 2, 5, 6)
                 .segment("child")

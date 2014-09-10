@@ -19,17 +19,16 @@ package org.turbogwt.net.client;
 import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.http.client.URL;
+import org.turbogwt.core.collections.client.LightMap;
+import org.turbogwt.net.shared.MultivaluedParamComposition;
+import org.turbogwt.net.shared.Uri;
+import org.turbogwt.net.shared.UriBuilder;
+import org.turbogwt.net.shared.UriBuilderException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.turbogwt.core.collections.client.LightMap;
-import org.turbogwt.net.shared.MultivaluedParamStrategy;
-import org.turbogwt.net.shared.Uri;
-import org.turbogwt.net.shared.UriBuilder;
-import org.turbogwt.net.shared.UriBuilderException;
 
 /**
  * Default implementation of {@link org.turbogwt.net.shared.UriBuilder}.
@@ -38,7 +37,7 @@ import org.turbogwt.net.shared.UriBuilderException;
  */
 public class UriBuilderImpl extends UriBuilder {
 
-    private MultivaluedParamStrategy strategy = MultivaluedParamStrategy.REPEATED_PARAM;
+    private MultivaluedParamComposition strategy = MultivaluedParamComposition.REPEATED_PARAM;
     private String scheme;
     private String user;
     private String password;
@@ -50,7 +49,7 @@ public class UriBuilderImpl extends UriBuilder {
     private Map<String, Map<String, Object[]>> matrixParams;
 
     @Override
-    public UriBuilder multivaluedParamStrategy(MultivaluedParamStrategy strategy) throws IllegalArgumentException {
+    public UriBuilder multivaluedParamComposition(MultivaluedParamComposition strategy) throws IllegalArgumentException {
         assertNotNull(strategy, "Strategy cannot be null.");
         this.strategy = strategy;
         return this;

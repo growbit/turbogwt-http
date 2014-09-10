@@ -53,7 +53,7 @@ public abstract class UriBuilder {
      *
      * @throws IllegalArgumentException if strategy is null
      */
-    public abstract UriBuilder multivaluedParamStrategy(MultivaluedParamStrategy strategy)
+    public abstract UriBuilder multivaluedParamComposition(MultivaluedParamComposition strategy)
             throws IllegalArgumentException;
 
     /**

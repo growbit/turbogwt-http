@@ -23,10 +23,10 @@ import com.google.gwt.http.client.URL;
  *
  * @author Danilo Reinert
  */
-public abstract class MultivaluedParamStrategy {
+public abstract class MultivaluedParamComposition {
 
-    public static final MultivaluedParamStrategy REPEATED_PARAM = new RepeatedParamStrategy();
-    public static final MultivaluedParamStrategy COMMA_SEPARATED = new CommaSeparatedStrategy();
+    public static final MultivaluedParamComposition REPEATED_PARAM = new RepeatedParamStrategy();
+    public static final MultivaluedParamComposition COMMA_SEPARATED_VALUE = new CommaSeparatedValueStrategy();
 
     /**
      * Construct URI part from gives values.
@@ -57,7 +57,7 @@ public abstract class MultivaluedParamStrategy {
     /**
      * This class formats multiple parameters repeating the parameter name.
      */
-    public static class RepeatedParamStrategy extends MultivaluedParamStrategy {
+    public static class RepeatedParamStrategy extends MultivaluedParamComposition {
 
         /**
          * Construct encoded URI part from gives values.
@@ -89,7 +89,7 @@ public abstract class MultivaluedParamStrategy {
     /**
      * This class formats multiple parameters joining multiple values separated by comma.
      */
-    public static class CommaSeparatedStrategy extends MultivaluedParamStrategy {
+    public static class CommaSeparatedValueStrategy extends MultivaluedParamComposition {
 
         /**
          * Construct encoded URI part from gives values.

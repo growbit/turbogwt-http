@@ -17,7 +17,6 @@
 package org.turbogwt.net.http.client;
 
 import com.google.gwt.http.client.Header;
-
 import org.turbogwt.net.http.client.header.AcceptHeader;
 
 /**
@@ -63,7 +62,7 @@ public interface Request {
 //     *
 //     * @throws IllegalArgumentException if strategy is null
 //     */
-//    Request multivaluedParamStrategy(MultivaluedParamStrategy strategy)
+//    Request multivaluedParamComposition(MultivaluedParamComposition strategy)
 //            throws IllegalArgumentException;
 
     /**

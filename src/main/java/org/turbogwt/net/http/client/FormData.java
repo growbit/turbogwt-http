@@ -16,15 +16,14 @@
 
 package org.turbogwt.net.http.client;
 
+import org.turbogwt.core.collections.client.JsArrayList;
+import org.turbogwt.core.collections.client.JsMapInteger;
+import org.turbogwt.net.shared.MultivaluedParamComposition;
+
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.turbogwt.core.collections.client.JsArrayList;
-import org.turbogwt.core.collections.client.JsMapInteger;
-import org.turbogwt.net.shared.MultivaluedParamStrategy;
 
 /**
  * Stores form params and values.
@@ -34,7 +33,7 @@ import org.turbogwt.net.shared.MultivaluedParamStrategy;
 public class FormData implements Collection<FormParam> {
 
     private final List<FormParam> params;
-    private MultivaluedParamStrategy multivaluedParamStrategy;
+    private MultivaluedParamComposition multivaluedParamComposition;
 
     public FormData() {
         this.params = new JsArrayList<>();
@@ -57,13 +56,13 @@ public class FormData implements Collection<FormParam> {
         return new Builder();
     }
 
-    public void setMultivaluedParamStrategy(MultivaluedParamStrategy multivaluedParamStrategy) {
-        this.multivaluedParamStrategy = multivaluedParamStrategy;
+    public void setMultivaluedParamComposition(MultivaluedParamComposition multivaluedParamComposition) {
+        this.multivaluedParamComposition = multivaluedParamComposition;
     }
 
     @Nullable
-    public MultivaluedParamStrategy getMultivaluedParamStrategy() {
-        return multivaluedParamStrategy;
+    public MultivaluedParamComposition getMultivaluedParamComposition() {
+        return multivaluedParamComposition;
     }
 
     @Override
@@ -138,7 +137,7 @@ public class FormData implements Collection<FormParam> {
 
         private final JsArrayList<FormParam> params = new JsArrayList<>();
         private final JsMapInteger indexes = JsMapInteger.create();
-        private MultivaluedParamStrategy multivaluedParamStrategy;
+        private MultivaluedParamComposition multivaluedParamComposition;
 
         private Builder() {
         }
@@ -154,14 +153,14 @@ public class FormData implements Collection<FormParam> {
             return this;
         }
 
-        public Builder strategy(MultivaluedParamStrategy multivaluedParamStrategy) {
-            this.multivaluedParamStrategy = multivaluedParamStrategy;
+        public Builder strategy(MultivaluedParamComposition multivaluedParamComposition) {
+            this.multivaluedParamComposition = multivaluedParamComposition;
             return this;
         }
 
         public FormData build() {
             final FormData data = new FormData(params);
-            data.setMultivaluedParamStrategy(multivaluedParamStrategy);
+            data.setMultivaluedParamComposition(multivaluedParamComposition);
             return data;
         }
     }
