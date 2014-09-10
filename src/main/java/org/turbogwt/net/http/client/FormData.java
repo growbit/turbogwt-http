@@ -16,14 +16,15 @@
 
 package org.turbogwt.net.http.client;
 
-import org.turbogwt.core.collections.client.JsArrayList;
-import org.turbogwt.core.collections.client.JsMapInteger;
-import org.turbogwt.net.shared.MultivaluedParamComposition;
-
-import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.annotation.Nullable;
+
+import org.turbogwt.core.collections.client.JsArrayList;
+import org.turbogwt.core.collections.client.JsMapInteger;
+import org.turbogwt.net.shared.MultivaluedParamComposition;
 
 /**
  * Stores form params and values.

@@ -17,6 +17,7 @@
 package org.turbogwt.net.client;
 
 import com.google.gwt.junit.client.GWTTestCase;
+
 import org.turbogwt.net.shared.MultivaluedParamComposition;
 import org.turbogwt.net.shared.UriBuilder;
 import org.turbogwt.net.shared.UriBuilderException;

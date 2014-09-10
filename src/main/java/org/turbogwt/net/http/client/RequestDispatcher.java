@@ -17,9 +17,10 @@
 package org.turbogwt.net.http.client;
 
 import com.google.gwt.http.client.Header;
-import org.turbogwt.net.http.client.header.AcceptHeader;
 
 import java.util.Collection;
+
+import org.turbogwt.net.http.client.header.AcceptHeader;
 
 /**
  * A {@link Request} with dispatching capabilities.
@@ -34,9 +35,6 @@ public interface RequestDispatcher extends Request {
 
     @Override
     RequestDispatcher accept(AcceptHeader acceptHeader);
-
-//    @Override
-//    RequestDispatcher multivaluedParamComposition(MultivaluedParamComposition strategy) throws IllegalArgumentException;
 
     @Override
     RequestDispatcher header(String header, String value);
