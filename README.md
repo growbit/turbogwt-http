@@ -40,7 +40,7 @@ requestor.request("/books/1").get(Book.class)
         .done(book -> Window.alert("My book title: " + book.getTitle()));
 ```
 
-For JSON **serializing/deserializing** your POJO you just need to annotate it with `@Json` or create a custom SerDes:
+For JSON **serializing/deserializing** your POJO *you just need to annotate it with `@Json`* or create a custom SerDes:
 
 ```java 
 public class BookJsonSerdes extends JsonObjectSerdes<Book> {
@@ -94,6 +94,16 @@ requestor.request("/books").get(Book.class, List.class).done(new DoneCallback<Co
 When deserializing, the Deserializer retrieves an instance of the collection (container) from the ContainerFactoryManager, managed by the Requestor.
 
 You can create custom Factories of Containers and register them in the Requestor.
+
+### Primitive access the Response
+
+```java
+requestor.request("/books").get(Response.class).done(new DoneCallback<Response>() {
+    public void onDone(Response response) {
+        Window.alert("Response status is: " + response.getStatusCode());
+    }
+});
+```
 
 ### Always executed callbacks
 Add callbacks to be called when request has either succeeded or failed.
