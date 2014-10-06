@@ -40,7 +40,7 @@ requestor.request("/books/1").get(Book.class)
         .done(book -> Window.alert("My book title: " + book.getTitle()));
 ```
 
-For **serializing/deserializing** this object you just need to create this simple SerDes.
+For JSON **serializing/deserializing** your POJO you just need to annotate it with `@Json` or create a custom SerDes:
 
 ```java 
 public class BookJsonSerdes extends JsonObjectSerdes<Book> {
@@ -63,7 +63,7 @@ public class BookJsonSerdes extends JsonObjectSerdes<Book> {
 
 One configuration step: just remember to register your SerDes in the [Requestor](#requestor).
 <br />
-If you are using *Overlays*, then you don't need any SerDes, *serialization/deserialization is automatic*!
+If you are using *Overlays*, then you don't need any SerDes, serialization/deserialization is automatic.
 
 To **POST** an object, use the payload method:
 
