@@ -120,7 +120,7 @@ requestor.request(uri).get(Book.class).always(new AlwaysCallback<Book, Throwable
 ```
 
 ### Basic Authentication
-FluentRequest supports setting user and password.
+Request supports setting user and password.
 
 ```java
 requestor.request("/user/auth").user(username).password(pwd)...
@@ -138,21 +138,21 @@ requestor.request(uri)
 ```
  
 ### Requestor
-[Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, ContainerFactoryManager) and create [Requests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Request.html) supporting those. It should be used as a singleton over all your application.
+[Requestor](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/Requestor.html) is the main component of TurboG HTTP. It is responsible for managing the various aggregate components for the requests (as SerdesManager, FilterManager, ContainerFactoryManager) and create [Requests](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/Request.html) supporting those. It should be used as a singleton over all your application.
 
 ### JSON, XML and whatever living together
-The [Serializer](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/serialization/Serializer.html)
- and [Deserializer](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/serialization/Deserializer.html)
+The [Serializer](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/serialization/Serializer.html)
+ and [Deserializer](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/serialization/Deserializer.html)
  interfaces requires you to inform the *content-type patterns* they handle.
  After registering them at the Requestor, when requesting it will look for the most specific Serializer for serializing
  outgoing data and the most specific Deserializer for deserializing incoming data.
 
-The tests shows an example (see [this test](https://github.com/growbit/turbogwt-http/blob/master/src/test/java/org/turbogwt/net/http/MultipleSerdesByClassTest.java) and [the SerDes](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http/books))
+The tests shows an example (see [this test](https://github.com/growbit/turbogwt-http/blob/master/src/test/java/org/turbogwt/net/http/client/MultipleSerdesByClassTest.java) and [the SerDes](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http/client/books))
  of having both SerDes for XML and JSON related to the same type.
 
-Notice [FluentRequest](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/FluentRequest.html) (returned by Requestor) enables you to specify the exact content-type you want to serialize your
- outgoing data (FluentRequest#content-type(String)) and the content-type you want to receive from the server
- (FluentRequest#accept(String) or FluentRequest#accept(AcceptHeader)). Both default values are "application/json".
+Notice [Request](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/Request.html) (returned by Requestor) enables you to specify the exact content-type you want to serialize your
+ outgoing data (Request#content-type(String)) and the content-type you want to receive from the server
+ (Request#accept(String) or Request#accept(AcceptHeader)). Both default values are "application/json".
  
 An abstract SerDes implementation for JSON would be like:
 
@@ -192,33 +192,33 @@ public abstract class JsonSerdes<T> implements Serdes<T> {
 ```
 
 ### Multiple value parameters
-There's a feature called [MultivaluedParamStrategy](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/MultivaluedParamStrategy.html) that defines the way params with more than one value should be composed
+There's a feature called [MultivaluedParamStrategy](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/MultivaluedParamStrategy.html) that defines the way params with more than one value should be composed
  when building a URL or a FormParam. There are two strategies provided: RepeatedParam and CommaSeparated. The former
  repeats the param name with each value - this is the default and most practiced strategy -, the latter puts only
  once the parameter name and join the values separated by comma.
 
 ### Request/Response filters
-You can easily enhance all your requests with [RequestFilter](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/RequestFilter.html) and your responses with [ResponseFilter](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/ResponseFilter.html).
+You can easily enhance all your requests with [RequestFilter](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/RequestFilter.html) and your responses with [ResponseFilter](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/ResponseFilter.html).
  Suppose you want to add a custom authentication header in all requests after the user successfully authenticated.
  Just register a RequestFilter in the Requestor that performs this operation.
  If latter you want do undo this registration, you can hold the Registration instance returned at the time of
  registering and execute Registration#removeHandler().
 
-Ps: [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/Registration.html) is a TurboG Core class. Inherits from HandlerRegistration,
+Ps: [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/turbogwt/core/util/shared/Registration.html) is a TurboG Core class. Inherits from HandlerRegistration,
  but is essentially a general purpose registration element.
  All register* methods in Requestor return a registration instance, enabling the latter deregistration.
 
 ### Easier header construction
 TurboG HTTP provides Header classes facilitating complex header construction.
- E.g., you can create a [QualityFactorHeader](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/QualityFactorHeader.html) and pass it to your request.
+ E.g., you can create a [QualityFactorHeader](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/QualityFactorHeader.html) and pass it to your request.
 
 ### Extensible design
-All Requests are created by an underlying abstraction called [Server](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/Server.html). The Server is primarily responsible for providing new [ServerConnections](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/ServerConnection.html). The ServerConnection is responsible for performing the requests, by receiving all necessary parameters.
+All Requests are created by an underlying abstraction called [Server](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/Server.html). The Server is primarily responsible for providing new [ServerConnections](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/ServerConnection.html). The ServerConnection is responsible for performing the requests, by receiving all necessary parameters.
 
 This design allows you to implement how you want to communicate with your Server over all your application.
 Suppose you are creating a mobile application and want to prevent data loss by poor connection. You can create a new implementation of Server that caches the data in memory or stores it in phone's browser if no internet connection is available, and sync the data when the signal is back. Or you can implement a Server with specific configuration which would permit you to send and store particular kinds of data in the browser for accelerating the application's re-opening. [GWT Storage API](http://www.gwtproject.org/doc/latest/DevGuideHtml5Storage.html) might be very helpful in this case.
 
-The default implementation of Server ([ServerImpl](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/ServerImpl.java)) creates the [ServerConnectionImpl](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/ServerConnectionImpl.java) (default implementation of ServerConnection), which performs the communication by directly creating a request using RequestBuilder and sending it. The binding is done via DefferedBinding. 
+The default implementation of Server ([ServerImpl](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/client/ServerImpl.java)) creates the [ServerConnectionImpl](https://github.com/growbit/turbogwt-http/blob/master/src/main/java/org/turbogwt/net/http/client/ServerConnectionImpl.java) (default implementation of ServerConnection), which performs the communication by directly creating a request using RequestBuilder and sending it. The binding is done via DefferedBinding. 
 
 ### Tests
 Take a look at the [tests](https://github.com/growbit/turbogwt-http/tree/master/src/test/java/org/turbogwt/net/http) for more examples.
