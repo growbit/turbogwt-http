@@ -210,7 +210,7 @@ Ps: [Registration](http://growbit.github.io/turbogwt-core/javadoc/apidocs/org/tu
 
 ### Easier header construction
 TurboG HTTP provides Header classes facilitating complex header construction.
- E.g., you can create a [QualityFactorHeader](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/QualityFactorHeader.html) and pass it to your request.
+ E.g., you can create a [QualityFactorHeader](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/header/QualityFactorHeader.html) and pass it to your request.
 
 ### Extensible design
 All Requests are created by an underlying abstraction called [Server](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/Server.html). The Server is primarily responsible for providing new [ServerConnections](http://growbit.github.io/turbogwt-http/javadoc/apidocs/org/turbogwt/net/http/client/ServerConnection.html). The ServerConnection is responsible for performing the requests, by receiving all necessary parameters.
