@@ -5,34 +5,34 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.RequestImpl
-	c2659 [label=<<table title="org.turbogwt.net.http.client.RequestImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestImpl.html">
+	c3435 [label=<<table title="org.turbogwt.net.http.client.RequestImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RequestImpl </td></tr>
 		</table></td></tr>
-		</table>>, URL="./RequestImpl.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// org.turbogwt.net.http.client.RequestDispatcher
-	c2662 [label=<<table title="org.turbogwt.net.http.client.RequestDispatcher" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestDispatcher.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> RequestDispatcher </td></tr>
-		</table></td></tr>
-		</table>>, URL="./RequestDispatcher.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./RequestImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.Request
-	c2663 [label=<<table title="org.turbogwt.net.http.client.Request" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Request.html">
+	c3444 [label=<<table title="org.turbogwt.net.http.client.Request" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Request.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Request </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Request.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Request.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.net.http.client.RequestDispatcher
+	c3445 [label=<<table title="org.turbogwt.net.http.client.RequestDispatcher" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestDispatcher.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> RequestDispatcher </td></tr>
+		</table></td></tr>
+		</table>>, URL="./RequestDispatcher.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.RequestImpl implements org.turbogwt.net.http.client.RequestDispatcher
-	c2662:p -> c2659:p [dir=back,arrowtail=empty,style=dashed];
+	c3445:p -> c3435:p [dir=back,arrowtail=empty,style=dashed];
 	//org.turbogwt.net.http.client.RequestDispatcher implements org.turbogwt.net.http.client.Request
-	c2663:p -> c2662:p [dir=back,arrowtail=empty,style=dashed];
+	c3444:p -> c3445:p [dir=back,arrowtail=empty,style=dashed];
 }
 

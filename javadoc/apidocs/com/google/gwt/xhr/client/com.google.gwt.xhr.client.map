@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./XMLHttpRequest.html" title="com.google.gwt.xhr.client.XMLHttpRequest" alt="" coords="27,247,144,273"/>
-<area shape="rect" id="node1" href="./XMLHttpRequest.html" title="&lt;TABLE&gt;" alt="" coords="16,236,155,284"/>
-<area shape="rect" id="node2_1" href="./XMLHttpRequest.ResponseType.html" title="com.google.gwt.xhr.client.XMLHttpRequest.ResponseType" alt="" coords="32,162,139,206"/>
-<area shape="rect" id="node2" href="./XMLHttpRequest.ResponseType.html" title="&lt;TABLE&gt;" alt="" coords="21,157,149,211"/>
-<area shape="rect" id="node3_2" href="./XhrRequestProgress.html" title="com.google.gwt.xhr.client.XhrRequestProgress" alt="" coords="16,95,155,121"/>
-<area shape="rect" id="node3" href="./XhrRequestProgress.html" title="&lt;TABLE&gt;" alt="" coords="5,84,165,132"/>
-<area shape="rect" id="node4_3" href="./ProgressHandler.html" title="com.google.gwt.xhr.client.ProgressHandler" alt="" coords="27,10,144,54"/>
-<area shape="rect" id="node4" href="./ProgressHandler.html" title="&lt;TABLE&gt;" alt="" coords="16,5,155,59"/>
+<area shape="rect" id="node1_0" href="./XhrRequestProgress.html" title="com.google.gwt.xhr.client.XhrRequestProgress" alt="" coords="16,245,157,272"/>
+<area shape="rect" id="node1" href="./XhrRequestProgress.html" title="&lt;TABLE&gt;" alt="" coords="5,235,168,283"/>
+<area shape="rect" id="node2_1" href="./XMLHttpRequest.html" title="com.google.gwt.xhr.client.XMLHttpRequest" alt="" coords="26,173,147,200"/>
+<area shape="rect" id="node2" href="./XMLHttpRequest.html" title="&lt;TABLE&gt;" alt="" coords="15,163,158,211"/>
+<area shape="rect" id="node3_2" href="./XMLHttpRequest.ResponseType.html" title="com.google.gwt.xhr.client.XMLHttpRequest.ResponseType" alt="" coords="32,89,141,133"/>
+<area shape="rect" id="node3" href="./XMLHttpRequest.ResponseType.html" title="&lt;TABLE&gt;" alt="" coords="21,83,152,138"/>
+<area shape="rect" id="node4_3" href="./ProgressHandler.html" title="com.google.gwt.xhr.client.ProgressHandler" alt="" coords="28,10,145,54"/>
+<area shape="rect" id="node4" href="./ProgressHandler.html" title="&lt;TABLE&gt;" alt="" coords="17,5,156,59"/>
 </map>

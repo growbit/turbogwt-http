@@ -1,5 +1,12 @@
 com.google.gwt.http.client
 com.google.gwt.xhr.client
+org.turbogwt.net.client
 org.turbogwt.net.http.client
 org.turbogwt.net.http.client.header
 org.turbogwt.net.http.client.serialization
+org.turbogwt.net.http.rebind
+org.turbogwt.net.serialization.client
+org.turbogwt.net.serialization.client.json
+org.turbogwt.net.serialization.client.misc
+org.turbogwt.net.serialization.shared
+org.turbogwt.net.shared

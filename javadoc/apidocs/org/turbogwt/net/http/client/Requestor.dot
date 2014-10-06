@@ -5,16 +5,25 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// org.turbogwt.net.http.client.Requestor
-	c3061 [label=<<table title="org.turbogwt.net.http.client.Requestor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Requestor.html">
+	c3873 [label=<<table title="org.turbogwt.net.http.client.Requestor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Requestor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Requestor </td></tr>
 		</table></td></tr>
-		</table>>, URL="./Requestor.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./Requestor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.net.http.client.RequestorImpl
+	c3876 [label=<<table title="org.turbogwt.net.http.client.RequestorImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RequestorImpl.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RequestorImpl </td></tr>
+		</table></td></tr>
+		</table>>, URL="./RequestorImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//org.turbogwt.net.http.client.RequestorImpl implements org.turbogwt.net.http.client.Requestor
+	c3873:p -> c3876:p [dir=back,arrowtail=empty,style=dashed];
 }
 

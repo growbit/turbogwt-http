@@ -5,36 +5,36 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
+	// com.google.gwt.xhr.client.XhrRequestProgress
+	c772 [label=<<table title="com.google.gwt.xhr.client.XhrRequestProgress" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./XhrRequestProgress.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> XhrRequestProgress </td></tr>
+		</table></td></tr>
+		</table>>, URL="./XhrRequestProgress.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// com.google.gwt.xhr.client.XMLHttpRequest
-	c73 [label=<<table title="com.google.gwt.xhr.client.XMLHttpRequest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./XMLHttpRequest.html">
+	c773 [label=<<table title="com.google.gwt.xhr.client.XMLHttpRequest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./XMLHttpRequest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> XMLHttpRequest </td></tr>
 		</table></td></tr>
-		</table>>, URL="./XMLHttpRequest.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./XMLHttpRequest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// com.google.gwt.xhr.client.XMLHttpRequest.ResponseType
-	c74 [label=<<table title="com.google.gwt.xhr.client.XMLHttpRequest.ResponseType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./XMLHttpRequest.ResponseType.html">
+	c774 [label=<<table title="com.google.gwt.xhr.client.XMLHttpRequest.ResponseType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./XMLHttpRequest.ResponseType.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> ResponseType </td></tr>
 		</table></td></tr>
-		</table>>, URL="./XMLHttpRequest.ResponseType.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	// com.google.gwt.xhr.client.XhrRequestProgress
-	c75 [label=<<table title="com.google.gwt.xhr.client.XhrRequestProgress" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./XhrRequestProgress.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> XhrRequestProgress </td></tr>
-		</table></td></tr>
-		</table>>, URL="./XhrRequestProgress.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./XMLHttpRequest.ResponseType.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// com.google.gwt.xhr.client.ProgressHandler
-	c76 [label=<<table title="com.google.gwt.xhr.client.ProgressHandler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProgressHandler.html">
+	c775 [label=<<table title="com.google.gwt.xhr.client.ProgressHandler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProgressHandler.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ProgressHandler </td></tr>
 		</table></td></tr>
-		</table>>, URL="./ProgressHandler.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./ProgressHandler.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

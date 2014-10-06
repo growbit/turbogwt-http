@@ -5,32 +5,32 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
-	// org.turbogwt.net.http.client.header.QualityFactorHeader
-	c1798 [label=<<table title="org.turbogwt.net.http.client.header.QualityFactorHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QualityFactorHeader.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> QualityFactorHeader </td></tr>
-		</table></td></tr>
-		</table>>, URL="./QualityFactorHeader.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.header.MultivaluedHeader
-	c1800 [label=<<table title="org.turbogwt.net.http.client.header.MultivaluedHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultivaluedHeader.html">
+	c2529 [label=<<table title="org.turbogwt.net.http.client.header.MultivaluedHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MultivaluedHeader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MultivaluedHeader </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MultivaluedHeader.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	//org.turbogwt.net.http.client.header.QualityFactorHeader extends org.turbogwt.net.http.client.header.MultivaluedHeader
-	c1800:p -> c1798:p [dir=back,arrowtail=empty];
-	//org.turbogwt.net.http.client.header.MultivaluedHeader extends com.google.gwt.http.client.Header
-	c1825:p -> c1800:p [dir=back,arrowtail=empty];
-	// com.google.gwt.http.client.Header
-	c1825 [label=<<table title="com.google.gwt.http.client.Header" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/Header.html">
+		</table>>, URL="./MultivaluedHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.net.http.client.header.QualityFactorHeader
+	c2532 [label=<<table title="org.turbogwt.net.http.client.header.QualityFactorHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QualityFactorHeader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="arial italic"> Header </font></td></tr>
+<tr><td align="center" balign="center"> QualityFactorHeader </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/Header.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./QualityFactorHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//org.turbogwt.net.http.client.header.MultivaluedHeader extends com.google.gwt.http.client.Header
+	c2573:p -> c2529:p [dir=back,arrowtail=empty];
+	//org.turbogwt.net.http.client.header.QualityFactorHeader extends org.turbogwt.net.http.client.header.MultivaluedHeader
+	c2529:p -> c2532:p [dir=back,arrowtail=empty];
+	// com.google.gwt.http.client.Header
+	c2573 [label=<<table title="com.google.gwt.http.client.Header" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/Header.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Header </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/Header.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

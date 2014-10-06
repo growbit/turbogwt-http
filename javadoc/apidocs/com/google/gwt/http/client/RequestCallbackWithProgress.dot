@@ -5,26 +5,26 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
 	// com.google.gwt.http.client.RequestCallbackWithProgress
-	c2499 [label=<<table title="com.google.gwt.http.client.RequestCallbackWithProgress" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestCallbackWithProgress.html">
+	c3355 [label=<<table title="com.google.gwt.http.client.RequestCallbackWithProgress" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RequestCallbackWithProgress.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> RequestCallbackWithProgress </td></tr>
 		</table></td></tr>
-		</table>>, URL="./RequestCallbackWithProgress.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./RequestCallbackWithProgress.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//com.google.gwt.http.client.RequestCallbackWithProgress implements com.google.gwt.http.client.RequestCallback
-	c2565:p -> c2499:p [dir=back,arrowtail=empty,style=dashed];
+	c3357:p -> c3355:p [dir=back,arrowtail=empty,style=dashed];
 	// com.google.gwt.http.client.RequestCallback
-	c2565 [label=<<table title="com.google.gwt.http.client.RequestCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/RequestCallback.html">
+	c3357 [label=<<table title="com.google.gwt.http.client.RequestCallback" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/RequestCallback.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> RequestCallback </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/RequestCallback.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/RequestCallback.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

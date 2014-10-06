@@ -5,41 +5,41 @@
 #
 
 digraph G {
-	edge [fontname="arial",fontsize=10,labelfontname="arial",labelfontsize=10];
-	node [fontname="arial",fontsize=10,shape=plaintext];
+	edge [fontname="Helvetica",fontsize=10,labelfontname="Helvetica",labelfontsize=10];
+	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
 	rankdir=LR;
-	// org.turbogwt.net.http.client.header.QualityFactorHeader
-	c2201 [label=<<table title="org.turbogwt.net.http.client.header.QualityFactorHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QualityFactorHeader.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> QualityFactorHeader </td></tr>
-		</table></td></tr>
-		</table>>, URL="./QualityFactorHeader.html", fontname="arial", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.header.MultivaluedHeader
-	c2203 [label=<<table title="org.turbogwt.net.http.client.header.MultivaluedHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultivaluedHeader.html">
+	c2956 [label=<<table title="org.turbogwt.net.http.client.header.MultivaluedHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MultivaluedHeader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MultivaluedHeader </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MultivaluedHeader.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./MultivaluedHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.turbogwt.net.http.client.header.AcceptHeader
-	c2205 [label=<<table title="org.turbogwt.net.http.client.header.AcceptHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AcceptHeader.html">
+	c2957 [label=<<table title="org.turbogwt.net.http.client.header.AcceptHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AcceptHeader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AcceptHeader </td></tr>
 		</table></td></tr>
-		</table>>, URL="./AcceptHeader.html", fontname="arial", fontcolor="black", fontsize=10.0];
-	//org.turbogwt.net.http.client.header.QualityFactorHeader extends org.turbogwt.net.http.client.header.MultivaluedHeader
-	c2203:p -> c2201:p [dir=back,arrowtail=empty];
-	//org.turbogwt.net.http.client.header.QualityFactorHeader implements java.lang.Iterable<T>
-	c2228:p -> c2201:p [dir=back,arrowtail=empty,style=dashed];
+		</table>>, URL="./AcceptHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.turbogwt.net.http.client.header.QualityFactorHeader
+	c2959 [label=<<table title="org.turbogwt.net.http.client.header.QualityFactorHeader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QualityFactorHeader.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> QualityFactorHeader </td></tr>
+		</table></td></tr>
+		</table>>, URL="./QualityFactorHeader.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.turbogwt.net.http.client.header.AcceptHeader extends org.turbogwt.net.http.client.header.QualityFactorHeader
-	c2201:p -> c2205:p [dir=back,arrowtail=empty];
+	c2959:p -> c2957:p [dir=back,arrowtail=empty];
+	//org.turbogwt.net.http.client.header.QualityFactorHeader extends org.turbogwt.net.http.client.header.MultivaluedHeader
+	c2956:p -> c2959:p [dir=back,arrowtail=empty];
+	//org.turbogwt.net.http.client.header.QualityFactorHeader implements java.lang.Iterable<T>
+	c3000:p -> c2959:p [dir=back,arrowtail=empty,style=dashed];
 	// java.lang.Iterable<T>
-	c2228 [label=<<table title="java.lang.Iterable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/Iterable.html">
+	c3000 [label=<<table title="java.lang.Iterable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/Iterable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Iterable&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/lang/Iterable.html", fontname="arial", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/lang/Iterable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

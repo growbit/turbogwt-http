@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./SimpleHeaderWithParameter.html" title="org.turbogwt.net.http.client.header.SimpleHeaderWithParameter" alt="" coords="317,16,507,43"/>
-<area shape="rect" id="node1" href="./SimpleHeaderWithParameter.html" title="&lt;TABLE&gt;" alt="" coords="307,5,517,53"/>
-<area shape="rect" id="node2_1" href="./SimpleHeader.html" title="org.turbogwt.net.http.client.header.SimpleHeader" alt="" coords="147,16,248,43"/>
-<area shape="rect" id="node2" href="./SimpleHeader.html" title="&lt;TABLE&gt;" alt="" coords="136,5,259,53"/>
-<area shape="rect" id="node3_2" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/Header.html" title="com.google.gwt.http.client.Header" alt="" coords="16,16,77,43"/>
-<area shape="rect" id="node3" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/Header.html" title="&lt;TABLE&gt;" alt="" coords="5,5,88,53"/>
+<area shape="rect" id="node1_0" href="./SimpleHeaderWithParameter.html" title="org.turbogwt.net.http.client.header.SimpleHeaderWithParameter" alt="" coords="323,16,512,43"/>
+<area shape="rect" id="node1" href="./SimpleHeaderWithParameter.html" title="&lt;TABLE&gt;" alt="" coords="312,5,523,53"/>
+<area shape="rect" id="node2_1" href="./SimpleHeader.html" title="org.turbogwt.net.http.client.header.SimpleHeader" alt="" coords="150,16,253,43"/>
+<area shape="rect" id="node2" href="./SimpleHeader.html" title="&lt;TABLE&gt;" alt="" coords="139,5,263,53"/>
+<area shape="rect" id="node3_2" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/Header.html" title="com.google.gwt.http.client.Header" alt="" coords="17,16,79,43"/>
+<area shape="rect" id="node3" href="http://google-web-toolkit.googlecode.com/svn/javadoc/latest/com/google/gwt/http/client/Header.html" title="&lt;TABLE&gt;" alt="" coords="6,5,90,53"/>
 </map>
