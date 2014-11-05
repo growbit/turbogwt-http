@@ -2,7 +2,7 @@ Turbo GWT (*TurboG*) HTTP [![Build Status](https://travis-ci.org/growbit/turbogw
 ==
 [**Turbo GWT**](http://github.com/growbit/turbogwt) is a suite of libs intended to speed up development of GWT applications. It aims to promote a fluent and enjoyable programming.
 
-**Turbo GWT HTTP** is a convenient API for managing client-server communication and performing requests fluently.
+**Turbo GWT HTTP** is a convenient API for managing client-server communication and perform requests fluently.
 
 ## Highlights
 
