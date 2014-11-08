@@ -9,11 +9,11 @@ Turbo GWT (*TurboG*) HTTP [![Build Status](https://travis-ci.org/growbit/turbogw
 * Handle the requests results with Promises!
 * Fluent `GET`, `POST`, `PUT`, `DELETE` and `HEAD` requests
 * Easy construction of target URI with UriBuilder
+* [Auto JSON De/Serialization](#serialization)
 * [Customizable multi-valued param composition](#multiple-value-parameters)
 * [Nice support to form params](#sending-form-data)
 * [Native Basic Authentication support](#basic-authentication)
 * Customizable timeout
-* [Customizable callback execution based on server response](#customizable-callback-execution)
 * [Always executed callbacks](#always-executed-callbacks)
 * [Handy header construction and application](#easier-header-construction)
 * [Request and Response filtering (enhancement)](#requestresponse-filters)
@@ -40,6 +40,7 @@ requestor.request("/books/1").get(Book.class)
         .done(book -> Window.alert("My book title: " + book.getTitle()));
 ```
 
+### Serialization
 For JSON **serializing/deserializing** your POJO *you just need to annotate it with `@Json`* 
 
 ```java 
